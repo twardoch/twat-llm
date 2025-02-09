@@ -86,6 +86,7 @@ dependencies = [
 typing = "mypy --install-types --non-interactive {args:src/twat_llm tests}"
 style = ["ruff check {args:.}", "ruff format {args:.}"]
 fmt = ["ruff format {args:.}", "ruff check --fix {args:.}"]
+fix = ["ruff check --fix --unsafe-fixes {args:.}", "ruff format {args:.}"]
 all = ["style", "typing"]
 
 
