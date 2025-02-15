@@ -1,4 +1,5 @@
 """Check which LLM plugins are installed and display results in a table."""
+
 from __future__ import annotations
 
 import importlib

@@ -75,9 +75,7 @@ def _extract_middle_frame(video_path: str | Path) -> Image.Image:
 
     if not ret:
         msg = f"Unable to read frame at index {middle_frame_index} from video: {video_path}"
-        raise LLMError(
-            msg
-        )
+        raise LLMError(msg)
 
     return Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
 
@@ -87,7 +85,11 @@ def _prepare_media(path: str | Path) -> bytes:
     path = Path(path)
     file_ext = path.suffix.lower()
 
-    image = _extract_middle_frame(path) if file_ext in {".mp4", ".avi", ".mov", ".mkv"} else Image.open(path)
+    image = (
+        _extract_middle_frame(path)
+        if file_ext in {".mp4", ".avi", ".mov", ".mkv"}
+        else Image.open(path)
+    )
 
     return _resize_image(image)
 
@@ -109,7 +111,7 @@ def _try_model(
 def _process_step(step, current_data: str) -> str:
     """Process a single step in the chain and return the result."""
     # Convert single item to tuple if needed
-    if isinstance(step, (str, callable)):
+    if isinstance(step, str | callable):
         step = (step,)
 
     # Validate step format
@@ -133,10 +135,10 @@ def _process_step(step, current_data: str) -> str:
         # Prompt step
         result = ask(prompt=processor, data=current_data, **kwargs)
     else:
-        msg = f"Step processor must be either a function or string, got {type(processor)}"
-        raise TypeError(
-            msg
+        msg = (
+            f"Step processor must be either a function or string, got {type(processor)}"
         )
+        raise TypeError(msg)
 
     return str(result)
 
