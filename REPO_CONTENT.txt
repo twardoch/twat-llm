@@ -1,0 +1,3397 @@
+This file is a merged representation of a subset of the codebase, containing files not matching ignore patterns, combined into a single document by Repomix. The content has been processed where empty lines have been removed.
+
+================================================================
+File Summary
+================================================================
+
+Purpose:
+--------
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+
+File Format:
+------------
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Multiple file entries, each consisting of:
+  a. A separator line (================)
+  b. The file path (File: path/to/file)
+  c. Another separator line
+  d. The full contents of the file
+  e. A blank line
+
+Usage Guidelines:
+-----------------
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+
+Notes:
+------
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching these patterns are excluded: .specstory/**/*.md, .venv/**, _private/**, CLEANUP.txt, **/*.json, *.lock
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Empty lines have been removed from all files
+
+Additional Info:
+----------------
+
+================================================================
+Directory Structure
+================================================================
+.cursor/
+  rules/
+    0project.mdc
+    cleanup.mdc
+    filetree.mdc
+    quality.mdc
+.github/
+  workflows/
+    push.yml
+    release.yml
+docs/
+  people-api-tldr.md
+  people-api.md
+  people.py
+  review-copilot.md
+  review-cursor.md
+  review-o3.md
+  review-trae.md
+  serp.py
+  web-search-api.md
+src/
+  twat_llm/
+    twat_llm.py
+  funchain.py
+  llm_plugins.py
+  mallmo.py
+tests/
+  test_twat_llm.py
+.gitignore
+.pre-commit-config.yaml
+cleanup.py
+LICENSE
+LOG.md
+package.toml
+pyproject.toml
+README.md
+VERSION.txt
+
+================================================================
+Files
+================================================================
+
+================
+File: .cursor/rules/0project.mdc
+================
+---
+description: About this project
+globs:
+---
+# About this project
+
+`twat-fs` is a file system utility library focused on robust and extensible file upload capabilities with multiple provider support. It provides:
+
+- Multi-provider upload system with smart fallback (catbox.moe default, plus Dropbox, S3, etc.)
+- Automatic retry for temporary failures, fallback for permanent ones
+- URL validation and clean developer experience with type hints
+- Simple CLI: `python -m twat_fs upload_file path/to/file.txt`
+- Easy installation: `uv pip install twat-fs` (basic) or `uv pip install 'twat-fs[all,dev]'` (all features)
+
+## Development Notes
+- Uses `uv` for Python package management
+- Quality tools: ruff, mypy, pytest
+- Clear provider protocol for adding new storage backends
+- Strong typing and runtime checks throughout
+
+================
+File: .cursor/rules/cleanup.mdc
+================
+---
+description: Run `cleanup.py` script before and after changes
+globs: 
+---
+Before you do any changes or if I say "cleanup", run the `cleanup.py update` script in the main folder. Analyze the results, describe recent changes in @LOG.md and edit @TODO.md to update priorities and plan next changes. PERFORM THE CHANGES, then run the `cleanup.py status` script and react to the results.
+
+When you edit @TODO.md, lead in lines with empty GFM checkboxes if things aren't done (`- [ ] `) vs. filled (`- [x] `) if done.
+
+================
+File: .cursor/rules/filetree.mdc
+================
+---
+description: File tree of the project
+globs: 
+---
+[ 864]  .
+├── [  64]  .benchmarks
+├── [  96]  .cursor
+│   └── [ 224]  rules
+│       ├── [ 821]  0project.mdc
+│       ├── [ 516]  cleanup.mdc
+│       ├── [1.7K]  filetree.mdc
+│       └── [2.0K]  quality.mdc
+├── [  96]  .github
+│   └── [ 128]  workflows
+│       ├── [2.7K]  push.yml
+│       └── [1.4K]  release.yml
+├── [3.5K]  .gitignore
+├── [ 470]  .pre-commit-config.yaml
+├── [  96]  .specstory
+│   └── [ 160]  history
+│       ├── [2.0K]  .what-is-this.md
+│       ├── [4.0K]  reviewing-the-reviewers-a-critical-analysis.md
+│       └── [4.4K]  writeup-review-and-rating-analysis.md
+├── [ 987]  CLEANUP.txt
+├── [1.0K]  LICENSE
+├── [1.5K]  LOG.md
+├── [ 706]  README.md
+├── [   7]  VERSION.txt
+├── [ 13K]  cleanup.py
+├── [ 160]  dist
+├── [ 384]  docs
+│   ├── [6.6K]  people-api-tldr.md
+│   ├── [ 67K]  people-api.md
+│   ├── [ 189]  people.py
+│   ├── [2.6K]  review-copilot.md
+│   ├── [3.1K]  review-cursor.md
+│   ├── [3.1K]  review-o3.md
+│   ├── [2.3K]  review-trae.md
+│   ├── [ 350]  serp.py
+│   └── [ 50K]  web-search-api.md
+├── [ 426]  package.toml
+├── [7.2K]  pyproject.toml
+├── [ 224]  src
+│   ├── [ 279]  funchain.py
+│   ├── [3.2K]  llm_plugins.py
+│   ├── [8.7K]  mallmo.py
+│   └── [ 128]  twat_llm
+│       └── [1.6K]  twat_llm.py
+└── [ 128]  tests
+    └── [ 148]  test_twat_llm.py
+
+13 directories, 33 files
+
+================
+File: .cursor/rules/quality.mdc
+================
+---
+description: Quality
+globs: 
+---
+- **Verify Information**: Always verify information before presenting it. Do not make assumptions or speculate without clear evidence.
+- **No Apologies**: Never use apologies.
+- **No Whitespace Suggestions**: Don't suggest whitespace changes.
+- **No Inventions**: Don't invent major changes other than what's explicitly requested.
+- **No Unnecessary Confirmations**: Don't ask for confirmation of information already provided in the context.
+- **Preserve Existing Code**: Don't remove unrelated code or functionalities. Pay attention to preserving existing structures.
+- **No Implementation Checks**: Don't ask the user to verify implementations that are visible in the provided context.
+- **No Unnecessary Updates**: Don't suggest updates or changes to files when there are no actual modifications needed.
+- **No Current Implementation**: Don't show or discuss the current implementation unless specifically requested.
+- **Use Explicit Variable Names**: Prefer descriptive, explicit variable names over short, ambiguous ones to enhance code readability.
+- **Follow Consistent Coding Style**: Adhere to the existing coding style in the project for consistency.
+- **Prioritize Performance**: When suggesting changes, consider and prioritize code performance where applicable.
+- **Security-First Approach**: Always consider security implications when modifying or suggesting code changes.
+- **Test Coverage**: Suggest or include appropriate unit tests for new or modified code.
+- **Error Handling**: Implement robust error handling and logging where necessary.
+- **Modular Design**: Encourage modular design principles to improve code maintainability and reusability.
+- **Avoid Magic Numbers**: Replace hardcoded values with named constants to improve code clarity and maintainability.
+- **Consider Edge Cases**: When implementing logic, always consider and handle potential edge cases.
+- **Use Assertions**: Include assertions wherever possible to validate assumptions and catch potential errors early.
+
+================
+File: .github/workflows/push.yml
+================
+name: Build & Test
+on:
+  push:
+    branches: [main]
+    tags-ignore: ["v*"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+  id-token: write
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  quality:
+    name: Code Quality
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Run Ruff lint
+        uses: astral-sh/ruff-action@v3
+        with:
+          version: "latest"
+          args: "check --output-format=github"
+      - name: Run Ruff Format
+        uses: astral-sh/ruff-action@v3
+        with:
+          version: "latest"
+          args: "format --check --respect-gitignore"
+  test:
+    name: Run Tests
+    needs: quality
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+        os: [ubuntu-latest]
+      fail-fast: true
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install UV
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "latest"
+          python-version: ${{ matrix.python-version }}
+          enable-cache: true
+          cache-suffix: ${{ matrix.os }}-${{ matrix.python-version }}
+      - name: Install test dependencies
+        run: |
+          uv pip install --system --upgrade pip
+          uv pip install --system ".[test]"
+      - name: Run tests with Pytest
+        run: uv run pytest -n auto --maxfail=1 --disable-warnings --cov-report=xml --cov-config=pyproject.toml --cov=src/twat_llm --cov=tests tests/
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-${{ matrix.python-version }}-${{ matrix.os }}
+          path: coverage.xml
+  build:
+    name: Build Distribution
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install UV
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "latest"
+          python-version: "3.12"
+          enable-cache: true
+      - name: Install build tools
+        run: uv pip install build hatchling hatch-vcs
+      - name: Build distributions
+        run: uv run python -m build --outdir dist
+      - name: Upload distribution artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-files
+          path: dist/
+          retention-days: 5
+
+================
+File: .github/workflows/release.yml
+================
+name: Release
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: write
+  id-token: write
+jobs:
+  release:
+    name: Release to PyPI
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/twat-llm
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install UV
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "latest"
+          python-version: "3.12"
+          enable-cache: true
+      - name: Install build tools
+        run: uv pip install build hatchling hatch-vcs
+      - name: Build distributions
+        run: uv run python -m build --outdir dist
+      - name: Verify distribution files
+        run: |
+          ls -la dist/
+          test -n "$(find dist -name '*.whl')" || (echo "Wheel file missing" && exit 1)
+          test -n "$(find dist -name '*.tar.gz')" || (echo "Source distribution missing" && exit 1)
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_TOKEN }}
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist/*
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+================
+File: docs/people-api-tldr.md
+================
+# Comprehensive Guide to Person Profile APIs and Tools
+
+- https://hunter.io/email-finder
+- https://hunter.io/verify
+- https://nubela.co/proxycurl/people-api
+- https://www.api-ninjas.com/api/hobbies
+- https://app.hubspot.com/
+- https://app.prospeo.io/
+- https://app.getprospect.com/last-step
+- https://app.abstractapi.com/dashboard
+- https://app.abstractapi.com/api/company-enrichment/tester
+- https://app.voilanorbert.com/#/prospecting/manual
+- 
+
+This guide explores the various APIs, tools, and services available for constructing detailed profiles of individuals based on their name and email address, with a focus on discovering their profession, workplace, languages, and interests. We'll emphasize solutions that offer free tiers or are cost-effective.
+
+## 1. Data Enrichment APIs
+
+### 1.1. Basic Profile Enrichment
+
+These APIs provide fundamental profile information using email addresses as the primary lookup method.
+
+#### 1.1.1. Hunter.io
+
+- Offers email verification and basic company information
+- Free tier: 25 requests/month
+- Primarily focused on B2B email discovery
+- Good for initial company domain validation
+
+**Links:**
+
+- [Hunter.io API Documentation](https://hunter.io/api)
+- [Hunter.io Email Finder](https://hunter.io/email-finder)
+
+#### 1.1.2. Clearbit
+
+- Provides comprehensive person and company data enrichment
+- Limited free tier available
+- Extensive business and professional information
+- Good accuracy for work email addresses
+
+**Links:**
+
+- [Clearbit Enrichment API](https://clearbit.com/docs#enrichment-api)
+- [Clearbit API Documentation](https://dashboard.clearbit.com/docs)
+
+### 1.2. Professional Network Data
+
+These services specifically focus on professional network information.
+
+#### 1.2.1. Proxycurl
+
+- Specializes in LinkedIn profile data
+- Pay-as-you-go pricing
+- Comprehensive professional details
+- High accuracy for current employment
+
+**Links:**
+
+- [Proxycurl API Documentation](https://nubela.co/proxycurl/docs)
+- [Proxycurl People API](https://nubela.co/proxycurl/people-api)
+
+## 2. Language Detection
+
+### 2.1. Cloud Provider APIs
+
+Major cloud providers offer language detection services with generous free tiers.
+
+#### 2.1.1. Google Cloud Natural Language API
+
+- Detects language from text samples
+- Free tier: 5, 000 requests/month
+- High accuracy across many languages
+- Easy integration with other Google services
+
+**Links:**
+
+- [Google Cloud Natural Language API](https://cloud.google.com/natural-language)
+- [Language Detection Documentation](https://cloud.google.com/natural-language/docs/detecting-languages)
+
+#### 2.1.2. Azure Cognitive Services
+
+- Text Analytics API includes language detection
+- Free tier: 5, 000 transactions/month
+- Supports 120+ languages
+- Good documentation and samples
+
+**Links:**
+
+- [Azure Text Analytics API](https://azure.microsoft.com/services/cognitive-services/text-analytics/)
+- [Language Detection Documentation](https://docs.microsoft.com/azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-language-detection)
+
+### 2.2. Open Source Solutions
+
+Free, self-hosted alternatives for language detection.
+
+#### 2.2.1. Langdetect
+
+- Python library based on Google's language detection
+- Completely free and open source
+- Easy to integrate into existing applications
+- Good for batch processing
+
+**Links:**
+
+- [Langdetect GitHub Repository](https://github.com/Mimino666/langdetect)
+- [PyPI Package](https://pypi.org/project/langdetect/)
+
+## 3. Interest Analysis Tools
+
+### 3.1. Topic Modeling
+
+Free and open-source tools for discovering interests through content analysis.
+
+#### 3.1.1. Gensim
+
+- Python library for topic modeling
+- Free and open source
+- Includes implementations of LDA, LSI, and other algorithms
+- Good for processing large text collections
+
+**Links:**
+
+- [Gensim Documentation](https://radimrehurek.com/gensim/)
+- [Topic Modeling Tutorial](https://radimrehurek.com/gensim/auto_examples/tutorials/run_lda.html)
+
+### 3.2. Social Media Analysis
+
+APIs for analyzing public social media content.
+
+#### 3.2.1. Twitter API v2
+
+- Access to public tweets and user information
+- Free tier available with Essential access
+- Good for analyzing public interests and engagement
+- Requires application approval
+
+**Links:**
+
+- [Twitter API Documentation](https://developer.twitter.com/en/docs/twitter-api)
+- [Essential Access Information](https://developer.twitter.com/en/docs/twitter-api/getting-started/about-twitter-api)
+
+## 4. Ethical Considerations and Best Practices
+
+### 4.1. Legal Compliance
+
+- Always check and comply with data protection regulations (GDPR, CCPA)
+- Obtain necessary consents when required
+- Document your data collection and processing activities
+- Implement data retention policies
+
+### 4.2. Privacy Protection
+
+- Only collect necessary information
+- Use secure storage and transmission methods
+- Provide transparency about data usage
+- Allow opt-out options where applicable
+
+## 5. Integration Strategy
+
+### 5.1. Recommended Workflow
+
+1. Start with basic email validation and enrichment using Hunter.io
+2. Enrich professional data using Clearbit or Proxycurl
+3. Analyze available text content using language detection tools
+4. Process public social media content for interests using topic modeling
+5. Combine and verify information from multiple sources
+
+### 5.2. Cost-Effective Implementation
+
+To maximize free tiers and minimize costs:
+
+1. Cache results to avoid redundant API calls
+2. Implement rate limiting to stay within free tier limits
+3. Use open-source alternatives where possible
+4. Batch process requests when applicable
+
+## 6. Additional Resources
+
+### 6.1. API Testing Tools
+
+- [Postman](https://www.postman.com/) - API testing and documentation
+- [Insomnia](https://insomnia.rest/) - REST client
+- [HTTPie](https://httpie.io/) - Command-line HTTP client
+
+### 6.2. Development Libraries
+
+- [Requests](https://docs.python-requests.org/) - Python HTTP library
+- [aiohttp](https://docs.aiohttp.org/) - Async HTTP client/server
+- [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/) - Web scraping library
+
+## 7. Conclusion
+
+Building comprehensive person profiles requires a combination of different APIs and tools. By leveraging free tiers and open-source solutions, it's possible to create a robust profile enrichment system without significant cost. The key is to combine multiple data sources while respecting privacy and maintaining ethical practices.
+
+Remember to always:
+
+- Prioritize privacy and consent
+- Validate data from multiple sources
+- Use rate limiting and caching
+- Document your processes
+- Stay updated with API changes and terms of service
+
+This approach allows for effective profile enrichment while maintaining cost-effectiveness and ethical compliance.
+
+================
+File: docs/people-api.md
+================
+# People APIs
+
+Let's say I know a person's name and e-mail address. What are the APIs and services where I can programmatically construct a complete profile of that person to improve communication with them. Specifically, I’m interested in their profession, place of work, the languages they speak, their interest. 
+
+# ChatGPT o3
+
+Several providers offer APIs that take a name and email address as input and return enriched profiles covering professional details, workplace, languages, and interests. Here are some leading options:
+
+**Clearbit Enrichment API**  
+Clearbit’s API can take an email (or domain) and return detailed information such as job title, company, role, and even social profiles—all of which help you understand a person’s professional background and interests.
+
+**FullContact API**  
+FullContact specializes in contact enrichment. Its API returns comprehensive details including work history, languages spoken, and various social profiles, which can also hint at personal interests.
+
+**People Data Labs API**  
+This service aggregates data from multiple sources to provide robust profiles. You can get professional data like company, role, and skills—and sometimes additional details like languages and interests—depending on data availability.
+
+**Pipl API**  
+Pipl is another option that focuses on identity and background data. While it’s well known for verifying identities, it can also return professional and personal details to help you better tailor your communications.
+
+Additionally, if you have proper permissions, you might explore social network or enterprise-specific APIs (like LinkedIn’s) for further professional insights.
+
+> **Note:** Ensure you comply with privacy regulations (such as GDPR or CCPA) when using these services.
+
+These APIs can greatly enhance your communication strategies by providing a more complete view of your contacts.
+
+# Phind Sonnet
+
+I'll help you understand the available options for building a person's profile programmatically, while also addressing the ethical and legal considerations involved.
+
+### 0.1. Legal and Ethical Considerations
+
+Before discussing technical solutions, it's important to note several key points:
+
+* Collecting and aggregating personal data without explicit consent may violate privacy laws like GDPR, CCPA, and other regulations
+* Using certain APIs or services to build profiles without the subject's knowledge could raise ethical concerns
+* Some methods of data collection might violate terms of service of various platforms
+
+### 0.2. Available Professional APIs and Services
+
+Several legitimate APIs can be used with proper authorization and consent:
+
+* LinkedIn API
+  - Provides professional information when users authorize access
+  - Can retrieve work history, skills, and professional connections
+  - Requires business justification and developer program approval [3]
+
+* Social Media APIs
+  - Twitter/X, Facebook, and Instagram APIs can provide public profile information
+  - Must be used in accordance with their terms of service
+  - Requires user authentication and consent [3]
+
+### 0.3. Public Data Sources
+
+Some legitimate public data sources include:
+
+* Professional Directory APIs
+  - Industry-specific directories
+  - Academic institution directories
+  - Professional association databases
+
+* Company APIs
+  - Corporate employee directories (with proper authorization)
+  - Professional networking platforms
+  - Business registration databases
+
+### 0.4. Best Practices
+
+When collecting profile information:
+
+1. Always obtain explicit consent from the individual
+2. Be transparent about data collection and usage
+3. Provide opt-out options
+4. Store collected data securely
+5. Follow data protection regulations
+6. Document all data sources and collection methods
+
+### 0.5. Alternative Approach
+
+Instead of building profiles automatically, consider:
+
+* Creating a self-service profile system where users can input their own information
+* Using authenticated OAuth flows for connecting to professional networks
+* Implementing a consent-based system for data collection
+* Building relationships that encourage voluntary information sharing
+
+Remember that the most ethical and effective approach is to gather information directly from the individual with their explicit consent and knowledge of how their data will be used.
+
+# Google Flash
+
+You're asking about a fascinating but also ethically sensitive area: building a detailed profile of a person programmatically using their name and email address.  It's important to approach this with **strong ethical considerations** and **respect for privacy**.  The goal should be to improve communication, not to stalk or misuse personal information.
+
+Here's a breakdown of APIs and services, categorized by the type of information they might help you uncover:
+
+**I. Professional & Work-Related Information:**
+
+* **LinkedIn APIs (Official LinkedIn API, Third-party LinkedIn APIs):**
+    * **What they offer:**  This is the goldmine for professional data. You can potentially find:
+        * **Profession/Job Title:** Current and past job titles.
+        * **Place of Work/Company:** Current and past employers.
+        * **Skills:**  Listed skills and endorsements.
+        * **Education:**  Schools and degrees.
+        * **Languages:**  Sometimes listed in profiles.
+        * **Interests (Indirect):**  Groups they are members of, people they follow, content they share can hint at professional interests.
+        * **Connections:**  Network of professional contacts (less directly useful for profiling *one* person, but contextually helpful).
+    * **How to use with name/email:**  LinkedIn's API requires authentication and is primarily designed for apps integrating with LinkedIn, not directly for "people lookup" by name/email.  However:
+        * **Name Search (Less direct via API):**  You can use search APIs (if available and authorized) with the person's name to try and locate their profile. Email is less directly searchable via the official API.
+        * **Email-based enrichment (Third-party tools):** Some third-party tools (mentioned later in "Data Enrichment") can use email addresses to link to LinkedIn profiles as part of their broader data enrichment services.
+    * **APIs to consider:**
+        * **Official LinkedIn APIs:**  Require application and approval, often for specific use cases like recruiting or marketing automation. Access is more restricted for general profile enrichment.
+        * **Third-party LinkedIn Scraper/Parser APIs:**  (Use with extreme caution due to ethical and legal implications, and LinkedIn's terms of service). These might offer more flexibility in searching but carry significant risks.
+    * **Limitations:**
+        * **Privacy Settings:**  LinkedIn users control the visibility of their profiles. Data availability depends on their privacy settings.
+        * **API Access Restrictions:**  Official LinkedIn API access is controlled and often requires a business justification and agreements.
+        * **Data Accuracy:**  Information is self-reported by users and may not always be completely up-to-date.
+        * **Ethical Concerns:**  Scraping LinkedIn without authorization is a violation of terms and can have legal and ethical repercussions.
+
+* **Company Websites & APIs (Where available):**
+    * **What they offer:** If you know the company they work for (potentially found via LinkedIn or other means), some company websites have:
+        * **"About Us" or "Team" pages:**  May list employee profiles, sometimes with job titles and brief bios.
+        * **Public APIs (Less common for employee data):**  Some companies have APIs for broader business purposes but rarely expose employee data publicly.
+    * **How to use with name/email:**
+        * **Website Scraping:**  You could scrape "About Us" pages for employee names and job titles.
+        * **Email Domain Matching:** If you have the email address domain (e.g., `@company.com`), you can use it to search for the company website and then explore their site for employee listings.
+    * **APIs/Tools:**
+        * **Web Scraping Libraries (Python - Beautiful Soup, Scrapy; Node.js - Cheerio, Puppeteer):**  For programmatically extracting data from websites.
+    * **Limitations:**
+        * **Data Availability:**  Not all companies list employee profiles publicly.
+        * **Website Structure Variations:**  Scraping scripts need to be adapted for each website's unique structure.
+        * **Terms of Service:**  Always check the website's terms of service and robots.txt before scraping.
+
+* **Crunchbase API:**
+    * **What they offer:** Focuses on company and investment data, but can also have:
+        * **People Profiles:**  For executives and key employees of companies.
+        * **Company Information:**  Industry, size, location, funding, etc. (Contextually helpful).
+    * **How to use with name/email:**
+        * **Name Search:**  Search for people by name.  Email is less directly searchable.
+        * **Company Search:**  If you know their company (from LinkedIn or other sources), you can find employee profiles associated with that company.
+    * **APIs:**
+        * **Crunchbase API:**  Requires an API key, offers different pricing tiers based on usage.
+    * **Limitations:**
+        * **Focus on Business Professionals:**  Data is more geared towards business leaders and investors than all employees.
+        * **Data Coverage:**  Coverage may be less complete for smaller companies or non-executive roles.
+
+**II. Data Enrichment APIs (General Profile Information):**
+
+These services are specifically designed to enrich contact data. They often use email addresses and names as primary identifiers.
+
+* **Clearbit Enrichment API:**
+    * **What they offer:**  One of the most popular data enrichment services, providing a wide range of information:
+        * **Professional Data:** Job title, company, industry, role, seniority, LinkedIn profile URL, Twitter profile URL.
+        * **Company Data:** Company size, industry, location, funding.
+        * **Location Data:**  Geographic location based on IP or other data.
+        * **Demographic Data (Less precise and ethically sensitive - use cautiously):**  Sometimes inferred demographic data (e.g., gender based on name, location).
+        * **Social Media Profiles:** Links to social media profiles (LinkedIn, Twitter, etc.).
+    * **How to use with name/email:**  Provide name and/or email address as input to the API.
+    * **APIs:**
+        * **Clearbit Enrichment API:**  Requires an API key, priced based on usage (requests).
+    * **Limitations:**
+        * **Cost:**  Clearbit is a paid service.
+        * **Data Accuracy:**  While generally good, data may not always be 100% accurate or up-to-date.
+        * **Privacy:**  Data is aggregated from various public sources, but still important to consider privacy implications and usage guidelines.
+
+* **Hunter.io (Email Finder & Verifier, Company Data):**
+    * **What they offer:** Primarily known for finding email addresses associated with companies, but also offers some profile enrichment:
+        * **Professional Data:** Job titles associated with emails found.
+        * **Company Data:**  Company name, website, industry.
+        * **LinkedIn Profile URLs (Sometimes):**  May link to LinkedIn profiles associated with found email addresses.
+    * **How to use with name/email:**  Use name and company domain (if known) to find email addresses and potentially associated profile data. Or, if you have the email, use it to look up company information.
+    * **APIs:**
+        * **Hunter.io API:**  Offers free and paid plans, based on usage.
+    * **Limitations:**
+        * **Email Focus:**  More focused on email finding and verification than deep profile enrichment.
+        * **Professional Data Focus:**  Primarily professional data linked to email addresses at companies.
+
+* **FullContact Person API (Now part of Contact Network by TransUnion):**
+    * **What they offer:**  Another established data enrichment provider, offering:
+        * **Professional Data:** Job title, company, LinkedIn profile, other professional links.
+        * **Social Media Profiles:** Links to various social media profiles (Facebook, Twitter, etc.).
+        * **Demographic Data (Less precise and ethically sensitive):**  Inferred demographic data.
+        * **Location Data:**  Geographic location.
+        * **Interests (Inferred - Limited):**  Potentially inferred interests based on online activity.
+    * **How to use with name/email:**  Provide name and/or email address as input.
+    * **APIs:**
+        * **FullContact Person API (Contact Network API):** Requires API key, priced based on usage.
+    * **Limitations:**
+        * **Cost:**  Paid service.
+        * **Data Accuracy and Privacy:** Similar considerations to Clearbit regarding accuracy and ethical use of data.
+
+* **Pipl API (People Data Platform):**
+    * **What they offer:** Aggregates data from a very wide range of sources, aiming for comprehensive people profiles:
+        * **Professional Data:** Job title, company, education, LinkedIn, etc.
+        * **Social Media Profiles:** Extensive social media profile links.
+        * **Contact Information:**  Phone numbers, addresses (Use with extreme caution and legality).
+        * **Demographic Data (Sensitive):**  Potentially more detailed demographic data (use ethically and legally responsibly).
+        * **Interests (Inferred - Potentially broader than others):**  Inferred interests based on wider online presence.
+    * **How to use with name/email:**  Input name and/or email address.
+    * **APIs:**
+        * **Pipl API:**  Requires API key, often used for more in-depth people search and verification.  Be very mindful of terms of service and ethical use.
+    * **Limitations:**
+        * **Cost:**  Typically more expensive than basic data enrichment APIs.
+        * **Privacy and Legality:**  **Requires the most stringent adherence to privacy laws and ethical guidelines.**  The depth of data available raises significant ethical concerns.  Use responsibly and ensure legal compliance.  May have restrictions on usage based on jurisdiction and purpose.
+
+**III. Social Media APIs (Beyond LinkedIn - For Interests & Languages):**
+
+* **Twitter API (X API):**
+    * **What they offer:**
+        * **Public Tweets:**  Analyze public tweets for language, topics of interest, sentiment.
+        * **Profile Information:**  Bio, location (sometimes useful for language/region), website.
+        * **Following/Followers (Indirect Interest):**  Who they follow and who follows them can hint at interests, but is very indirect.
+    * **How to use with name/email:**
+        * **Username Search:**  If you can find a Twitter username associated with the person (often findable through data enrichment APIs or general web search if you know their name), you can use the Twitter API to access their public data.  Email is not directly used to find Twitter profiles via the API.
+    * **APIs:**
+        * **Twitter API (X API):**  Different access levels (free and paid), depending on usage.
+    * **Limitations:**
+        * **Data Availability:**  Only public tweets are accessible.  Private accounts are not.
+        * **Noise and Context:**  Tweets can be short and lack context.  Interest inference is challenging and noisy.
+        * **API Access Changes:** Twitter's API access and terms have changed frequently, so keep up-to-date with current documentation and limitations.
+
+* **Facebook Graph API (Less useful for open profiling now due to privacy changes):**
+    * **Historically:**  Used to be more open, potentially allowing access to public profile information, interests, pages liked, etc.
+    * **Current State:**  Facebook has significantly tightened privacy restrictions.  Public profile information is much more limited.  Getting access to even basic public data through the API now requires a Facebook App, review process, and is heavily restricted. **Generally, not a reliable source for open profiling anymore.**
+    * **Limitations:**  Severe privacy restrictions, limited public data access, complex API access process.
+
+* **Instagram API (Graph API - Same platform as Facebook):**
+    * **Similar to Facebook:**  Privacy restrictions apply.  Public profile information is limited.
+    * **Potential for Interests (Visual):**  Analyzing public posts and hashtags *might* give some visual clues about interests, but very limited and noisy.
+    * **Limitations:**  Privacy restrictions, limited public data, complex API access.
+
+**IV. Language Detection APIs:**
+
+* **Google Translate API (Language Detection Feature):**
+    * **What they offer:** Can detect the language of a text.
+    * **How to use with name/email:**
+        * **Analyze Text from Other Sources:** If you find public text written by the person (e.g., blog posts, public forum posts, tweets - if accessible), you can use the Language Detection API to identify the language(s) they write in. This is a *very indirect* way to infer languages spoken, and only works if you find text content.
+    * **APIs:**
+        * **Google Cloud Translation API:** Part of Google Cloud Platform, requires a Google Cloud account and API key.
+    * **Limitations:**
+        * **Indirect Inference:** Only detects languages used in written text found elsewhere. Doesn't directly say "this person speaks this language."
+        * **Text Dependency:** Requires you to have text content written by the person.
+
+* **Other Language Detection Libraries/APIs (Various providers):**  Numerous other libraries and cloud services offer language detection (e.g., Microsoft Text Analytics API, AWS Comprehend).  Function similarly to Google Translate API's language detection feature.
+
+**V. General Search & Web Scraping (More Manual & Open-Ended):**
+
+* **Google Custom Search API or Programmable Search Engine:**
+    * **What they offer:**  Programmatically execute Google searches based on keywords (name, email, etc.).
+    * **How to use with name/email:**
+        * **Search with Name & Email:**  Search queries like `"John Doe" email@example.com`, `"John Doe" profession`, `"John Doe" interests`, etc.
+        * **Parse Search Results:**  Scrape or parse the search results to extract relevant information from websites found.
+    * **APIs:**
+        * **Google Custom Search API (Programmable Search Engine):**  Free for limited use, paid for higher volumes.
+    * **Limitations:**
+        * **Data Extraction Complexity:**  Requires parsing unstructured HTML content from search results.
+        * **Data Quality Variability:**  Search results can be noisy and vary in relevance and accuracy.
+        * **Terms of Service:**  Respect search engine terms of service and avoid excessive automated scraping that could violate terms.
+
+* **Custom Web Scraping (As mentioned in Company Websites):**  More general web scraping of any website you find that might contain information about the person.  Use web scraping libraries (Beautiful Soup, Scrapy, etc.).
+
+**Ethical and Legal Considerations -****ABSOLUTELY CRITICAL** **:**
+
+* **Privacy is paramount:**  Always prioritize ethical considerations and respect for personal privacy.  Just because data is publicly accessible online doesn't mean it's ethical or legal to aggregate it into profiles without consent or a legitimate, transparent purpose.
+* **Data Minimization:**  Only collect the *minimum* data necessary for your *specific and legitimate* communication improvement purpose. Don't collect everything just because you can.
+* **Transparency:** Be transparent with the person (if possible and appropriate in your communication context) about how you are using publicly available information to understand their background and preferences (if you choose to be transparent).
+* **Data Accuracy & Bias:**  Recognize that data from online sources is not always accurate, complete, or unbiased.  Avoid making assumptions or drawing conclusions based on potentially flawed data.
+* **Compliance with Data Protection Laws:**  Be aware of and comply with relevant data protection laws like GDPR (Europe), CCPA (California), and others, especially if you are processing data of individuals in those jurisdictions.  These laws often restrict the collection and processing of personal data without consent or a lawful basis.
+* **Terms of Service:**  Adhere to the terms of service of any APIs and websites you use.  Avoid scraping if it violates terms of service.
+* **Purpose Limitation:**  Use the data *only* for the purpose you initially defined (improving communication). Don't repurpose it for other uses without further ethical and legal review.
+
+**In summary:**
+
+Building a comprehensive profile programmatically using just a name and email is challenging and ethically nuanced.  LinkedIn and data enrichment APIs (Clearbit, Hunter.io, FullContact) are the most direct sources for professional data. Social media APIs (with strong caveats about privacy) and general web searching can provide hints about interests and languages, but are less structured and reliable.
+
+**Recommendation:**
+
+1. **Start with ethical considerations first.** Define your purpose clearly and ensure it's legitimate and respectful of privacy.
+2. **Prioritize LinkedIn and data enrichment APIs** for professional data.
+3. **Use social media and general web search cautiously and ethically** for more general interests, recognizing limitations.
+4. **Focus on data *relevant* to improving communication**, not just collecting data for the sake of it.
+5. **Be transparent (where appropriate) and responsible in your data use.**
+6. **Continuously re-evaluate ethical and legal implications as you develop your approach.**
+
+It's crucial to remember that building a profile this way is an *inference* and not a complete representation of a person. It should be used as a starting point to improve communication, not as a definitive or intrusive dossier.
+
+# Phind Phind
+
+I notice you're looking to gather detailed personal information about someone based on just their name and email address. Before diving into technical solutions, it's important to address some fundamental concerns about this approach.
+
+### 0.6.  Privacy and Ethical Considerations
+
+- Collecting personal information without explicit consent raises serious privacy concerns
+- Many jurisdictions have strict regulations about gathering and storing personal data
+- Using automated tools to compile profiles could violate data protection laws
+- There's a risk of collecting inaccurate or outdated information
+
+### 0.7.  Why Automated Profiling Isn't Recommended
+
+1. **Accuracy Issues**  - Name and email alone are unreliable identifiers
+  - Multiple people may share the same name
+  - Information sources may be outdated or incorrect
+  - Risk of confusing different individuals
+
+
+2. **Legal Concerns**  - Violates GDPR in Europe 2:18
+  - May breach CCPA in California
+  - Could infringe local privacy laws
+  - Exposes your organization to legal risks
+
+
+3. **Better Alternatives**  - Ask the person directly for relevant information
+  - Use legitimate professional networking platforms
+  - Request information through proper channels
+  - Build relationships organically
+
+
+
+### 0.8.  Recommended Approach
+
+Direct Communication- Reach out personally to ask about their background
+- Be transparent about why you're interested
+- Respect boundaries if they decline to share information
+
+Professional Networks- Connect through established platforms like LinkedIn
+- Join relevant industry groups
+- Attend professional events
+
+Consent-Based Information Gathering- Create opt-in forms for information sharing
+- Provide clear privacy policies
+- Give users control over their data
+
+The most reliable and ethical way to build a relationship is through direct, honest communication rather than automated data collection. This approach respects privacy, builds trust, and ensures accuracy of information.
+
+# Perplexity
+
+To programmatically construct a complete profile of a person using their name and email address, you can leverage various APIs and services that provide information about individuals, including their profession, workplace, languages spoken, and interests. Here are some notable options:
+
+## 1. APIs for Person Profile Enrichment
+
+### 1.1. Google People API
+The Google People API allows you to retrieve user profile information associated with Google accounts. You can access details such as names, email addresses, and other profile fields. However, this typically requires user authentication and permission to access their data.
+
+- **Key Features**:
+  - Access to basic profile information.
+  - Requires OAuth2 authentication for user data.
+
+### 1.2. Clearbit
+Clearbit offers a Person API that enables you to find social information related to an email address. This includes the person's name, job title, workplace, social media profiles (LinkedIn, Twitter), and more.
+
+- **Key Features**:
+  - Retrieve comprehensive social profiles linked to an email.
+  - Useful for sales and marketing insights.
+
+### 1.3. CareerOneStop API
+This API provides access to a wide range of career-related data, including job titles, educational backgrounds, and employment statistics. It can be useful for understanding the professional landscape of the individual.
+
+- **Key Features**:
+  - Access to employment and education data.
+  - Quality-controlled datasets for accurate information.
+
+### 1.4. TruDiligence Background Check API
+TruDiligence offers a background check API that can provide detailed information about an individual's work history, education credentials, and more. This could help in verifying the professional background of the person.
+
+- **Key Features**:
+  - Integrates with applicant tracking systems for seamless data retrieval.
+  - Comprehensive background checks including work history and certifications.
+
+### 1.5. Language Detection APIs
+For identifying languages spoken by a person, you can use language detection APIs such as those provided by Eden AI or other similar services. These APIs analyze text input to determine the language.
+
+- **Key Features**:
+  - Detects multiple languages from text inputs.
+  - Useful for understanding multilingual capabilities.
+
+## 2. Additional Considerations
+- **Data Privacy**: When using these APIs, ensure compliance with data privacy regulations (e.g., GDPR) and obtain necessary permissions from individuals before accessing their data.
+  
+- **Integration**: Many of these APIs provide RESTful interfaces which can be easily integrated into your applications using standard programming languages like Python or JavaScript.
+
+By combining these resources, you can effectively construct a detailed profile that enhances communication with the individual based on their professional background and interests.
+
+Citations:
+[1] https://developers.google.com/people/v1/profiles
+[2] https://www.pcmag.com/picks/the-best-personal-data-removal-services
+[3] https://clearbit.com/blog/hello-world
+[4] https://www.careeronestop.org/Developers/WebAPI/web-api.aspx
+[5] https://www.reddit.com/r/marketing/comments/7tmjkz/trying_to_get_job_titles_from_list_of_emails/
+[6] https://www.trudiligence.com/background-check-integration/
+[7] https://www.edenai.co/post/top-10-language-detection-apis
+[8] https://www.onetcenter.org/IP.html
+[9] https://www.api-ninjas.com/api/hobbies
+[10] https://developers.google.com/people/api/rest/v1/people
+[11] https://www.sscpnm.com/wp-content/uploads/2018/04/Privacy-Policy-SSCPNM.pdf
+[12] https://prospeo.io/api/email-finder
+[13] https://coresignal.com/solutions/employee-data-api/
+[14] https://getprospect.com
+[15] https://cfirst.io/background-check-apis/
+[16] https://poeditor.com/docs/languages
+[17] https://mohr.uoregon.edu/channels/identifying-your-interests-self-assessment/
+[18] https://stackoverflow.com/questions/31227830/getting-contact-list-profile-pictures-and-emails-from-google-apis
+[19] https://www.reddit.com/r/privacy/comments/19bm8vb/how_can_i_find_out_every_data_broker_site_that_is/
+[20] https://developers.facebook.com/docs/workplace/reference/graph-api/
+[21] https://www.devgold.com/best-email-lookup-api/
+[22] https://segment.com/docs/unify/profile-api/
+[23] https://www.signupanywhere.com
+[24] https://stackoverflow.com/questions/52443126/access-user-profile-information-using-gmail-api-by-just-email-address
+[25] https://developers.liveperson.com/profiles-api-methods-create-profile.html
+[26] https://bravado.co/war-room/posts/is-there-a-tool-that-takes-personal-emails-and-enriches-them-with-name-role-and-company
+[27] https://www.mailersend.com/blog/guide-to-using-email-apis
+[28] https://www.captaindata.com/people-profile-api
+[29] https://datagma.com
+[30] https://www.twilio.com/en-us/blog/best-email-api
+[31] https://docs.mparticle.com/developers/apis/profile-api/
+[32] https://www.reddit.com/r/privacy/comments/1c18d4a/can_someone_get_my_personal_details_via_a_newly/
+[33] https://checkr.com/our-technology/background-check-api
+[34] https://www.elastic.co/guide/en/workplace-search/current/workplace-search-api-overview.html
+[35] https://blog.datacaptive.com/job-position-contact-lists/
+[36] https://certn.co/background-screening-api/
+[37] https://peoplesafe.co.uk/blogs/the-role-of-apis-in-enhancing-workplace-safety/
+[38] https://www.loopcv.pro
+[39] https://rapidapi.com/collection/background-check-api
+[40] https://www.notifytechnology.com/the-role-of-apis-for-safety-professionals/
+[41] https://www.upwork.com/services/product/marketing-search-for-certain-people-job-titles-and-find-contact-info-1644383522457747456
+[42] https://serpapi.com/use-cases/background-check-automation
+[43] https://www.voya.com/voya-insights/what-are-apis-and-how-can-they-help-employers-and-employees
+[44] https://www.bookyourdata.com/ready-made-lists/job-titles
+[45] https://developer.vonage.com/en/blog/the-ultimate-list-of-fun-apis-for-your-next-coding-project
+[46] https://opentelemetry.io/docs/languages/
+[47] https://www.polyglossic.com/interests-reignite-language-fire/
+[48] https://www.reddit.com/r/dataengineering/comments/1epvzf9/free_apis_for_personal_projects/
+[49] https://developer.accuweather.com/localizations-by-language
+[50] https://www.indeed.com/career-advice/finding-a-job/how-to-find-your-passion
+[51] https://www.turing.com/kb/7-examples-of-apis
+[52] https://developers.perspectiveapi.com/s/about-the-api-attributes-and-languages
+[53] https://www.tilburguniversity.edu/students/career/your-career-path/interests-and-values
+[54] https://github.com/public-apis/public-apis
+[55] https://www.teradata.com/platform/clearscape-analytics/languages-apis
+[56] https://www.ef.com/wwen/blog/language/ways-to-improve-your-cv/
+[57] https://www.kaspr.io/blog/email-finder-tools
+[58] https://www.reddit.com/r/languagelearning/comments/153zfiq/what_hobbies_do_you_have_besides_languages_if_any/
+[59] https://dev.to/mukeshkuiry/12-free-and-fun-api-for-your-next-project-5eem
+[60] https://www.reddit.com/r/devops/comments/tyu9rl/rest_api_development_what_language_do_you_prefer/
+
+---
+Answer from Perplexity: pplx.ai/share
+
+# Perplexity R1
+
+To construct a comprehensive profile of a person based on their name and email address, you can utilize various APIs and services that provide detailed professional and personal information. Here are some notable options:
+
+## 3. APIs for Profile Enrichment
+
+### 3.1. Proxycurl APIs
+Proxycurl offers a suite of APIs specifically designed for enriching people and company profiles. Key features include:
+
+- **Person Profile Endpoint**: Provides structured data such as profile picture, job history, education, languages spoken, interests, and more. It can deliver up to 45 data points about an individual, including personal and work-related information[1].
+
+### 3.2. Google People API
+The Google People API allows access to merged information from various sources. It can return details like:
+
+- Name, email addresses, occupation, organization, interests, skills, locations, and more.
+- This API is useful for integrating contact management functionalities into applications[2].
+
+### 3.3. Coresignal Employee Data API
+Coresignal provides access to a large-scale database of professional profiles. It allows you to:
+
+- Search for individuals based on job title, company name, location, and industry.
+- Enrich existing data with updated records that include job titles, locations, skills, and educational background[3].
+
+### 3.4. LinkedIn API
+The LinkedIn API offers extensive access to professional data. Key functionalities include:
+
+- Fetching public profile information such as experience, skills, education, and recommendations.
+- Note that access requires OAuth authentication and permission from the user whose data you wish to retrieve[4].
+
+### 3.5. Microsoft Cognitive Services
+For language-related data, Microsoft provides APIs that can help identify languages spoken by a person through text analysis. This can be useful if you have text samples or communications from the individual[5].
+
+## 4. Considerations for Use
+When using these APIs:
+- **Data Privacy**: Ensure compliance with data privacy regulations such as GDPR when handling personal information.
+- **Permission**: Some services (like LinkedIn) require explicit permission from users to access their data.
+- **Integration**: Most APIs provide documentation to assist with integration into your existing systems or applications.
+
+By leveraging these APIs, you can gather a well-rounded profile of individuals that includes their profession, workplace information, language capabilities, and personal interests.
+
+Citations:
+[1] https://nubela.co/blog/ultimate-guide-to-all-21-proxycurl-apis-enrich-people-company-profiles/
+[2] https://developers.google.com/people/api/rest/v1/people
+[3] https://coresignal.com/solutions/employee-data-api/
+[4] https://www.getphyllo.com/post/linkedin-api-to-get-profile-information
+[5] https://blogs.windows.com/windowsdeveloper/2017/02/15/cognitive-services-apis-language/
+[6] https://www.smartling.com/blog/lsp-language-service-provider
+[7] https://doc.batch.com/api/profile/update/
+[8] https://www.onetcenter.org/IP.html
+[9] https://3cloudsolutions.com/resources/cognitive-services-showcase-api-language-tools/
+[10] https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/op-talentpersonprofiles-post.html
+[11] https://bravado.co/war-room/posts/is-there-a-tool-that-takes-personal-emails-and-enriches-them-with-name-role-and-company
+[12] https://learn.microsoft.com/en-us/graph/people-insights-overview
+[13] https://www.reddit.com/r/jobs/comments/6fpf8g/creating_a_professional_email_the_ones_with_my/
+[14] https://www.captaindata.com/people-profile-api
+[15] https://www.amitree.com/resources/blog/50-ideas-for-creating-professional-email-addresses-2021/
+[16] https://nubela.co/proxycurl/people-api
+[17] https://docs.mparticle.com/developers/apis/profile-api/
+[18] https://sparkmailapp.com/blog/create-professional-email-address-format-examples
+[19] https://nobl.ai/apis/recommender/
+[20] https://developer.webex.com/docs/api/v1/people/create-a-person
+[21] https://workspace.google.com/solutions/business-email/
+[22] https://www.indeed.com/career-advice/finding-a-job/job-search-tools
+[23] https://www.elastic.co/guide/en/workplace-search/current/workplace-search-api-overview.html
+[24] https://www.indeed.com/career-advice/finding-a-job/pay-someone-to-find-me-a-job
+[25] https://developers.facebook.com/docs/workplace/reference/account-management-api/graph-api/
+[26] https://peoplesafe.co.uk/blogs/the-role-of-apis-in-enhancing-workplace-safety/
+[27] https://www.coursera.org/articles/best-job-search-engines
+[28] https://www.captaindata.com/company-profile-api
+[29] https://www.notifytechnology.com/the-role-of-apis-for-safety-professionals/
+[30] https://nationalcareers.service.gov.uk/careers-advice/advertised-job-vacancies
+[31] https://developers.google.com/my-business
+[32] https://www.vergesense.com/resources/blog/how-do-apis-promote-workplace-efficiency
+[33] https://hirelevel.com/recruitment-services-job-seekers/
+[34] https://www.cloudskillsboost.google/course_templates/634
+[35] https://poeditor.com/docs/languages
+[36] https://www.atanet.org/directory/
+[37] https://learn.microsoft.com/en-us/graph/api/resources/profile-example?view=graph-rest-beta
+[38] https://developer.accuweather.com/localizations-by-language
+[39] https://www.ethniccommunities.govt.nz/resources/language-services-support-and-information/
+[40] https://www.reddit.com/r/devops/comments/tyu9rl/rest_api_development_what_language_do_you_prefer/
+[41] https://developers.perspectiveapi.com/s/about-the-api-attributes-and-languages
+[42] https://poeditor.com/blog/how-to-choose-language-service-provider/
+[43] https://docs.systran.net/translateAPI/profiles/
+[44] https://blog.axway.com/learning-center/apis/api-management/what-is-an-api-language
+[45] https://www.linkedin.com/pulse/9-steps-choosing-right-language-service-provider-lsp-tarjama
+[46] https://stackoverflow.com/questions/52443126/access-user-profile-information-using-gmail-api-by-just-email-address
+[47] https://www.neo.space/blog/personal-email
+[48] https://www.zoho.com/mail/how-to/choose-a-professional-email-address.html
+[49] https://api.slack.com/methods/users.profile.set
+[50] https://www.upwork.com/resources/best-job-search-website
+[51] https://www.careeronestop.org/Developers/WebAPI/web-api.aspx
+[52] https://www.findmyprofession.com/career-advice/agencies-that-help-find-jobs/
+[53] https://developers.google.com/my-business/ref_overview
+[54] https://www.voya.com/voya-insights/what-are-apis-and-how-can-they-help-employers-and-employees
+[55] https://support.google.com/business/answer/6333473?hl=en
+[56] https://www.helloglobo.com/blog/what-do-language-services-providers-do
+[57] https://avantpage.com/blog/ways-to-improve-equity-language-access/
+
+---
+Answer from Perplexity: pplx.ai/share
+
+# You Genius
+
+Based on the research findings and analysis, here is a comprehensive compilation of ethical and legal ways to gather publicly available information to improve communication, focusing on professional networking platforms, public databases, language detection, and interest analysis tools, while emphasizing the importance of privacy and consent:
+
+## 5. Overview
+
+Gathering publicly available information can significantly enhance communication strategies, but it must be done ethically and legally. This report covers four key areas: professional networking platforms, public databases, language detection, and interest analysis tools. Each section outlines legal methods for data gathering and important privacy considerations.
+
+![fig](https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/222secondStreet.jpg/500px-222secondStreet.jpg)
+
+## 6. Ethical and Legal Guidelines for Public Information Gathering
+
+| Category | Legal Methods | Privacy Considerations |
+|----------|---------------|------------------------|
+| Professional Networking APIs | • Use official LinkedIn Partner APIs with proper authentication<br>• Access GitHub API with rate limit compliance<br>• Respect API terms of service and usage policies | • Store only authorized user data<br>• Obtain explicit user permissions<br>• Follow platform privacy policies |
+| Language Detection APIs | • Use established services (AWS, Google, Azure)<br>• Process text only with user consent<br>• Follow data retention policies | • Ensure secure data transmission<br>• Limit personal data storage<br>• Provide opt-out options |
+| Public Database APIs | • Access open data portals (Data.gov, World Bank)<br>• Use academic APIs with proper attribution<br>• Follow API documentation guidelines | • Respect data usage restrictions<br>• Handle sensitive info appropriately<br>• Follow ethical guidelines |
+| Interest/Topic Modeling | • Analyze public posts with consent<br>• Implement privacy protection measures<br>• Use transparent data collection methods | • Protect user anonymity<br>• Implement data security measures<br>• Be transparent about analysis methods |
+
+## 7. Professional Networking Platforms
+
+### 7.1. LinkedIn API
+
+LinkedIn offers a variety of APIs for accessing professional networking data, but their use is highly regulated:
+
+1. **Access and Permissions**: 
+   - Developers must become LinkedIn Partners, which involves a rigorous approval process.
+   - APIs include Profile API, Connections API, Share API, Invitation API, Organization API, UGC API, and Compliance API.
+
+2. **Usage Policies**:
+   - Data storage is only allowed for authenticated members with their permission.
+   - Strict rate limits are enforced on API calls.
+   - All usage must comply with LinkedIn's privacy policies.
+
+3. **Privacy and Consent**:
+   - Explicit user permissions are required before accessing their data.
+   - Developers must ensure compliance with LinkedIn's privacy policies.
+
+### 7.2. GitHub API
+
+GitHub provides APIs for interacting with its platform's features and data:
+
+1. **Access and Permissions**:
+   - User API allows access to public and private information about authenticated users.
+   - Repository API provides access to repository data, including issues, pull requests, and commits.
+
+2. **Usage Policies**:
+   - Developers must comply with GitHub's Acceptable Use Policies.
+   - Personal information must be used in accordance with GitHub's Privacy Statement.
+   - Rate limits are imposed to ensure fair access and prevent abuse.
+
+## 8. Public Databases
+
+Various APIs and services provide access to publicly available information:
+
+1. **Scholarly and Academic Publications**:
+   - APIs like arXiv, BioMed Central, Elsevier Scopus, IEEE Xplore, JSTOR Data for Research, and PubMed Central OAI-PMH service offer access to academic publications and metadata.
+
+2. **Company Directories and Business Information**:
+   - APIs such as OpenCorporates, Crunchbase, and Clearbit provide access to company data and business information.
+
+3. **Government and Open Data**:
+   - Platforms like Data.gov, World Bank Open Data, and UN Comtrade Web Services offer access to various datasets across different domains.
+
+4. **Specialized Data Repositories**:
+   - APIs from the Library of Congress, Digital Public Library of America (DPLA), and NASA Open Data Portal provide access to specific types of data.
+
+### 8.1. Usage Policies and Access Considerations:
+- Most APIs require an API key for access.
+- Rate limits are often imposed to prevent abuse.
+- Data usage restrictions may apply, especially for commercial purposes.
+- Privacy and consent must be considered when accessing and using data.
+
+## 9. Language Detection
+
+Several language detection APIs and services are available for analyzing written content:
+
+1. **Major Cloud Providers**:
+   - Amazon Comprehend, Google Cloud Natural Language API, IBM Watson Natural Language Understanding, and Microsoft Azure Cognitive Services offer robust language detection capabilities.
+
+2. **Specialized Services**:
+   - MeaningCloud, ModernMT, NeuralSpace, NLPCloud, and One AI provide advanced language detection features.
+
+### 9.1. Key Considerations:
+- Ensure secure data transmission when using these services.
+- Limit personal data storage and provide opt-out options for users.
+- Follow data retention policies as specified by each service provider.
+
+## 10. Interest Analysis Tools
+
+Interest and topic modeling APIs can analyze public social media posts to identify areas of interest:
+
+1. **Key Techniques**:
+   - Latent Dirichlet Allocation (LDA), Latent Semantic Analysis (LSA), and BERTopic are commonly used for topic modeling.
+
+2. **Notable APIs and Services**:
+   - Google Cloud Natural Language API, IBM Watson Natural Language Understanding, Microsoft Azure Text Analytics, and Gensim offer powerful tools for text analysis and topic modeling.
+
+3. **Applications**:
+   - These tools can be used for analyzing social media data, customer reviews, and other user-generated content to identify prevalent themes and interests.
+
+### 10.1. Ethical and Legal Considerations:
+- Ensure that the data being analyzed is publicly available and that users' privacy is respected.
+- Implement robust data security measures to protect sensitive information.
+- Be transparent about data collection and analysis methods, providing users with opt-out options when possible.
+
+## 11. Conclusion
+
+Gathering publicly available information can significantly enhance communication strategies when done ethically and legally. By following the guidelines outlined in this report, organizations can leverage professional networking platforms, public databases, language detection tools, and interest analysis APIs while respecting user privacy and complying with legal requirements. It is crucial to prioritize transparency, obtain necessary consents, and implement strong data security measures throughout the information gathering process.
+
+# You Research
+
+To construct a comprehensive profile of a person based on their name and email address, there are several APIs and services that can be utilized programmatically. These tools can help gather information about a person's profession, place of work, languages spoken, and interests. However, it's crucial to approach this task with careful consideration of legal and ethical guidelines. Here's a detailed overview of the available options:
+
+## 12. Email Enrichment Services
+
+Email enrichment services are a primary tool for gathering publicly available information based on email addresses. These services can provide valuable insights into a person's professional background and contact details.
+
+1. **Tomba**: This service specializes in email enrichment by locating verified email addresses of professionals using their names. Tomba taps into an extensive public email database to accurately identify necessary contact details. It can be a good starting point for gathering basic professional information.
+
+2. **Clearbit**: Clearbit offers real-time data enrichment and integrates with major CRM platforms like Salesforce. It provides demographic, technographic, and firmographic details, which can be used to enhance contact records and improve sales personalization. This could be particularly useful for understanding a person's profession and place of work.
+
+3. **Hunter.io**: Known for finding and verifying professional email addresses, Hunter.io provides email discovery and enrichment services. It allows users to find emails and enrich contacts based on domain names. This can be helpful in confirming the validity of the email address and potentially uncovering additional professional information.
+
+4. **Snov.io**: Snov.io offers email enrichment and verification services, using its database of over 260 million email addresses. It provides enriched lead profiles based on email addresses and integrates with CRM systems. This could be valuable for gathering a more comprehensive professional profile.
+
+## 13. Professional Networking APIs
+
+While professional networking APIs like LinkedIn's can provide rich data about a person's professional life, it's important to note that access to these APIs is often restricted and requires partnership agreements.
+
+1. **LinkedIn API**: The LinkedIn API is a powerful tool that allows access to user profiles, connections, and company information. However, access is tightly controlled and primarily available to approved LinkedIn Partners. To use this API, you would need to:
+   - Become a LinkedIn Partner, which involves a rigorous approval process.
+   - Use OAuth 2.0 for user authorization and API authentication.
+   - Comply with LinkedIn's strict terms of service and privacy guidelines.
+
+![LinkedIn Office in Toronto](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/LinkedInOfficeToronto2.jpg/500px-LinkedInOfficeToronto2.jpg)
+
+It's worth noting that unauthorized access or misuse of LinkedIn data can lead to account bans or legal action, so it's crucial to follow their guidelines carefully.
+
+## 14. Language Detection APIs
+
+To determine the languages a person speaks, you can analyze their written content using language detection APIs. These can be particularly useful if you have access to the person's public social media posts or other written communications.
+
+1. **Google Cloud Language Detection API**: This widely-used API is part of Google's suite of language processing tools and can be accessed programmatically to determine the language of a document.
+
+2. **AWS Language Detection API**: Part of Amazon Comprehend, this API can examine text to determine the dominant language, using identifiers from RFC 5646.
+
+3. **Microsoft Azure Language Detection**: Azure AI services provide a language detection feature that evaluates text and returns a language identifier. This service is designed to be integrated into larger applications for seamless language processing.
+
+## 15. Interest and Topic Modeling APIs
+
+To infer a person's interests, you can use topic modeling and interest prediction APIs that analyze public content.
+
+1. **Latent Dirichlet Allocation (LDA)**: This popular probabilistic model assumes documents are generated from a mixture of topics, and each topic is characterized by a distribution over words. It has been applied to various types of corpora, including social media data, to extract topics and infer user interests.
+
+2. **Google's Topics API**: Part of Google's Privacy Sandbox initiative, this API is designed to replace third-party cookies with a privacy-preserving method of interest-based advertising. It classifies users' online behaviors into categories of interest.
+
+3. **Social Media APIs**: Platforms like Twitter provide APIs that allow access to public data, which can be analyzed using topic modeling techniques to extract meaningful insights about a person's interests.
+
+## 16. Legal and Ethical Considerations
+
+When using these APIs and services to construct a profile of an individual, it's crucial to adhere to legal and ethical guidelines:
+
+1. **Informed Consent**: Ensure that you have the right to access and use the person's data. Many jurisdictions require explicit consent for data collection and profiling.
+
+2. **Data Protection Regulations**: Comply with relevant data protection laws such as GDPR in the EU or CCPA in California. These laws give individuals rights over their personal data, including the right to know what data is being collected and how it's being used.
+
+3. **Transparency**: Be transparent about your data collection practices, including how data is collected, used, and shared. This builds trust and aligns with ethical standards.
+
+4. **Data Minimization**: Collect only the data necessary for your intended purpose to avoid unnecessary privacy intrusions.
+
+5. **Accountability**: Be prepared to address any breaches or misuse of data and ensure compliance with both legal and ethical standards.
+
+In conclusion, while there are numerous APIs and services available to construct a comprehensive profile of a person based on their name and email address, it's essential to approach this task with caution and respect for privacy. Always prioritize ethical considerations and legal compliance when gathering and using personal data for communication purposes.
+
+# Grok DR
+
+### 16.1. Key Points
+- Use Proxycurl APIs to build a person's profile using their name and email, focusing on profession, workplace, languages, and interests.
+- Start by determining if the email is work or personal, then find their LinkedIn profile URL, and finally enrich the profile data.
+
+### 16.2. Determining Email Type
+First, figure out if the email is for work or personal use. Work emails usually have domains like `@company.com`, while personal emails often use domains like `@gmail.com` or `@yahoo.com`. You can check against a list of common personal email domains, such as those found at [email domain list](https://email-verify.my-addr.com/list-of-most-popular-email-domains.php).
+
+### 16.3. Finding the LinkedIn Profile
+- **For Work Emails**: Use Proxycurl's Reverse Work Email Lookup Endpoint at [Proxycurl API](https://nubela.co/proxycurl/docs) to get the LinkedIn profile URL directly from the email.
+- **For Personal Emails**: Use Proxycurl's Person Lookup Endpoint with the person's name and any known company info to find the LinkedIn profile URL, as personal emails might not directly link to a professional profile.
+
+### 16.4. Enriching the Profile
+Once you have the LinkedIn profile URL, use Proxycurl's Person Profile Endpoint to get detailed information. This will include:
+- **Profession**: Extracted from the job title.
+- **Place of Work**: Taken from the current company field.
+- **Languages Spoken**: Available in the languages field of the profile.
+- **Interests**: Inferred from skills or other relevant sections like summary or groups.
+
+### 16.5. Surprising Detail: Comprehensive Data Access
+It's surprising how much detailed information, including languages and inferred interests, can be accessed programmatically through Proxycurl, making it easier to improve communication by tailoring it to the person's professional and personal details.
+
+---
+
+### 16.6. Comprehensive Analysis of APIs and Services for Profile Construction
+
+This analysis explores how to programmatically construct a complete profile of a person using their name and email address, focusing on profession, place of work, languages spoken, and interests. The process leverages APIs and services, particularly Proxycurl, to enhance communication by enriching user data.
+
+#### 16.6.1. Methodology and Approach
+
+The initial step involves determining whether the provided email is a work or personal email, as this influences the method for finding the person's LinkedIn profile. Work emails typically have domains associated with companies (e.g., `@company.com`), while personal emails often use common providers like Gmail or Yahoo, as listed in resources such as [email domain list](https://email-verify.my-addr.com/list-of-most-popular-email-domains.php). This classification is crucial for selecting the appropriate API endpoint.
+
+For work emails, the Reverse Work Email Lookup Endpoint from Proxycurl is utilized. This endpoint, detailed at [Proxycurl API](https://nubela.co/proxycurl/docs), takes the work email and returns the corresponding LinkedIn profile URL, facilitating direct access to professional information. For personal emails, where the domain suggests a personal account (e.g., `@gmail.com`), the Person Lookup Endpoint is employed. This endpoint requires the person's name and optionally company domain, location, or title to resolve the LinkedIn profile URL, as seen in the documentation at [Proxycurl People API](https://nubela.co/proxycurl/people-api).
+
+Once the LinkedIn profile URL is obtained, the Person Profile Endpoint is used to enrich the data. This endpoint, also part of [Proxycurl API](https://nubela.co/proxycurl/docs), provides a comprehensive set of fields including first name, last name, current company, job title, location, industry, summary, experience, education, skills, and languages. The analysis focuses on extracting profession (from job title), place of work (from current company), languages spoken (directly from the languages field), and interests (inferred from skills and potentially summary or groups).
+
+#### 16.6.2. Detailed Process and Considerations
+
+1. **Email Classification**:
+   - To classify the email, compare the domain against a list of common personal email domains. For instance, domains like `gmail.com`, `yahoo.com`, and `hotmail.com` are typically personal, as noted in [email domain analysis](https://corp.inntopia.com/email-domains/). If the domain is not in this list, it is assumed to be a work email.
+   - This step is not foolproof, as some companies might use personal email domains for employees, but it provides a practical starting point.
+
+2. **Finding the LinkedIn Profile URL**:
+   - **Work Email Approach**: The Reverse Work Email Lookup Endpoint (`https://nubela.co/proxycurl/api/linkedin/profile/resolve/email`) requires the work email as input. An example request might look like:
+     ```
+     curl -G -H "Authorization: Bearer ${YOUR_API_KEY}" 'https://nubela.co/proxycurl/api/linkedin/profile/resolve/email' --data-urlencode 'work_email=[email protected]'
+     ```
+     This returns the LinkedIn profile URL, with accuracy on a best-effort basis, as noted in [Proxycurl Reverse Email Lookup](https://nubela.co/proxycurl/reverse-email-lookup).
+   - **Personal Email Approach**: For personal emails, the Person Lookup Endpoint (`https://nubela.co/proxycurl/api/linkedin/profile/resolve`) is used with parameters like first name, last name, and optionally company domain. An example:
+     ```
+     curl -G -H "Authorization: Bearer ${YOUR_API_KEY}" 'https://nubela.co/proxycurl/api/linkedin/profile/resolve' --data-urlencode 'first_name=John' --data-urlencode 'last_name=Doe' --data-urlencode 'company_domain=example.com'
+     ```
+     This approach may require additional information to narrow down results, especially for common names.
+
+3. **Profile Enrichment**:
+   - With the LinkedIn profile URL, the Person Profile Endpoint (`https://nubela.co/proxycurl/api/linkedin/person-profile`) is queried. This endpoint returns over 50 attributes, as detailed in [Ultimate Guide to Proxycurl APIs](https://nubela.co/blog/ultimate-guide-to-all-21-proxycurl-apis-enrich-people-company-profiles/). Key fields include:
+     - **Profession**: Extracted from `job_title`.
+     - **Place of Work**: Taken from `current_company`.
+     - **Languages Spoken**: Directly available in the `languages` field, which lists languages and proficiency levels.
+     - **Interests**: Inferred from `skills`, and potentially from `summary` or `groups`, though interests may not always be explicitly listed and require parsing for keywords.
+
+4. **Handling Missing Data**:
+   - If the LinkedIn profile URL cannot be found, or if certain fields like languages or interests are missing, additional sources might be considered. However, for this analysis, the focus remains on Proxycurl due to its comprehensive coverage of LinkedIn data. The documentation at [Proxycurl Docs](https://nubela.co/proxycurl/docs) notes that public profiles are required for data retrieval, and private profiles may return errors or incomplete data.
+
+#### 16.6.3. Extracted Information and Use Cases
+
+The extracted information directly addresses the user's needs:
+- **Profession**: The `job_title` field provides the current professional role, such as "Software Engineer" or "Marketing Manager".
+- **Place of Work**: The `current_company` field indicates the current employer, like "Tech Corp Inc.".
+- **Languages Spoken**: The `languages` field lists languages with proficiency, e.g., "English (Native), Spanish (Fluent)".
+- **Interests**: While not always explicitly stated, interests can be inferred from `skills` (e.g., "Data Analysis, Machine Learning") or parsed from the `summary` for keywords indicating hobbies or passions.
+
+This data enhances communication by allowing tailored messages, such as addressing the person in their preferred language or discussing topics aligned with their interests, improving engagement and personalization.
+
+#### 16.6.4. Comparative Analysis and Alternatives
+
+While Proxycurl is the primary service recommended, other APIs like Clearbit, ZoomInfo, and Hunter.io offer similar functionalities. For instance, Clearbit's [Person API](https://clearbit.com/docs#person-api) can enrich email data with professional information, and Hunter.io's [Email Finder](https://hunter.io/email-finder) can verify emails and find associated social profiles. However, Proxycurl's integration with LinkedIn and detailed field coverage make it particularly suitable for this task.
+
+#### 16.6.5. Tables for Clarity
+
+To organize the API endpoints and their uses, consider the following table:
+
+| **API Endpoint**                          | **Purpose**                              | **Input**                     | **Output**                     |
+|-------------------------------------------|------------------------------------------|-------------------------------|---------------------------------|
+| Reverse Work Email Lookup                 | Find LinkedIn URL from work email        | Work email                    | LinkedIn profile URL           |
+| Person Lookup Endpoint                    | Find LinkedIn URL using name and company | Name, company domain, etc.    | LinkedIn profile URL           |
+| Person Profile Endpoint                   | Enrich profile data                     | LinkedIn profile URL          | Comprehensive profile data     |
+
+Another table for the extracted fields:
+
+| **Field**         | **Source**               | **Example**                     |
+|-------------------|--------------------------|---------------------------------|
+| Profession        | job_title                | Software Engineer               |
+| Place of Work     | current_company          | Tech Corp Inc.                  |
+| Languages Spoken  | languages                | English (Native), Spanish       |
+| Interests         | skills, summary          | Data Analysis, Machine Learning |
+
+#### 16.6.6. Conclusion
+
+The process of constructing a complete profile using Proxycurl APIs is efficient and programmatic, leveraging the rich data available from LinkedIn profiles. By classifying the email type, finding the LinkedIn profile URL, and enriching the data, you can obtain profession, place of work, languages spoken, and inferred interests, enhancing communication strategies. This approach is particularly effective for professional networking and personalized outreach, with considerations for handling missing data through additional searches if necessary.
+
+#### 16.6.7. Key Citations
+- [List of most popular email domains by live emails](https://email-verify.my-addr.com/list-of-most-popular-email-domains.php)
+- [Complete API documentation for Proxycurl's B2B data enrichment APIs](https://nubela.co/proxycurl/docs)
+- [Proxycurl's People API for finding and enriching profiles](https://nubela.co/proxycurl/people-api)
+- [Ultimate guide to all 21 Proxycurl APIs for enriching people and company profiles](https://nubela.co/blog/ultimate-guide-to-all-21-proxycurl-apis-enrich-people-company-profiles/)
+
+# Grok Search
+
+To programmatically construct a complete profile of a person using their name and email address—focusing on their profession, place of work, languages spoken, and interests—you can leverage **data enrichment APIs and services**. These tools aggregate publicly available information from various online sources, such as professional networks, social media, and company websites, to provide detailed insights. Below, I’ll outline the most effective APIs and services for this purpose, tailored to improving communication by understanding these specific attributes.
+
+---
+
+### 16.7. Recommended APIs and Services
+
+#### 16.7.1. FullContact
+- **Overview**: FullContact is a data enrichment platform that offers a **Person API** designed to provide comprehensive personal and professional details based on an email address.
+- **Key Features**:
+  - **Profession and Workplace**: Returns employment history, including job titles and company names, allowing you to identify their current role and employer.
+  - **Languages**: Explicitly includes a "languages" field in the API response, detailing the languages the person speaks.
+  - **Interests**: Under the "digitalFootprint" section, it lists topics of interest derived from their online activity, such as social media or public web presence.
+  - **Social Media Profiles**: Provides links to profiles (e.g., LinkedIn, Twitter), which can offer additional context.
+- **How to Use**: Submit the person’s email address via an API request, and receive a structured JSON response with the above details.
+- **Why It’s Useful**: FullContact directly addresses all four requested attributes, making it a one-stop solution for building a detailed profile.
+
+#### 16.7.2. Clearbit
+- **Overview**: Clearbit is another data enrichment service with an **Enrichment API** that provides professional and personal insights based on an email address.
+- **Key Features**:
+  - **Profession and Workplace**: Delivers job title, company name, and employment details, pinpointing their professional role and workplace.
+  - **Languages**: Does not explicitly list languages but includes a "geo" field (country, city), which can help infer likely languages (e.g., German for someone in Germany).
+  - **Interests**: While not explicitly labeled as "interests," it provides social media handles (e.g., Twitter, LinkedIn), which can be analyzed further to deduce interests.
+  - **Social Media Profiles**: Links to profiles that can enhance the profile with additional data.
+- **How to Use**: Send the email address to the Clearbit Enrichment API endpoint, and parse the response for professional and social details.
+- **Why It’s Useful**: Clearbit excels at professional data and provides a foundation that can be extended with other tools for languages and interests.
+
+---
+
+### 16.8. How These Services Work
+- **Input**: You provide the person’s name and email address (though the email alone is often sufficient) through an API request.
+- **Output**: The service returns a structured dataset containing:
+  - Job title and company (profession and workplace).
+  - Languages spoken (directly from FullContact; inferred from Clearbit’s location data).
+  - Interests (from FullContact’s digital footprint; indirectly via Clearbit’s social links).
+  - Additional links to social profiles for further exploration.
+- **Integration**: These APIs are easy to integrate into your application or script using standard HTTP requests, with documentation available on their websites (fullcontact.com and clearbit.com).
+
+---
+
+### 16.9. Complementary Tools for Missing Details
+If FullContact or Clearbit don’t fully cover languages or interests due to limited data on a specific individual, you can supplement them with these tools:
+
+#### 16.9.1. Language Detection APIs
+- **Purpose**: To determine the languages a person speaks by analyzing their public content (e.g., social media posts, blogs).
+- **Options**:
+  - **Google Cloud Translation API**: Detects the language of text samples, useful if you retrieve posts via social media links from FullContact or Clearbit.
+  - **langdetect (Python Library)**: A free, lightweight alternative for language detection if you process content programmatically.
+- **How to Use**: Extract text from linked social profiles or websites, then run it through the API to identify languages.
+
+#### 16.9.2. Social Media APIs and NLP Tools
+- **Purpose**: To extract interests from social media activity when enrichment APIs provide insufficient detail.
+- **Options**:
+  - **Twitter API**: If a Twitter handle is provided, fetch recent tweets and use natural language processing (NLP) to identify recurring topics or interests.
+  - **Topic Modeling Tools**: Libraries like Gensim or APIs like IBM Watson Natural Language Understanding can analyze text from posts or bios to pinpoint interests.
+- **How to Use**: Access public posts via social media APIs (where permitted) and apply NLP techniques to categorize interests.
+
+---
+
+### 16.10. Considerations
+- **Accuracy**: The quality of the profile depends on the person’s online presence. Individuals with minimal public data may yield incomplete results.
+- **Cost**: Both FullContact and Clearbit charge per API request, though they offer free tiers for limited use. Check their pricing pages for details.
+- **Privacy and Ethics**: Ensure compliance with data protection laws (e.g., GDPR, CCPA) by using these services only for legitimate purposes, such as improving communication, and not for unsolicited marketing. These APIs typically rely on public data, but you should verify your use case aligns with their terms and applicable regulations.
+
+---
+
+### 16.11. Conclusion
+To programmatically build a complete profile of a person—including their profession, place of work, languages, and interests—based on their name and email address, the most effective tools are **data enrichment APIs like FullContact and Clearbit**. FullContact stands out for directly providing languages and interests, while Clearbit excels at professional data and offers flexibility for further analysis. For cases where additional detail is needed, language detection APIs or social media analysis can enhance the profile. These services enable you to tailor communication by understanding the individual’s background and preferences efficiently and ethically.
+
+================
+File: docs/people.py
+================
+response = requests.get(url, headers=headers)
+print(response.json())
+
+================
+File: docs/review-copilot.md
+================
+# Review of Web Search API Analyses
+
+## o3 mini (⭐⭐⭐)
+
+Quick, clean table-based comparison focusing on pricing and features. Hits the main points 
+but lacks depth on terms of service and real-world usage considerations. Points for 
+conciseness, but misses some nuanced pricing details. The kind of analysis you'd get from 
+someone who has deadlines to meet.
+
+## Perplexity (⭐⭐⭐⭐)
+
+A thorough breakdown with excellent attention to pricing tiers and feature sets. Good 
+structure and clear categorization. However, feels a bit like it's throwing every possible 
+detail at the wall to see what sticks. Still, solid research and well-presented 
+information, even if it occasionally veers into "I must include everything" territory.
+
+## Phind (⭐⭐⭐⭐½)
+
+Strong technical focus with practical considerations and well-organized sections. The 
+"Key Considerations" and "Best Practices" sections add real value. Could have gone deeper 
+on API reliability and rate limits, but overall a strong analysis that someone could 
+actually use to make decisions.
+
+## Google DR (⭐⭐)
+
+Oh my, someone got paid by the word here. Academically rigorous to the point of tedium, 
+with more citations than a PhD thesis. While comprehensive, it's the kind of document 
+that makes you wish for a "Skip to Conclusion" button. Points for thoroughness, but 
+deductions for making simple comparisons feel like reading legal documents.
+
+## Grok 3 (⭐⭐⭐⭐)
+
+Refreshingly direct with clear cost comparisons and practical insights. The "Surprising 
+Detail" about Bing's price surge adds valuable context. Good balance of concision and 
+detail, though could use more specific implementation considerations.
+
+## Combined Best Insights
+
+### Top Picks
+
+- **Budget Choice**: Brave/Exa @ $0.0025/query for keyword searches
+- **Enterprise Standard**: Google @ $0.005/query with reliable service
+- **Avoid**: Bing (recently 10x price hike to $0.01/query)
+
+### Free Tier Champions
+
+- Brave: 2,000-5,000 queries/month
+- Google: 100 queries/day
+- Exa: $10 free credits
+
+### Key Decision Factors
+
+1. **Cost-Effective**: Brave/Exa for basic keyword search
+2. **AI Integration**: Exa/You.com for LLM-friendly features
+3. **Privacy Focus**: Brave with no user tracking
+4. **Reliability**: Google for stable, well-documented service
+
+### Watch Out For
+
+- Unclear pricing (You.com)
+- Limited APIs (DuckDuckGo)
+- Regional restrictions (Yandex/Baidu)
+
+### Pro Tips
+
+- Combine keyword search (cheaper) with semantic search (better accuracy) based on needs
+- Consider privacy requirements before implementation
+- Factor in rate limits and reliability for production use
+- Get custom quotes for high-volume usage
+
+================
+File: docs/review-cursor.md
+================
+# Web Search API Writeups Review
+
+## o3 mini ⭐⭐⭐
+A decent tabular comparison that gets straight to the point. The formatting is clean and the data is well-organized. However, it lacks depth in the analysis and misses some crucial pricing details. The "Final Thoughts" section feels a bit superficial. Props for including privacy considerations though.
+
+## Perplexity ⭐⭐⭐⭐
+A solid, well-structured analysis with good attention to detail on pricing tiers. The summary table is particularly useful. Loses a star for some redundant information and overly formal language. The citations are a nice touch, even if they're mostly just numbered placeholders.
+
+## Phind ⭐⭐
+Started strong with key points but quickly devolved into bullet point hell. The formatting is inconsistent and there's significant repetition. While it contains useful information, the presentation is messy and hard to follow. At least it tried to highlight surprising details about Bing's price surge.
+
+## Google DR ⭐⭐⭐⭐⭐
+The most comprehensive and well-researched analysis of the bunch. Excellent structure, detailed pricing breakdowns, and thoughtful comparisons. The methodology section adds credibility, and the citations are properly formatted. Could be shorter, but if you want the full picture, this is your guy.
+
+## Grok 3 ⭐⭐⭐½
+A concise analysis that gets to the point quickly. Good focus on cost comparison and key features. The "Surprising Detail" about Bing's price increase is well-highlighted. Loses points for being a bit too brief and missing some important details about terms and conditions.
+
+## TLDR: The Best Combined Analysis
+### Pricing Comparison
+| Provider    | Cost per Query | Notes                                    |
+|-------------|----------------|------------------------------------------|
+| Brave/Exa   | $0.0025       | Most cost-effective for keyword search   |
+| Google      | $0.005        | Standard rate after free tier            |
+| Bing        | $0.01         | Premium pricing tier                     |
+| DuckDuckGo  | N/A           | Instant answers API only                 |
+
+*Prices current as of review date. Subject to change based on provider updates.*
+
+### Best For:
+- General Purpose: Google (expensive but reliable)
+- Privacy Focus: Brave (independent index)
+- AI/LLM Integration: Exa (semantic search)
+- Developer Tools: Phind (technical focus)
+- Enterprise: Microsoft/Bing (if you're made of money)
+
+### Free Tiers:
+- Google: 100 queries/day
+- Brave: 2,000-5,000 queries/month
+- Exa: $10 credit
+- Others: Various limited offerings
+
+### Key Takeaways:
+1. The market is shifting toward AI-enhanced search APIs
+2. Privacy-focused options are becoming more competitive
+3. Traditional players (Google, Bing) are generally more expensive
+4. Most APIs now offer semantic search capabilities
+5. Watch out for hidden costs in result limits and feature tiers
+
+### Pro Tips:
+- Start with Brave or Exa for cost-effective testing
+- Use Google if you need reliable, branded search
+- Avoid Bing unless you really need Microsoft ecosystem integration
+- Consider hybrid approaches (different APIs for different needs)
+- Read the fine print on rate limits and result counts
+
+================
+File: docs/review-o3.md
+================
+# Web Search API Reviews Analysis
+
+This document analyzes three expert reviews of Web Search API writeups. Each review is evaluated on structure, clarity, depth, and overall quality, with ratings from 1-5 stars. Our assessment criteria focus on technical accuracy, insight depth, and practical value for implementers.
+---
+
+## Copilot Review Analysis
+
+The Copilot review is organized by breaking down the original writeups into several sections (o3 mini, Perplexity, Phind, Google DR, and Grok 3) with individual star ratings for each. Its structure is methodical and the use of star ratings lends an air of simplicity and quick judgment. However, the commentary sometimes comes across as terse and overly reliant on numerical scores, leaving some nuances of the original detailed analysis underexplored. It gives off the vibe of someone racing against the clock – effective for quick insights but lacking in a deeper critique. 
+
+**Overall, Copilot's review earns a solid 3.5/5 stars.**
+
+---
+
+## Cursor Review Analysis
+
+Cursor's review stands out for its clarity and balanced critique. It methodically reviews each section (o3 mini, Perplexity, Phind, Google DR, and Grok 3) with distinct commentary that covers both strengths and shortcomings. The language is direct and informative, with a neatly organized TLDR section summarizing the best insights. Although it sometimes misses a few subtleties regarding price tiers or implementation details, its structured approach and thoughtful evaluations make it a very reliable appraisal of the original writeups. 
+
+**Overall, Cursor's review receives a high 4.5/5 stars.**
+
+---
+
+## Trae Review Analysis
+
+Trae injects personality and wit into the review, offering a narrative that is as entertaining as it is informative. His review of Google DR, for instance, is laced with sarcasm and colorful commentary – it even suggests that the document is a cure for insomnia! Trae focuses sharply on the key strengths and weaknesses (especially of Google DR and Phind), delivering actionable insights and market perspectives. However, the review sometimes feels a bit uneven as it doesn't cover all items as consistently as the others, and its less formal style may not suit every technical reader. 
+
+**Overall, Trae's review is awarded 4/5 stars.**
+
+---
+
+## Summary
+In summary, the three reviews each offer a unique perspective on the original Web Search API writeups:
+
+- **Copilot (3.5/5):** A timely, if somewhat superficial, assessment with quick star ratings and concise commentary.
+- **Cursor (4.5/5):** A meticulous and structured critique with balanced insights and a clear TLDR.
+- **Trae (4/5):** A refreshingly candid and sarcastic review that delivers real insights, albeit with a less uniform approach.
+
+Each reviewer brings something different to the table; whether you prefer brevity, structure, or personality, there's merit in all their approaches. The best combined insight, however, is that while the original writeups are dense and detailed, these reviews help distill the key points – even if one of them makes you long for a 'Skip to Conclusion' button.
+*End of Review of the Reviews*
+
+================
+File: docs/review-trae.md
+================
+# Web Search API Writeups Review
+
+## Google DR (⭐⭐⭐⭐)
+A scholarly tome that could double as a cure for insomnia. While impressively thorough and methodologically sound, it reads like a legal document had a baby with an academic paper. The detailed pricing breakdowns and citations are great, but did we really need a methodology section that rivals a doctoral dissertation? Points for completeness, deductions for making me wish I had a PhD in API Documentation Studies.
+
+## Phind (⭐⭐⭐⭐½)
+Finally, someone who understands that developers want practical insights, not a philosophical treatise on the nature of APIs. Strong technical focus, well-organized sections, and actually useful "Key Considerations" make this a standout. Could have dived deeper into reliability metrics and rate limits, but overall delivers what developers need without the fluff.
+
+# TLDR: The Essential Guide to Web Search APIs 2025
+
+## Top Picks by Use Case
+- General Search: Google (expensive but rock-solid)
+- Privacy-First: Brave (independent index, generous free tier)
+- AI Integration: Exa (semantic search specialist)
+- Technical Search: Phind (developer-focused)
+- Enterprise: Bing (for those with Microsoft-sized budgets)
+
+## Free Tier Breakdown
+- Google: 100 queries/day
+- Brave: 2,000-5,000 queries/month
+- Exa: $10 credit starter
+
+## Pro Tips
+1. Mix and match: Use keyword search (cheaper) for basic queries, semantic search for complex ones
+2. Watch the fine print on rate limits and result quotas
+3. Privacy requirements should be considered before implementation
+4. Most APIs now offer semantic search - use it wisely
+5. Get custom quotes for high-volume usage - listed prices aren't the whole story
+
+## Market Insights
+- AI-enhanced search is becoming the norm
+- Privacy-focused options are gaining ground
+- Traditional players (Google, Bing) charge premium rates
+- Hidden costs lurk in result limits and feature tiers
+
+## Watch Out For
+- Unclear pricing structures (especially You.com)
+- Limited API functionality (DuckDuckGo)
+- Regional restrictions (Yandex/Baidu)
+- Sudden changes in rate limits or pricing
+
+Remember: The best API is the one that fits your specific needs and budget. Don't get dazzled by features you'll never use, and always factor in reliability and support when making your choice.
+
+================
+File: docs/serp.py
+================
+response = requests.get(url, headers=headers, params=querystring)
+print(response.json())
+
+================
+File: docs/web-search-api.md
+================
+# Search API
+
+[You.com](https://api.you.com/plans)
+[Brave Search API](https://brave.com/search/api/)
+[Critique Labs](https://critique-labs.ai/en/pricing)
+[Perplexity](https://docs.perplexity.ai/guides/pricing)
+[Exa AI](https://exa.ai/pricing)
+[SerpAPI](https://serpapi.com/pricing)
+[Tavily](https://tavily.com/#pricing)
+[Yandex](https://yandex.cloud/en/docs/overview/concepts/region)
+[DataForSeo](https://dataforseo.com/)
+[Brightdata Serp](https://brightdata.com/pricing/serp)
+[TrajectData Scale Serp](https://trajectdata.com/serp/scale-serp-api/pricing/)
+[Serpstack](https://serpstack.com/pricing)
+[Zenserp](https://zenserp.com/pricing-plans/)
+[AutomDev](https://autom.dev/subscribe/twardoch)
+[APILayer](https://apilayer.com/marketplace/google_search-api)
+[RapidAPI DDG](https://rapidapi.com/duckduckgo/api/duckduckgo-zero-click-info)
+[RapidAPI Search Category](https://rapidapi.com/search/Search?sortBy=ByRelevance)
+
+
+
+
+I want an API that does web searches. Research and compare the exact pricing and terms of Google search API, Brave, Exa, Phind, You.com, Perplexity.ai, DuckDuckGo, Bing Search and other providers.
+
+--------------------------------------------------------------------------------
+
+> # o3 mini
+
+Below is a detailed comparison of several leading web search APIs that you might consider. Note that "web search APIs" can vary widely in how they index data, what exactly they return, and--critically--how much you pay per query. Here's an overview of eight major options:
+
+## Comparison Overview
+
+Provider                                           | Free Tier Details                                | Paid Pricing & Units                                                                                                                                                            | Key Terms & Notes
+-------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------
+**Google Search API** (Custom Search JSON API)     | ~100 queries/day free (≈3, 000/month)            | About **$5 per 1, 000 queries**                                                                                                                                                 | Limits you to custom search results only; you cannot "crawl" the whole web. Usage must follow Google's API TOS. citeturn0search2
+**Brave Search API**                               | Free: 1 query/second, up to 2, 000 queries/month | "Data for Search": Base at **$3 CPM** (i.e. $3 per 1, 000 queries) or Pro at **$5 CPM**; additional tiers for AI data, storage rights, and autosuggest are available            | Provides results from an independent index with strong privacy guarantees. Flexible, developer-first pricing. citeturn0search1
+**Exa AI Web Search API**                          | Free up to 1, 000 queries                        | Starting at a minimum of **$50/month** for up to 25 results per query; higher plans (e.g. minimum $250/month) add more results with fees around **$10–$30 per 1, 000 searches** | Designed for "complex queries" with rich results. Pricing is usage‐ and result–count based and often negotiable. citeturn0search3
+**Phind API**                                      | Free with limitations                            | Pro version typically around **$20/month**                                                                                                                                      | Tailored for technical queries (e.g. coding questions) with a focus on contextual, developer-friendly answers. citeturn0search3
+**You.com API**                                    | Free tier available                              | YouPro subscription at about **$20/month** (or ~$180/year)                                                                                                                      | Offers a highly customizable, privacy‐conscious search experience with integrated AI tools. citeturn0search3
+**Perplexity.ai API**                              | Currently free (for individual use)              | Commercial/API pricing isn't widely published (some reports hint at a Pro tier near **$20/month**)                                                                              | Presents answers conversationally with full source citations. Terms restrict commercial "wrapping" of their data. citeturn0search3
+**DuckDuckGo API**                                 | The Instant Answer API is entirely free          | N/A – there is no paid tier for the Instant Answer API                                                                                                                          | Returns "instant answers" (not full search results) and emphasizes strict privacy (no tracking). citeturn0search9
+**Bing Search API** (via Azure Cognitive Services) | Free tier: up to about 3, 000 transactions/month | Typically around **$3 per 1, 000 transactions** (S1 tier)                                                                                                                       | Provided through Microsoft Azure; requires an Azure subscription and adherence to Microsoft's TOS. citeturn0search4
+
+--------------------------------------------------------------------------------
+
+## Detailed Notes
+
+### Google Search API
+
+Google no longer offers a "Web Search API" that scrapes the live web. Instead, the **Custom Search JSON API** lets you query a predefined set of sites (or the entire web if you pay to configure it). It gives you a fixed number of free queries per day (around 100), then charges about $5 per 1, 000 queries. Note that you must abide by Google's usage policies and the results are limited to what the custom search engine can index.
+
+### Brave Search API
+
+Brave positions its API as a developer–friendly, privacy–focused alternative. In its "Data for Search" product, you can try 2, 000 queries per month for free (1 query/second), then scale up using a CPM (cost per thousand queries) pricing model. The Base plan is around $3 CPM and the Pro plan is around $5 CPM--with additional product tiers (for AI data, data with storage rights, or autosuggest functions) available as needed.
+
+### Exa AI Web Search API
+
+Exa is aimed at "complex" query use cases. The free tier is limited (up to 1, 000 monthly requests), and then pricing starts at about $50/month for a modest result set (around 25 results per search). Higher tiers--if you need more comprehensive results (up to 100 results per query)--require a higher minimum spend (around $250/month) and additional charges per 1, 000 queries (typically $10 for up to 25 results and up to $30 for 26–100 results).
+
+### Phind API
+
+Phind is built especially for technical and developer-centric queries. It's free to try but also offers a Pro subscription (commonly about $20/month) that unlocks advanced features such as extended context windows and more robust coding assistance.
+
+### You.com API
+
+You.com offers a robust free tier with its own AI-powered search experience. For advanced usage (called YouPro), a subscription is required--approximately $20/month or $180 billed annually. This plan unlocks more advanced models and unlimited queries, along with additional customization options.
+
+### Perplexity.ai API
+
+Perplexity.ai has become popular for its "conversational" search that provides concise, citation–backed answers. For now, individual use appears to be free, though commercial API access or a Pro version might be offered at around $20/month. Their TOS and usage limits emphasize that you must not "wrap" or resell their output without permission.
+
+### DuckDuckGo API
+
+DuckDuckGo provides a free Instant Answer API. It does not have a paid tier because its primary focus is on returning a single "instant" result (or snippet) rather than a full set of search results. Its strict privacy stance means no user tracking occurs.
+
+### Bing Search API
+
+Bing's web search API is available through Microsoft Azure. It offers a free tier (roughly 3, 000 transactions per month) and then charges about $3 per 1, 000 transactions in the Standard (S1) tier. Transactions include each call to the API, and you must follow Microsoft's pricing and usage policies.
+
+--------------------------------------------------------------------------------
+
+## Final Thoughts
+
+Each provider offers a different mix of data access, pricing models, and terms of use:
+
+- **Google's Custom Search** is great if you need Google's quality results but are okay with configuring your own custom search engine.
+- **Brave Search API** is appealing if privacy and a truly independent index matter.
+- **Exa AI** and **Phind** target more complex and technical use cases, with pricing that scales with the richness of the returned results.
+- **You.com** and **Perplexity.ai** offer modern, conversational experiences that might suit creative or research–oriented applications.
+- **DuckDuckGo** is best if you need a lightweight, privacy–first Instant Answer tool.
+- **Bing's API** remains competitive through Azure, especially for enterprises already in the Microsoft ecosystem.
+
+Before deciding, review each provider's full terms and pricing documentation (and consider contacting sales if your usage is high) to ensure their API aligns with your application's needs.
+
+Feel free to ask for further details or clarification on any of these points!
+
+--------------------------------------------------------------------------------
+
+> # Perplexity
+
+Here's a detailed comparison of various web search APIs, including their pricing and terms as of February 2025:
+
+## Google Custom Search API
+
+- **Free Tier**: 100 queries per day.
+
+- **Paid Tier**: $5 per 1, 000 queries beyond the free limit, with a maximum of 10, 000 queries per day.
+
+- **Notes**: This API allows you to create a custom search engine tailored to your needs. Billing must be enabled through the API console for additional queries[2].
+
+## Brave Search API
+
+- **Free Tier**: Up to 2, 000 queries per month (1 query per second).
+
+- **Paid Plans**:
+
+  - $3 per 1, 000 queries.
+  - Additional features include web search, video clusters, and autosuggest capabilities.
+
+- **Notes**: Brave emphasizes privacy and independence from traditional search engines. The API can handle up to 20 million queries per month with a rate limit of 20 queries per second[3].
+
+## Exa Search API
+
+- **Free Credits**: $10 in free credits for new users.
+
+- **Pricing**:
+
+  - $5 per 1, 000 requests for AI auto-decided searches or semantic searches.
+  - $2.50 per 1, 000 requests for keyword searches.
+
+- **Notes**: Offers various search types with different pricing based on the number of results returned (1-25 results or 26-100 results) and includes options for content retrieval and direct answers[4].
+
+## Phind
+
+- **Free Tier**: Basic access available.
+
+- **Paid Plans**:
+
+  - Phind Pro: $17/month (billed annually) for unlimited searches.
+  - Business Plan: $40/month per user for advanced features and data privacy.
+
+- **Notes**: Focuses on AI-driven search with interactive responses and integrates real-time web results. It's particularly useful for developers needing specific technical insights[5].
+
+## You.com
+
+- **Free Tier**: Basic access available.
+
+- **Paid Plans**:
+
+  - $15/month for annual billing or $20/month for monthly billing.
+
+- **Notes**: Targets knowledge workers with complex query handling and offers a selection of AI models for enhanced search capabilities. It aims to provide summarized answers with citations[7].
+
+## DuckDuckGo
+
+DuckDuckGo does not offer a dedicated API like others listed here but provides a general search experience focused on privacy. They do not have a formal pricing structure for an API at this time.
+
+## Bing Search API
+
+Bing offers various tiers through Azure Cognitive Services:
+
+- **Free Tier**: Limited free queries available.
+
+- **Paid Plans**: Pricing varies based on usage but typically starts around $5 per 1, 000 transactions.
+
+- **Notes**: It includes features like image search, video search, and news search capabilities.
+
+## Summary Table
+
+Provider   | Free Tier                  | Paid Plans                            | Notes
+---------- | -------------------------- | ------------------------------------- | --------------------------------------
+Google CSE | 100 queries/day            | $5 per 1, 000 queries                 | Customizable search engines
+Brave      | Up to 2, 000 queries/month | $3 per 1, 000 queries                 | Privacy-focused
+Exa        | $10 in free credits        | $5-$25 per 1k requests                | Multiple search types
+Phind      | Basic access               | $17/month (Pro), $40/month (Business) | AI-driven interactive responses
+You.com    | Basic access               | $15/month (annual), $20/month         | Focus on complex work queries
+DuckDuckGo | None                       | N/A                                   | No formal API pricing
+Bing       | Limited free queries       | Starts at ~$5 per 1k transactions     | Broad feature set including multimedia
+
+This comparison should help you evaluate which web search API best fits your needs based on pricing and functionality.
+
+Citations: [1] <https://www.reddit.com/r/googlecloud/comments/1i3cgq0/google_maps_api_pricing_change_after_march_1_2025/> [2] <https://stackoverflow.com/questions/43853432/google-custom-search-engine-pricing> [3] <https://brave.com/blog/search-api-launch/> [4] <https://exa.ai/pricing> [5] <https://findmyaitool.io/tool/phind/> [6] <https://www.capterra.com/p/211544/Search-API/> [7] <https://www.cnet.com/tech/services-and-software/you-com-wants-to-be-your-ai-search-engine-for-complex-work-queries/> [8] <https://team-gpt.com/blog/perplexity-pricing/> [9] <https://brightdata.com/products/serp-api/duckduckgo-search> [10] <https://www.itpro.com/business/business-strategy/370107/microsoft-hikes-bing-search-api-prices> [11] <https://ai.google.dev/pricing> [12] <https://www.googlecloudcommunity.com/gc/Cloud-Hub/Buying-Custom-Search-JSON-API-queries-for-5/m-p/648725> [13] <https://techcrunch.com/2025/01/21/perplexity-launches-sonar-an-api-for-ai-search/> [14] <https://www.phind.com/plans> [15] <https://developers.google.com/maps/documentation/places/web-service/usage-and-billing> [16] <https://ai.google.dev/gemini-api/docs/pricing> [17] <https://developers.google.com/custom-search/v1/site_restricted_api> [18] <https://developers.google.com/custom-search/v1/overview> [19] <https://hkmci.com/news/google-maps-api-2025-complete-guide-to-pricing-policies-business-strategy/> [20] <https://www.reddit.com/r/webscraping/comments/1f2s1nx/why_are_programmable_search_engine_custom_search/> [21] <https://mapsplatform.google.com/pricing-calculator/> [22] <https://support.google.com/programmable-search/thread/249304679/monthly-cost-of-using-custom-search-json-api?hl=en> [23] <https://mapsplatform.google.com/pricing/> [24] <https://cloud.google.com/generative-ai-app-builder/docs/migrate-from-cse> [25] <https://cloud.google.com/api-keys/docs/quotas> [26] <https://cloud.google.com/free/docs/free-cloud-features> [27] <https://portable.info.pl/brave-search-online/> [28] <https://search.brave.com> [29] <https://jsr.io/@tyr/brave-search> [30] <https://brave.com/ai/brave-search-api-vs-bing-api/> [31] <https://brave.com/ai/what-sets-brave-search-api-apart/> [32] <https://brave.com/ai/category/search-apis/> [33] <https://www.piloterr.com/library/brave-search> [34] <https://x.com/exaailabs> [35] <https://www.f6s.com/company-deals/exa.ai/1k-in-exa-ai-search-credits-14967> [36] <https://www.reddit.com/r/Rag/comments/1gr8jnr/which_search_api_should_i_use_between_tavilycom/> [37] <https://tavily.com> [38] <https://www.linkedin.com/posts/exa-ai_2024-was-just-the-2025-preview-stay-tuned-activity-7285063767485222913-lRGZ> [39] <https://sourceforge.net/software/compare/Exa-vs-Perplexity-AI/> [40] <https://www.linkedin.com/posts/exa-ai_2025-here-we-come-activity-7288333877855617025-ElO3> [41] <https://www.webpilot.ai/writeDetail/0cf82325-10c2-4f9c-80ec-e6560587e695> [42] <https://www.codedex.io/projects/build-a-custom-search-engine-with-exa-ai> [43] <https://aiagentstore.ai/ai-agent/exa-ai> [44] <https://sourceforge.net/software/product/Exa/> [45] <https://opentools.ai/tools/phind> [46] <https://www.phind.com> [47] <https://powerusers.ai/ai-tool/phind/> [48] <https://www.phind.com/search?cache=zl73ckwfaxfn7yl9uq35328w> [49] <https://www.reddit.com/r/ChatGPTPro/comments/1begq7r/which_is_the_best_to_pay_for_in_2024_chatgpt_pro/> [50] <https://insight7.io/ai-tools/productivity/phind/> [51] <https://www.phind.com/blog/phind-2-model-creation> [52] <https://deepinfra.com/Phind/Phind-CodeLlama-34B-v2/api> [53] <https://clickup.com/blog/ai-search-engines/> [54] <https://docs.perplexity.ai/guides/pricing> [55] <https://docs.perplexity.ai/home> [56] <https://aicoulddothat.net/tools/perplexity-ai-pricing-review-alternatives/> [57] <https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research> [58] <https://www.perplexity.ai/hub/faq/what-is-perplexity-pro> [59] <https://www.perplexity.ai/hub/faq/pplx-api> [60] <https://www.elegantthemes.com/blog/business/perplexity-ai> [61] <https://duckduckgo.com/terms> [62] <https://serpapi.com/duckduckgo-search-api> [63] <https://duckduckgo.com/duckduckgo-help-pages/get-duckduckgo/how-much-does-duckduckgo-cost/> [64] <https://duckduckgo.com/duckduckgo-help-pages/duckai/usage-limits/> [65] <https://stackoverflow.com/questions/37012469/duckduckgo-api-getting-search-results> [66] <https://duckduckgo.com> [67] <https://python.langchain.com/docs/integrations/tools/ddg/> [68] <https://azure.microsoft.com/en-us/pricing/details/cognitive-services/v5/search-api/> [69] <https://news.ycombinator.com/item?id=34832726> [70] <https://www.serphouse.com/blog/explore-bing-search-api-documentation/> [71] <https://community.openai.com/t/bing-search-now-in-chat-when-will-it-be/402844> [72] <https://brightdata.com/products/serp-api/bing-search> [73] <https://blogs.bing.com/search-quality-insights/october-2020/Bing-Search-APIS-are-Transitioning> [74] <https://www.thurrott.com/cloud/web-browsers/283850/brave-releases-its-search-api> [75] <https://sdtimes.com/api/brave-makes-its-search-api-available-for-developers/> [76] <https://search.brave.com/help/premium> [77] <https://appmaster.io/news/brave-launches-search-api> [78] <https://www.reddit.com/r/brave_browser/comments/163sqz3/dont_think_ill_be_using_brave_much_anymore_if_at/> [79] <https://brave.com/search/api/> [80] <https://news.ycombinator.com/item?id=35731705> [81] <https://aitools.fyi/exa> [82] <https://www.mexc.co/en-TR/price-prediction/exa> [83] <https://python.langchain.com/docs/integrations/tools/exa_search/> [84] <https://exa.ai> [85] <https://blog.wiseone.io/ai-search-engine-for-developers/> [86] <https://news.ycombinator.com/item?id=38092729> [87] <https://aitechfy.com/aitool/phind/> [88] <https://www.reddit.com/r/ChatGPTCoding/comments/1begxkg/which_is_the_best_to_pay_for_in_2024_chatgpt_pro/> [89] <https://aitools.inc/tools/phind> [90] <https://www.capterra.com/p/10015254/phind/> [91] <https://slashdot.org/software/p/You.com/integrations/> [92] <https://www.f6s.com/software/you-com> [93] <https://www.withorb.com/blog/perplexity-pricing> [94] <https://subscribed.fyi/perplexity/pricing/> [95] <https://docs.perplexity.ai/guides/usage-tiers> [96] <https://www.reddit.com/r/perplexity_ai/comments/1cptxxo/is_perplexity_pro_just_the_obvious_choice_for_a/> [97] <https://www.thekeyword.co/news/perplexity-launches-sonar-api-to-expand-ai-search-integration> [98] <https://www.youtube.com/watch?v=sl2YNoJbEcg> [99] <https://rapidapi.com/apiriot/api/duckduckgo-search-api/pricing> [100] <https://pypi.org/project/duckduckgo-search/> [101] <https://rapidapi.com/arsen1c/api/duckduckgo-image-search/pricing> [102] <https://zylalabs.com/api-marketplace/data/duckduckgo+search+api/3350> [103] <https://www.searchapi.io/pricing> [104] <https://apicontext.com/api-directory/search/duckduckgo/> [105] <https://www.reddit.com/r/duckduckgo/comments/1178k85/i_read_some_terrible_news_m_is_increasing_the/> [106] <https://www.reddit.com/r/bing/comments/12zfrng/search_api_cost/> [107] <https://www.computerworld.com/article/1618921/microsoft-more-than-triples-bing-search-api-prices-to-recoup-investments.html> [108] <https://www.rbn-media.com/blog/why-did-the-price-of-the-bing-web-search-api-increase-and-how-does-the-api-work/> [109] <https://searchengineland.com/bing-search-api-no-longer-free-118100> [110] <https://www.information-age.com/how-bing-api-prices-are-disrupting-search-123505076/> [111] <https://www.microsoft.com/en-us/bing/apis/pricing> [112] <https://azure.microsoft.com/en-us/pricing/details/cognitive-services/bing-entity-search-api/>
+
+--------------------------------------------------------------------------------
+
+> # Phind
+
+Based on the search results, I'll compare the key search API providers and their pricing/terms. Here's a comprehensive breakdown:
+
+### Search API Providers and Pricing
+
+1. **Exa**
+
+2. Starting at $50 per month
+
+3. Offers API access for businesses and developers
+
+4. Specializes in retrieval-augmented generation (RAG)
+5. Provides real-time web data integration
+6. Best for complex research queries [0]
+
+7. **You.com (YouChat)**
+
+8. $20 per month for YouPro
+
+9. Includes access to premium AI models
+
+10. Offers real-time web search capabilities
+11. Integrates with content creation tools
+12. Uses Google search for sources [0]
+
+13. **Brave Search (Leo AI)**
+
+14. $14.99 per month for premium
+
+15. Privacy-focused search API
+
+16. Includes multiple LLM options (Mixtral 8x7B, Claude Instant, Llama 2 13B)
+17. No chat recording or user data retention [0]
+
+18. **Microsoft Copilot/Bing**
+
+19. $20/month for Copilot Pro
+
+20. $30/month for commercial use
+
+21. Includes citations and source links
+22. Integrates with Microsoft 365 suite
+23. Real-time Bing search integration [0]
+
+### Additional Providers
+
+1. **Phind**
+
+2. $20/month for Pro
+
+3. Specialized for technical and programming queries
+
+4. Includes multiple AI model access
+5. Real-time web search capabilities [0]
+
+6. **Perplexity.ai**
+
+7. Not explicitly stated in results, but offers search capabilities
+
+8. Known for research and citation features
+
+9. Real-time information retrieval [0]
+
+### Key Considerations
+
+1. **Privacy Features**
+
+2. Brave and DuckDuckGo focus on privacy
+
+3. Some providers like Brave don't store user data
+
+4. Different levels of data collection across providers [0]
+
+5. **Integration Capabilities**
+
+6. Microsoft Copilot offers deep Microsoft 365 integration
+
+7. Exa provides developer API access
+
+8. You.com includes content creation tool integration [0]
+
+9. **Search Quality**
+
+10. Different providers use various search backends
+
+11. Some use Google (You.com), others like Bing (Microsoft)
+
+12. Quality and freshness of results vary [0]
+
+### Best Practices
+
+1. **Choose Based on Use Case**
+
+2. Research: Exa or Perplexity
+
+3. Privacy: Brave or DuckDuckGo
+
+4. Enterprise: Microsoft Copilot
+5. Development: Phind or Exa [0]
+
+6. **Consider Pricing Structure**
+
+7. Most professional services range from $14.99 to $50 per month
+
+8. Enterprise pricing typically higher
+
+9. Some offer free tiers with limitations [0]
+
+10. **Evaluate Additional Features**
+
+11. API access availability
+
+12. Integration capabilities
+
+13. Privacy features
+14. Real-time data access [0]
+
+--------------------------------------------------------------------------------
+
+# Google DR
+
+This report provides a detailed comparison of pricing and terms for various web search APIs, including Google Search API, Brave Search, Exa, Phind, You.com, Perplexity.ai, DuckDuckGo, Bing Search, and other providers. The analysis is based on extensive information gathered from the respective providers' websites and documentation, as well as reviews and comparisons from industry sources.
+
+## **Google Search API**
+
+Google offers the Custom Search JSON API for developers to programmatically access search results from the Programmable Search Engine. With this API, developers can send search queries and receive results without directly accessing Google's search engine1\. The API employs RESTful requests and returns results in JSON format1.
+
+**Pricing:** 2
+
+- Free tier: 100 search queries per day.
+- Paid tier: $5 per 1000 queries, up to 10, 000 queries per day after the free tier is exhausted.
+
+**Terms:**
+
+- The terms of service for the Google Search Custom API are available on the Google Developers website2.
+
+## **Brave Search API**
+
+Brave Search API allows developers to integrate Brave Search's independent search index into their applications. Brave Search is one of the few independent global search providers and is the fastest growing since Bing3\. Unlike other search engines that may rely on third-party providers, Brave Search uses its own index, which is consistently refreshed with new data3\. This gives Brave Search a unique advantage in terms of data privacy and unbiased results3\. The API offers specialized searches beyond just web pages, allowing developers to access images, videos, news, and more3.
+
+**Pricing:** 3
+
+Brave Search API offers various pricing plans depending on usage and features:
+
+Plan    | Queries/month | Queries/second | Price   | Features
+:------ | :------------ | :------------- | :------ | :----------------------------------------------------------------------------------------------------------------------------------------------------
+Free    | 2, 000        | 1              | Free    | Web search, Images, Videos, News, Goggles, Schema enriched web results, Discussions, Infobox, FAQ, Locations, Summarizer
+Base    | 20M           | 20             | $3 CPM  | Web search, Images, Videos, News, Goggles, Schema enriched web results, Discussions, Infobox, FAQ, Locations
+Pro     | Unlimited     | 50             | $5 CPM  | Web search, Images, Videos, News, Goggles, Schema enriched web results, Discussions, Infobox, FAQ, Locations
+Base AI | 20M           | 20             | $5 CPM  | Web search, Goggles, news Cluster, videos cluster, Extra alternate snippets for AI
+Pro AI  | Unlimited     | 50             | $9 CPM  | Web search, Goggles, news cluster, videos cluster, schema-enriched Web results, infobox, FAQ, Discussions, locations, Extra alternate snippets for AI
+Base+   | 20M           | 20             | $26 CPM | Web search, Goggles, news cluster, videos cluster, Extra alternate snippets for AI
+Pro+    | Unlimited     | 50             | $45 CPM | Web search, Goggles, news cluster, videos cluster, schema-enriched Web results, infobox, FAQ, Discussions, locations, Extra alternate snippets for AI
+
+Autosuggest & Spellcheck: 3
+
+- Free: 5 queries/second, up to 5, 000 queries/month.
+- Pro: 100 queries/second, no monthly limit.
+
+**Terms:**
+
+- Brave Search API access is significantly cheaper than the Bing API6.
+- Users can sign up for free and try the API, then choose the right plan once they assess the API's capabilities3.
+
+## **Exa Search API**
+
+Exa (formerly Metaphor Search) is a search engine designed for use by Large Language Models (LLMs)7\. Unlike keyword-based search engines like Google, Exa uses neural search capabilities to understand the meaning behind search queries and return more relevant results7\. For example, a search for "fascinating article about cats" on Google might return SEO-optimized listicles based on the keyword "fascinating, " while Exa would return articles that are actually about cats7.
+
+**Pricing:** 8
+
+- Free: $10 in free credits to get started.
+- Direct answers backed by citations: $5 per query for both Exa and Exa-Pro models.
+
+**Terms:** 9
+
+- Exa offers a free trial with over 1000 requests per month.
+
+## **Phind Search API**
+
+Phind is an AI-powered search engine that provides answers, explanations, and examples for technical questions10\. It offers a Visual Studio Code extension for seamless integration into development workflows10.
+
+**Pricing:** 10
+
+- Free: Unlimited Phind-70B searches, 500+ daily GPT-4o uses, 500+ daily Claude 3.5 Sonnet uses, 10 daily Claude Opus uses.
+- Pro Monthly: $20/month for unlimited Phind-70B searches, 500+ daily GPT-4o uses, 500+ daily Claude 3.5 Sonnet uses, 10 daily Claude Opus uses, multi-query search mode, image analysis with GPT-4, 32, 000 context length, data exclusion from training by opt-out, and the ability to run and test code in-browser.
+- Pro Yearly: $17/month for the same features as Pro Monthly.
+- Business: $40/month per user for the same features as Pro Monthly.
+
+**Terms:**
+
+No information available.
+
+## **You.com Search API**
+
+You.com is an AI-powered search engine that offers a personalized and efficient browsing experience11\. It prioritizes user control, allowing individuals to customize their search preferences and filter results based on their needs11.
+
+**Pricing:** 12
+
+- Free: Limited basic queries, real-time answers powered by live web search.
+- Plus: $15/month for access to all AI models, including GPT-4o, OpenAI o1, and Claude 3.5 Sonnet, file uploads and GDrive integration up to 25MB per query, up to 64k context window, and access to Research and Custom Agents.
+- Pro: $25/month for unlimited queries, including all AI models and Research and Custom Agents, unlimited file uploads and GDrive integration up to 50MB per query, up to 200k context window, zero data retention, and no-training for models.
+- Team: $25/month per user for everything in Pro.
+- Enterprise: Custom pricing for everything in Team, plus a dedicated account team and prioritized support, fine-grained control over permissions and access, and secure access to all your data from 100KB to 100TB+ with Private RAG.
+
+**Terms:**
+
+- You.com offers a free trial for up to 1, 000 monthly calls13.
+
+## **Perplexity.ai API**
+
+Perplexity.ai is an AI-powered search engine that provides accurate and detailed answers to complex questions14\. It uses multiple sources to ensure reliability, minimize bias, and offer a broad perspective14.
+
+**Pricing:** 15
+
+- Input tokens: $3/1M tokens.
+- Search queries: $5/1000 searches.
+- Output tokens: $15/1M tokens.
+
+**Terms:**
+
+- Perplexity Pro subscribers receive $5 in monthly credits16.
+
+## **DuckDuckGo API**
+
+DuckDuckGo is a privacy-focused search engine that does not track users or collect personal data17\. It offers unbiased search results and prioritizes user privacy17.
+
+**Pricing:** 18
+
+- DuckDuckGo Search, browser extensions, and DuckDuckGo Private Browser are free.
+- Privacy Pro: $9.99 a month, or $99.99 a year.
+
+**Terms:** 19
+
+- DuckDuckGo has a strict no-logging policy.
+- They use encryption and firewalls to protect user data.
+
+## **Bing Search API**
+
+The Bing Search API lets you add Bing search options to your app20\. It allows developers to access web, image, video, and news results, as well as related search and spelling suggestions20.
+
+**Pricing:** 20
+
+- Standard Pricing: Pay-as-you-go pricing for S1-S9 tiers.
+- High Volume Pricing: For S10+ tiers.
+- Enterprise Pricing: Custom pricing for high-volume users.
+
+**Terms:** 20
+
+- Bing offers a free trial for prototyping21.
+
+## **Other Web Search API Providers**
+
+In addition to the APIs mentioned above, several other providers offer web search APIs with varying features and pricing models. These include:
+
+- **SerpDog API:** An all-inclusive SERP API that handles search engine tasks with one tool22.
+- **SerpAPI:** A real-time SERP API that delivers structured data from various search engines, including Google Search, Google Shopping, Google Lens, YouTube, Amazon, and more22.
+- **SEMrush API:** A robust set of features for SEO analysis, including backlink analysis, deep domain reports, competitor research, historical data tracking, and position tracking23.
+- **Ahrefs API:** Offers similar SEO analysis tools to SEMrush, with additional features like anchor text analysis and historical refdomains data23.
+- **Moz API:** Provides domain reports, keyword research, domain authority, competitor analysis, and information on anchor text and inbound and outbound links23.
+- **SerpWow API:** Can query Bing, Yahoo, Baidu, and Yandex, and retrieve real-time data from Amazon and eBay23.
+- **Scrapingdog API:** Offers dedicated endpoints for Amazon, LinkedIn, and Twitter, and allows populating a database using a Webhook URL23.
+- **DataForSEO API:** Works with numerous search engines and has specialized search functions23.
+- **ScaleSERP API:** Offers SEO tools with batch support and webhook integration23.
+
+## **Comparison and Analysis**
+
+When choosing a web search API, several factors should be considered, including:
+
+- **Pricing:** The cost of API calls can vary significantly between providers. Some offer free tiers for limited usage, while others have pay-as-you-go or subscription-based models.
+- **Features:** Different APIs offer different features, such as specialized searches, AI capabilities, and data parsing options.
+- **Speed:** The response time of the API can be crucial for certain applications.
+- **Accuracy:** The accuracy of the search results is essential for reliable information retrieval.
+- **Data privacy:** Some APIs prioritize user privacy and do not track or collect personal data.
+
+Based on the research conducted, here's a summary of the pros and cons of each API:
+
+API Provider       | Pricing Model               | Key Features                                    | Pros                                          | Cons
+:----------------- | :-------------------------- | :---------------------------------------------- | :-------------------------------------------- | :-----------------------------------
+Google Search API  | Free and paid tiers         | RESTful requests, JSON responses                | Established provider, customizable search     | Limited queries per day
+Brave Search API   | Free and paid tiers         | Independent search index, AI summarizer         | Privacy-focused, affordable                   | Limited features in lower tiers
+Exa Search API     | Free trial and paid queries | Neural search, LLM-optimized                    | Understands natural language                  | Limited information on terms
+Phind Search API   | Free and paid tiers         | VS Code extension, code generation              | Developer-focused, extensive documentation    | No API pricing information available
+You.com Search API | Free and paid tiers         | Personalized search, AI agents                  | Customizable, supports various LLMs           | No API pricing information available
+Perplexity.ai API  | Pay-as-you-go               | Accurate answers, source citations              | Reliable, transparent                         | Can be expensive for high usage
+DuckDuckGo API     | Free and paid tiers         | Privacy-focused, unbiased results               | No tracking or data collection                | Limited API documentation
+Bing Search API    | Free trial and paid tiers   | Comprehensive search options, statistics add-in | Established provider, various pricing options | Can be expensive for high usage
+
+## **Conclusion**
+
+This report has provided a comprehensive overview of the pricing and terms of various web search APIs. The choice of API will depend on the specific needs and priorities of the user. For those who prioritize privacy, Brave Search and DuckDuckGo are excellent options. For developers who need an API that understands natural language, Exa is a strong contender. For those who require accurate and detailed answers, Perplexity.ai is a good choice. And for those who need a comprehensive suite of SEO tools, SEMrush and Ahrefs are worth considering. By carefully evaluating the different options, users can choose the API that best meets their requirements.
+
+### **Works cited**
+
+1\. Google Search API: Everything You Need To Know - Medium, accessed February 20, 2025, <https://medium.com/@TerryFrederick/google-search-api-everything-you-need-to-know-fd1e24cfca45><br>
+2\. Custom Search JSON API | Programmable Search Engine | Google ..., accessed February 20, 2025, <https://developers.google.com/custom-search/v1/overview><br>
+3\. Brave Search API, accessed February 20, 2025, <https://brave.com/search/api/><br>
+4\. Brave Releases its Search API - Thurrott.com, accessed February 20, 2025, <https://www.thurrott.com/cloud/web-browsers/283850/brave-releases-its-search-api><br>
+5\. Brave releases its Search API, bringing independence and competition to the search landscape, accessed February 20, 2025, <https://brave.com/blog/search-api-launch/><br>
+6\. Brave Search API vs the Bing API, accessed February 20, 2025, <https://brave.com/ai/brave-search-api-vs-bing-api/><br>
+7\. Exa Search - ️ LangChain, accessed February 20, 2025, <https://python.langchain.com/v0.1/docs/integrations/tools/exa_search/><br>
+8\. Pricing - Exa | Web API for AI, accessed February 20, 2025, <https://exa.ai/pricing><br>
+9\. Exa: AI-Powered Search Engine for Intuitive and Efficient Web Exploration | Deepgram, accessed February 20, 2025, <https://deepgram.com/ai-apps/exa><br>
+10\. Phind Features, Pricing, and Alternatives | AI Tools, accessed February 20, 2025, <https://aitools.inc/tools/phind><br>
+11\. You.com's APIs make LLMs and search experiences more factual and up to date with real-time web data, accessed February 20, 2025, <https://you.com/business/api><br>
+12\. Plans | You.com, accessed February 20, 2025, <https://you.com/plans><br>
+13\. YOU API Frequently Asked Questions | LLM Search FAQs, accessed February 20, 2025, <https://api.you.com/faq><br>
+14\. Perplexity AI Review: Ditch Google & ChatGPT For Good?, accessed February 20, 2025, <https://www.unite.ai/perplexity-ai-review/><br>
+15\. Pricing - Perplexity, accessed February 20, 2025, <https://docs.perplexity.ai/guides/pricing><br>
+16\. What is the API? - Perplexity, accessed February 20, 2025, <https://www.perplexity.ai/hub/faq/pplx-api><br>
+17\. DuckDuckGo API - APImetrics API Directory - key data on 300+ top providers, accessed February 20, 2025, <https://apicontext.com/api-directory/search/duckduckgo/><br>
+18\. How much does DuckDuckGo cost?, accessed February 20, 2025, <https://duckduckgo.com/duckduckgo-help-pages/get-duckduckgo/how-much-does-duckduckgo-cost/><br>
+19\. DuckDuckGo Terms of Service, accessed February 20, 2025, <https://duckduckgo.com/terms><br>
+20\. Web Search API | Microsoft Bing, accessed February 20, 2025, <https://www.microsoft.com/en-us/bing/apis/bing-web-search-api><br>
+21\. document - Bing, accessed February 20, 2025, <https://www.bing.com/webmaster/content/developers/ADM_MIGRATION_GUIDE.docx><br>
+22\. Top 14 Google Search APIs to Access Search Results - Smacient, accessed February 20, 2025, <https://smacient.com/top-google-search-engine-apis-3/><br>
+23\. 10 Search Engine Results Page (SERP) APIs | Nordic APIs |, accessed February 20, 2025, <https://nordicapis.com/10-search-engine-results-page-serp-apis/>
+
+--------------------------------------------------------------------------------
+
+> # Grok 3
+
+### Key Points
+
+- For web search APIs, Brave and Exa offer the lowest cost at $0.0025 per query for keyword searches, with free tiers up to 5, 000 queries monthly.
+- Google's API costs $0.005 per query after a free 100 queries daily, while Bing's price increased to $0.01 per query.
+- Some APIs, like You.com, have unclear pricing, and others like DuckDuckGo lack full search capabilities officially.
+
+### Overview
+
+When choosing a web search API, consider cost, features, and suitability for your needs. Brave and Exa stand out for their low cost and privacy focus, while Google offers reliability at a higher price. Bing's recent price hike makes it less competitive, and some providers like You.com require further pricing details.
+
+#### Cost Comparison
+
+Here's a quick look at the pricing for popular web search APIs:
+
+- **Brave and Exa**: Start at $0.0025 per query for keyword searches, with free tiers.
+- **Google**: $0.005 per query after 100 free daily queries.
+- **Bing**: Now $0.01 per query after a significant price increase.
+- **You.com and Phind**: Pricing unclear or developer-focused, respectively.
+
+#### Features and Suitability
+
+- Brave and Exa offer semantic and keyword search options, ideal for privacy-conscious users.
+- Google's API is customizable and widely used, suitable for branded searches.
+- Bing provides comprehensive results but at a higher cost post-increase.
+- DuckDuckGo lacks a full search API officially, and Yandex/Baidu rely on third-party options.
+
+#### Surprising Detail: Bing's Price Surge
+
+It's surprising that Bing's API cost jumped to $0.01 per query, a 10x increase, making it less competitive compared to newer options like Brave and Exa.
+
+--------------------------------------------------------------------------------
+
+### Detailed Survey Note: Web Search API Comparison
+
+This survey note provides a comprehensive analysis of web search APIs, comparing pricing, terms, and features across multiple providers to assist in selecting the most suitable option for integration into applications. The analysis covers Google, Brave, Exa, Phind, You.com, Bing, DuckDuckGo, Yandex, and Baidu, focusing on their capabilities for general web searches.
+
+#### Methodology
+
+The evaluation involved researching official documentation, pricing pages, and third-party insights to gather exact pricing and terms. Each API's free tier, paid pricing structure, per-query cost, and additional features were analyzed to provide a holistic view. The focus was on APIs offering general web search functionality, excluding those limited to specific niches like developer-focused or instant answers.
+
+#### Provider Analysis
+
+##### Google Custom Search API
+
+- **Pricing Structure**: Offers a free tier of 100 queries per day. Paid tier costs $5 per 1000 queries, with a daily limit of 10, 000 queries.
+- **Per Query Cost**: $0.005 for paid queries, calculated as $5/1000.
+- **Features**: Highly customizable, allows branding, and provides comprehensive search results. Suitable for applications needing branded search experiences.
+- **Terms**: Official Google API, reliable with extensive documentation. Usage is subject to Google's terms, including potential daily limits.
+- **Source**: [Custom Search JSON API overview](https://developers.google.com/custom-search/v1/overview)
+
+##### Brave Search API
+
+- **Pricing Structure**: Free tier ranges from 2, 000 to 5, 000 queries per month. Paid tiers vary by search type and results:
+
+  - Auto/Neural (1-25 results): $5 per 1000 queries
+  - Auto/Neural (26-100 results): $25 per 1000 queries
+  - Keyword (any results): $2.5 per 1000 queries
+
+- **Per Query Cost**:
+
+  - Auto/Neural (1-25 results): $0.005
+  - Auto/Neural (26-100 results): $0.025
+  - Keyword: $0.0025
+
+- **Features**: Independent index, privacy-focused, offers semantic (Auto/Neural) and traditional (Keyword) search options. Ideal for applications prioritizing user privacy.
+
+- **Terms**: Official API from Brave, known for no profiling, with documentation available at [Brave Search API pricing](https://api.search.brave.com/app/pricing).
+- **Notes**: The cost increases with more results for Auto/Neural, but Keyword remains cost-effective at $0.0025 per query.
+
+##### Exa Search API
+
+- **Pricing Structure**: Similar to Brave, with a pay-as-you-go model. Starts with $10 in free credits, no credit card required.
+- **Paid Tiers**:
+
+  - Search (per 1k requests):
+
+    - Auto: $5 (1-25 results), $25 (26-100 results)
+    - Neural: $5 (1-25 results), $25 (26-100 results)
+    - Keyword: $2.5 (1-25 and 26-100 results)
+
+  - Contents (per 1k pages): Text, Highlights, Summary at $1 each
+
+  - Answer (per 1k answers): $5
+
+- **Per Query Cost**: Matches Brave for search types, with Keyword at $0.0025 per query.
+
+- **Features**: AI-powered, uses embeddings for semantic search, designed for LLMs. Offers additional content retrieval options like summaries.
+- **Terms**: Official API from Exa, focused on AI applications, with custom plans for high volume. Documentation and pricing at [Exa pricing](https://exa.ai/pricing).
+- **Notes**: Discounts available for startups and education, contact required for custom pricing.
+
+##### Phind API
+
+- **Pricing Structure**: Unofficial API available on RapidAPI. Free tier of 50 monthly requests, Pro package at $25/month for 10, 000 requests.
+- **Per Query Cost**: $0.0025, calculated as $25/10, 000.
+- **Features**: Developer-focused search engine, combines web results with AI for coding queries. May have limited general web search capabilities.
+- **Terms**: Not an official API, potentially less reliable for general searches. Documentation via [Phind API on RapidAPI](https://rapidapi.com/umgbhallaphind-search).
+- **Notes**: Suitable for developer applications, but not ideal for broad web searches due to its niche focus.
+
+##### You.com API (Sonar)
+
+- **Pricing Structure**: Pricing not explicitly stated in public documentation, claimed to be the cheapest AI search API.
+- **Per Query Cost**: Unclear, requires contacting api@you.com for details.
+- **Features**: AI-powered search for LLMs, provides real-time web access with extensive snippets. Designed for chatbot and LLM integration.
+- **Terms**: Official API from You.com, with documentation at [You.com API documentation](https://documentation.you.com/welcome). May require enterprise agreements for pricing.
+- **Notes**: Lack of clear pricing makes comparison challenging, but positioned as cost-effective for AI applications.
+
+##### Bing Search API
+
+- **Pricing Structure**: Paid tier post-increase (effective May 1, 2023) at $10 per 1000 transactions, following a 10x price hike from previous rates.
+- **Per Query Cost**: $0.01, based on transaction definition as successful API calls.
+- **Features**: Comprehensive search results including web, images, news, and videos. Part of Microsoft's ecosystem, with local customization options.
+- **Terms**: Official API from Microsoft, with detailed documentation. Recent price surge noted in [Bing API pricing update](https://www.ghacks.net/2023/02/17/microsoft-increases-bing-search-api-pricing-by-up-to-1000/).
+- **Notes**: Significant price increase makes it less competitive, previously at $0.001 per query.
+
+##### DuckDuckGo API
+
+- **Pricing Structure**: No official full search API; Instant Answer API available, not suitable for general web search results.
+- **Per Query Cost**: Not applicable for full search, third-party APIs like SerpApi offer access but with separate pricing.
+- **Features**: Privacy-focused, provides instant answers, not comprehensive search results. Third-party options at [DuckDuckGo Search API by SerpApi](https://serpapi.com/duckduckgo-search-api).
+- **Terms**: Official API limited to instant answers, no full syndication rights. Third-party APIs may have additional costs and terms.
+
+##### Yandex and Baidu
+
+- **Pricing Structure**: No official APIs for general web search. Third-party services like SerpApi provide access, with pricing varying by provider.
+- **Per Query Cost**: Not applicable officially, third-party costs depend on service (e.g., SerpApi at [Yandex Search API](https://serpapi.com/yandex-search-api)).
+- **Features**: Regional search engines, Yandex for Russia, Baidu for China. Limited global relevance, third-party APIs scrape results.
+- **Terms**: No official APIs, reliance on third-party scraping may have legal and reliability issues.
+
+#### Comparative Analysis
+
+To facilitate comparison, the following table summarizes key metrics:
+
+Provider     | Free Tier                   | Paid Tier (Per Query Cost) | Key Features
+------------ | --------------------------- | -------------------------- | --------------------------------------
+Google       | 100 queries/day             | $0.005                     | Customizable, branded, comprehensive
+Brave        | 2, 000-5, 000 queries/month | $0.0025 (Keyword)          | Privacy-focused, semantic options
+Exa          | $10 free credits            | $0.0025 (Keyword)          | AI-powered, LLM-friendly
+Phind        | 50 queries/month            | $0.0025                    | Developer-focused, limited web search
+You.com      | Not clear                   | Not clear                  | AI for LLMs, real-time web access
+Bing         | None                        | $0.01                      | Comprehensive, Microsoft-backed
+DuckDuckGo   | No full search API          | N/A                        | Privacy-focused, instant answers only
+Yandex/Baidu | No official API             | Third-party variable       | Regional, third-party scraping options
+
+#### Discussion
+
+For general web search APIs, Brave and Exa emerge as cost-effective options with Keyword search at $0.0025 per query, significantly lower than Google's $0.005 and Bing's post-increase $0.01\. Both offer free tiers, making them accessible for initial testing. Their privacy focus (Brave) and AI capabilities (Exa) add value, particularly for applications needing semantic search or LLM integration.
+
+Google's API, while reliable and widely used, is more expensive, suitable for applications requiring branding and extensive customization. Bing's recent 10x price increase to $0.01 per query, as noted in [Microsoft's pricing update](https://www.ghacks.net/2023/02/17/microsoft-increases-bing-search-api-pricing-by-up-to-1000/), reduces its competitiveness. You.com's pricing remains unclear, requiring direct inquiry, which may delay decision-making.
+
+Phind, at $0.0025 per query, is the cheapest but developer-focused, potentially limiting its use for general web searches. DuckDuckGo's lack of a full search API officially, and reliance on third-party options, makes it less viable. Yandex and Baidu, without official APIs, depend on third-party scraping, which may pose legal and reliability concerns.
+
+#### Recommendations
+
+Users should prioritize Brave or Exa for cost-effective, privacy-focused, and feature-rich options, especially for keyword searches at $0.0025 per query. Google is recommended for reliability and branding needs, despite higher costs. For high-volume applications, contact You.com for pricing, and note Bing's increased cost. Consider application-specific needs, such as semantic search (Exa, Brave Auto/Neural) or developer focus (Phind).
+
+#### Key Citations
+
+- [Custom Search JSON API overview](https://developers.google.com/custom-search/v1/overview)
+- [Brave Search API pricing](https://api.search.brave.com/app/pricing)
+- [Exa pricing](https://exa.ai/pricing)
+- [Phind API on RapidAPI](https://rapidapi.com/umgbhallaphind-search)
+- [You.com API documentation](https://documentation.you.com/welcome)
+- [Bing API pricing update](https://www.ghacks.net/2023/02/17/microsoft-increases-bing-search-api-pricing-by-up-to-1000/)
+- [DuckDuckGo Search API by SerpApi](https://serpapi.com/duckduckgo-search-api)
+- [Yandex Search API](https://serpapi.com/yandex-search-api)
+
+================
+File: src/twat_llm/twat_llm.py
+================
+logging.basicConfig(
+logger = logging.getLogger(__name__)
+class Config:
+def process_data(
+        logger.setLevel(logging.DEBUG)
+        logger.debug("Debug mode enabled")
+        raise ValueError(msg)
+def main() -> None:
+        config = Config(name="default", value="test", options={"key": "value"})
+        result = process_data([], config=config)
+        logger.info("Processing completed: %s", result)
+        logger.exception("An error occurred: %s", str(e))
+    main()
+
+================
+File: src/funchain.py
+================
+def tolower(s):
+    return s.lower()
+output = ask_chain(
+
+================
+File: src/llm_plugins.py
+================
+class PackageResult:
+def check_package(package: str) -> PackageResult:
+    start_time = time.time()
+        importlib.import_module(package)
+        duration = time.time() - start_time
+        return PackageResult(package, "SUCCESS", duration)
+        return PackageResult(package, "FAILED", duration, str(e))
+def create_results_table(results: Sequence[PackageResult]) -> Table:
+    table = Table(show_header=True, header_style="bold magenta")
+    table.add_column("Package")
+    table.add_column("Status", justify="center")
+    table.add_column("Time (s)", justify="right")
+    table.add_column("Details")
+    for result in sorted(results, key=lambda x: x.duration, reverse=True):
+        table.add_row(
+def check_llm_plugins(packages: Sequence[str] | None = None) -> None:
+    results = [check_package(pkg) for pkg in packages]
+    table = create_results_table(results)
+    console = Console()
+    console.print(table)
+    Fire(check_llm_plugins)
+
+================
+File: src/mallmo.py
+================
+class pathos_with:
+    def __init__(self, pool_class=ProcessPool, nodes=None):
+        self.nodes = nodes if nodes is not None else mp.cpu_count()
+    def __enter__(self):
+        self.pool = self.pool_class(nodes=self.nodes)
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.pool.close()
+        self.pool.join()
+        self.pool.clear()
+class LLMError(Exception):
+def _resize_image(image: Image.Image, max_size: tuple = (512, 512)) -> bytes:
+    image.thumbnail(max_size, Image.Resampling.LANCZOS)
+    img_byte_arr = io.BytesIO()
+    image.save(img_byte_arr, format="JPEG")
+    return img_byte_arr.getvalue()
+def _extract_middle_frame(video_path: str | Path) -> Image.Image:
+    cap = cv2.VideoCapture(str(video_path))
+    if not cap.isOpened():
+        raise LLMError(msg)
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    cap.set(cv2.CAP_PROP_POS_FRAMES, middle_frame_index)
+    ret, frame = cap.read()
+    cap.release()
+    return Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
+def _prepare_media(path: str | Path) -> bytes:
+    path = Path(path)
+    file_ext = path.suffix.lower()
+        _extract_middle_frame(path)
+        else Image.open(path)
+    return _resize_image(image)
+@retry(
+    retry=retry_if_exception_type(Exception),
+    stop=stop_after_attempt(2),
+    wait=wait_exponential(multiplier=1, min=4, max=10),
+def _try_model(
+    model = llm.get_model(model_id)
+    response = model.prompt(prompt, attachments=attachments)
+    return str(response)
+def _process_step(step, current_data: str) -> str:
+    if isinstance(step, str | callable):
+    if not isinstance(step, tuple) or len(step) > 2:
+        raise TypeError(msg)
+    kwargs = step[1] if len(step) > 1 else {}
+    if not isinstance(kwargs, dict):
+    if callable(processor):
+        result = processor(current_data, **kwargs)
+    elif isinstance(processor, str):
+        result = ask(prompt=processor, data=current_data, **kwargs)
+            f"Step processor must be either a function or string, got {type(processor)}"
+    return str(result)
+def ask_chain(data: str, steps: Iterable) -> str:
+    current_data = str(data)
+        current_data = _process_step(step, current_data)
+def ask(
+            prompt.replace("$input", data)
+                image_bytes = _prepare_media(path)
+                attachments.append(llm.Attachment(content=image_bytes))
+            return _try_model(prompt, model_id, attachments)
+def _process_single_prompt(args: tuple) -> str:
+    return ask(prompt, model_ids)
+def ask_batch(
+        with pathos_with(nodes=num_processes) as pool:
+            results = pool.map(_process_single_prompt, args)
+            return list(results)
+def cli(
+            responses = ask_batch(
+            for _i, _response in enumerate(responses):
+            ask(
+                media_paths=[Path(path) for path in media] if media else None,
+        sys.exit(1)
+    Fire(cli)
+
+================
+File: tests/test_twat_llm.py
+================
+def test_version():
+
+================
+File: .gitignore
+================
+*_autogen/
+.DS_Store
+__version__.py
+__pycache__/
+_Chutzpah*
+_deps
+_NCrunch_*
+_pkginfo.txt
+_Pvt_Extensions
+_ReSharper*/
+_TeamCity*
+_UpgradeReport_Files/
+!?*.[Cc]ache/
+!.axoCover/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!**/[Pp]ackages/build/
+!Directory.Build.rsp
+.*crunch*.local.xml
+.axoCover/*
+.builds
+.cr/personal
+.fake/
+.history/
+.ionide/
+.localhistory/
+.mfractor/
+.ntvs_analysis.dat
+.paket/paket.exe
+.sass-cache/
+.vs/
+.vscode
+.vscode/*
+.vshistory/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+[Bb]in/
+[Bb]uild[Ll]og.*
+[Dd]ebug/
+[Dd]ebugPS/
+[Dd]ebugPublic/
+[Ee]xpress/
+[Ll]og/
+[Ll]ogs/
+[Oo]bj/
+[Rr]elease/
+[Rr]eleasePS/
+[Rr]eleases/
+[Tt]est[Rr]esult*/
+[Ww][Ii][Nn]32/
+*_h.h
+*_i.c
+*_p.c
+*_wpftmp.csproj
+*- [Bb]ackup ([0-9]).rdl
+*- [Bb]ackup ([0-9][0-9]).rdl
+*- [Bb]ackup.rdl
+*.[Cc]ache
+*.[Pp]ublish.xml
+*.[Rr]e[Ss]harper
+*.a
+*.app
+*.appx
+*.appxbundle
+*.appxupload
+*.aps
+*.azurePubxml
+*.bim_*.settings
+*.bim.layout
+*.binlog
+*.btm.cs
+*.btp.cs
+*.build.csdef
+*.cab
+*.cachefile
+*.code-workspace
+*.coverage
+*.coveragexml
+*.d
+*.dbmdl
+*.dbproj.schemaview
+*.dll
+*.dotCover
+*.DotSettings.user
+*.dsp
+*.dsw
+*.dylib
+*.e2e
+*.exe
+*.gch
+*.GhostDoc.xml
+*.gpState
+*.ilk
+*.iobj
+*.ipdb
+*.jfm
+*.jmconfig
+*.la
+*.lai
+*.ldf
+*.lib
+*.lo
+*.log
+*.mdf
+*.meta
+*.mm.*
+*.mod
+*.msi
+*.msix
+*.msm
+*.msp
+*.ncb
+*.ndf
+*.nuget.props
+*.nuget.targets
+*.nupkg
+*.nvuser
+*.o
+*.obj
+*.odx.cs
+*.opendb
+*.opensdf
+*.opt
+*.out
+*.pch
+*.pdb
+*.pfx
+*.pgc
+*.pgd
+*.pidb
+*.plg
+*.psess
+*.publishproj
+*.publishsettings
+*.pubxml
+*.pyc
+*.rdl.data
+*.rptproj.bak
+*.rptproj.rsuser
+*.rsp
+*.rsuser
+*.sap
+*.sbr
+*.scc
+*.sdf
+*.sln.docstates
+*.sln.iml
+*.slo
+*.smod
+*.snupkg
+*.so
+*.suo
+*.svclog
+*.tlb
+*.tlh
+*.tli
+*.tlog
+*.tmp
+*.tmp_proj
+*.tss
+*.user
+*.userosscache
+*.userprefs
+*.vbp
+*.vbw
+*.VC.db
+*.VC.VC.opendb
+*.VisualState.xml
+*.vsp
+*.vspscc
+*.vspx
+*.vssscc
+*.xsd.cs
+**/[Pp]ackages/*
+**/*.DesktopClient/GeneratedArtifacts
+**/*.DesktopClient/ModelManifest.xml
+**/*.HTMLClient/GeneratedArtifacts
+**/*.Server/GeneratedArtifacts
+**/*.Server/ModelManifest.xml
+*~
+~$*
+$tf/
+AppPackages/
+artifacts/
+ASALocalRun/
+AutoTest.Net/
+Backup*/
+BenchmarkDotNet.Artifacts/
+bld/
+BundleArtifacts/
+ClientBin/
+cmake_install.cmake
+CMakeCache.txt
+CMakeFiles
+CMakeLists.txt.user
+CMakeScripts
+CMakeUserPresets.json
+compile_commands.json
+coverage*.info
+coverage*.json
+coverage*.xml
+csx/
+CTestTestfile.cmake
+dlldata.c
+DocProject/buildhelp/
+DocProject/Help/*.hhc
+DocProject/Help/*.hhk
+DocProject/Help/*.hhp
+DocProject/Help/*.HxC
+DocProject/Help/*.HxT
+DocProject/Help/html
+DocProject/Help/Html2
+ecf/
+FakesAssemblies/
+FodyWeavers.xsd
+Generated_Code/
+Generated\ Files/
+healthchecksdb
+install_manifest.txt
+ipch/
+Makefile
+MigrationBackup/
+mono_crash.*
+nCrunchTemp_*
+node_modules/
+nunit-*.xml
+OpenCover/
+orleans.codegen.cs
+Package.StoreAssociation.xml
+paket-files/
+project.fragment.lock.json
+project.lock.json
+publish/
+PublishScripts/
+rcf/
+ScaffoldingReadMe.txt
+ServiceFabricBackup/
+StyleCopReport.xml
+Testing
+TestResult.xml
+UpgradeLog*.htm
+UpgradeLog*.XML
+x64/
+x86/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Distribution / packaging
+!dist/.gitkeep
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+.ruff_cache/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project specific
+__version__.py
+_private
+
+================
+File: .pre-commit-config.yaml
+================
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.3.4
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+        args: [--respect-gitignore]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-yaml
+      - id: check-toml
+      - id: check-added-large-files
+      - id: debug-statements
+      - id: check-case-conflict
+      - id: mixed-line-ending
+        args: [--fix=lf]
+
+================
+File: cleanup.py
+================
+LOG_FILE = Path("CLEANUP.txt")
+os.chdir(Path(__file__).parent)
+def new() -> None:
+    if LOG_FILE.exists():
+        LOG_FILE.unlink()
+def prefix() -> None:
+    readme = Path(".cursor/rules/0project.mdc")
+    if readme.exists():
+        log_message("\n=== PROJECT STATEMENT ===")
+        content = readme.read_text()
+        log_message(content)
+def suffix() -> None:
+    todo = Path("TODO.md")
+    if todo.exists():
+        log_message("\n=== TODO.md ===")
+        content = todo.read_text()
+def log_message(message: str) -> None:
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+    with LOG_FILE.open("a") as f:
+        f.write(log_line)
+def run_command(cmd: list[str], check: bool = True) -> subprocess.CompletedProcess:
+        result = subprocess.run(
+            log_message(result.stdout)
+        log_message(f"Command failed: {' '.join(cmd)}")
+        log_message(f"Error: {e.stderr}")
+        return subprocess.CompletedProcess(cmd, 1, "", str(e))
+def check_command_exists(cmd: str) -> bool:
+        return which(cmd) is not None
+class Cleanup:
+    def __init__(self) -> None:
+        self.workspace = Path.cwd()
+    def _print_header(self, message: str) -> None:
+        log_message(f"\n=== {message} ===")
+    def _check_required_files(self) -> bool:
+            if not (self.workspace / file).exists():
+                log_message(f"Error: {file} is missing")
+    def _generate_tree(self) -> None:
+        if not check_command_exists("tree"):
+            log_message("Warning: 'tree' command not found. Skipping tree generation.")
+            rules_dir = Path(".cursor/rules")
+            rules_dir.mkdir(parents=True, exist_ok=True)
+            tree_result = run_command(
+            with open(rules_dir / "filetree.mdc", "w") as f:
+                f.write("---\ndescription: File tree of the project\nglobs: \n---\n")
+                f.write(tree_text)
+            log_message("\nProject structure:")
+            log_message(tree_text)
+            log_message(f"Failed to generate tree: {e}")
+    def _git_status(self) -> bool:
+        result = run_command(["git", "status", "--porcelain"], check=False)
+        return bool(result.stdout.strip())
+    def _venv(self) -> None:
+        log_message("Setting up virtual environment")
+            run_command(["uv", "venv"])
+            if venv_path.exists():
+                os.environ["VIRTUAL_ENV"] = str(self.workspace / ".venv")
+                log_message("Virtual environment created and activated")
+                log_message("Virtual environment created but activation failed")
+            log_message(f"Failed to create virtual environment: {e}")
+    def _install(self) -> None:
+        log_message("Installing package with all extras")
+            self._venv()
+            run_command(["uv", "pip", "install", "-e", ".[test,dev]"])
+            log_message("Package installed successfully")
+            log_message(f"Failed to install package: {e}")
+    def _run_checks(self) -> None:
+        log_message("Running code quality checks")
+            log_message(">>> Running code fixes...")
+            run_command(
+            log_message(">>>Running type checks...")
+            run_command(["python", "-m", "mypy", "src", "tests"], check=False)
+            log_message(">>> Running tests...")
+            run_command(["python", "-m", "pytest", "tests"], check=False)
+            log_message("All checks completed")
+            log_message(f"Failed during checks: {e}")
+    def status(self) -> None:
+        prefix()  # Add README.md content at start
+        self._print_header("Current Status")
+        self._check_required_files()
+        self._generate_tree()
+        result = run_command(["git", "status"], check=False)
+        self._print_header("Environment Status")
+        self._install()
+        self._run_checks()
+        suffix()  # Add TODO.md content at end
+    def venv(self) -> None:
+        self._print_header("Virtual Environment Setup")
+    def install(self) -> None:
+        self._print_header("Package Installation")
+    def update(self) -> None:
+        self.status()
+        if self._git_status():
+            log_message("Changes detected in repository")
+                run_command(["git", "add", "."])
+                run_command(["git", "commit", "-m", commit_msg])
+                log_message("Changes committed successfully")
+                log_message(f"Failed to commit changes: {e}")
+            log_message("No changes to commit")
+    def push(self) -> None:
+        self._print_header("Pushing Changes")
+            run_command(["git", "push"])
+            log_message("Changes pushed successfully")
+            log_message(f"Failed to push changes: {e}")
+def repomix(
+            cmd.append("--compress")
+            cmd.append("--remove-empty-lines")
+            cmd.append("-i")
+            cmd.append(ignore_patterns)
+        cmd.extend(["-o", output_file])
+        run_command(cmd)
+        log_message(f"Repository content mixed into {output_file}")
+        log_message(f"Failed to mix repository: {e}")
+def print_usage() -> None:
+    log_message("Usage:")
+    log_message("  cleanup.py status   # Show current status and run all checks")
+    log_message("  cleanup.py venv     # Create virtual environment")
+    log_message("  cleanup.py install  # Install package with all extras")
+    log_message("  cleanup.py update   # Update and commit changes")
+    log_message("  cleanup.py push     # Push changes to remote")
+def main() -> NoReturn:
+    new()  # Clear log file
+    if len(sys.argv) < 2:
+        print_usage()
+        sys.exit(1)
+    cleanup = Cleanup()
+            cleanup.status()
+            cleanup.venv()
+            cleanup.install()
+            cleanup.update()
+            cleanup.push()
+        log_message(f"Error: {e}")
+    repomix()
+    sys.stdout.write(Path("CLEANUP.txt").read_text())
+    sys.exit(0)  # Ensure we exit with a status code
+    main()
+
+================
+File: LICENSE
+================
+MIT License
+
+Copyright (c) 2025 Adam Twardoch
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+================
+File: LOG.md
+================
+---
+this_file: LOG.md
+---
+
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [v0.0.1] - 2025-02-15
+
+### Added
+
+- Initial release of the project
+- Created `mallmo.py` with LLM interaction functionality:
+  - Core `ask()` function for LLM prompting with media support
+  - `ask_batch()` for parallel processing of multiple prompts
+  - `ask_chain()` for chaining multiple prompts or functions
+  - Support for multiple fallback models
+  - Media file processing (images and video frames)
+  - CLI interface
+- Added `llm_plugins.py` for checking installed LLM plugins
+- Created `funchain.py` as a simple example of chain functionality
+- Basic project structure with Python package setup
+
+### Changed
+
+- Moved `twat_llm.py` to `src/twat_llm/` directory
+- Enhanced code quality with type hints and modern Python features
+- Improved error handling and logging
+
+### Fixed
+
+- Added missing newline at end of files
+- Updated `.gitignore` to exclude `_private` directory
+
+## [Unreleased]
+
+### To Do
+
+- Implement core data processing logic in `twat_llm.py`
+- Add comprehensive test coverage
+- Enhance documentation with usage examples
+- Consider adding more LLM providers and models
+
+[unreleased]: https://github.com/twardoch/twat-llm/compare/v0.0.1...HEAD
+[v0.0.1]: https://github.com/twardoch/twat-llm/releases/tag/v0.0.1
+
+================
+File: package.toml
+================
+# Package configuration
+[package]
+include_cli = true        # Include CLI boilerplate
+include_logging = true    # Include logging setup
+use_pydantic = true      # Use Pydantic for data validation
+use_rich = true          # Use Rich for terminal output
+
+[features]
+mkdocs = false           # Enable MkDocs documentation
+vcs = true              # Initialize Git repository
+github_actions = true   # Add GitHub Actions workflows
+
+================
+File: pyproject.toml
+================
+# this_file: twat_llm/pyproject.toml
+
+# this_file: twat_llm/pyproject.toml
+
+# Build System Configuration
+# -------------------------
+# Specifies the build system and its requirements for packaging the project
+# Specifies the build backend and its requirements for building the package
+[build-system]
+requires = [
+    "hatchling>=1.27.0",     # Core build backend for Hatch
+    "hatch-vcs>=0.4.0",      # Version Control System plugin for Hatch
+]
+build-backend = "hatchling.build"  # Use Hatchling as the build backend
+
+# Wheel build configuration
+# Specifies which packages to include in the wheel distribution
+[tool.hatch.build.targets.wheel]
+packages = ["src/twat_llm"]
+
+# Project Metadata Configuration
+# ------------------------------
+# Comprehensive project description, requirements, and compatibility information
+[project]
+name = "twat-llm"
+dynamic = ["version"]  # Version is determined dynamically from VCS
+description = ""
+readme = "README.md"
+requires-python = ">=3.10"  # Minimum Python version required
+license = "MIT"
+keywords = []
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+
+# Runtime Dependencies
+# -------------------
+# External packages required for the project to function
+dependencies = [
+    "twat>=1.8.1",           # Main twat package
+]
+
+# Project Authors
+# ---------------
+[[project.authors]]
+name = "Adam Twardoch"
+email = "adam+github@twardoch.com"
+
+# Project URLs
+# ------------
+# Links to project resources for documentation, issues, and source code
+[project.urls]
+Documentation = "https://github.com/twardoch/twat-llm#readme"
+Issues = "https://github.com/twardoch/twat-llm/issues"
+Source = "https://github.com/twardoch/twat-llm"
+
+# Version configuration using VCS (Git)
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.version.raw-options]
+version_scheme = "post-release"
+
+# VCS hook configuration for version file generation
+[tool.hatch.build.hooks.vcs]
+version-file = "src/twat_llm/__version__.py"
+
+# Default development environment configuration
+[tool.hatch.envs.default]
+dependencies = [
+    "pytest",                # Testing framework
+    "pytest-cov",           # Coverage reporting
+    "mypy>=1.15.0",         # Static type checker
+    "ruff>=0.9.6",          # Fast Python linter
+]
+
+# Scripts available in the default environment
+[tool.hatch.envs.default.scripts]
+test = "pytest {args:tests}"
+test-cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=src/twat_llm --cov=tests {args:tests}"
+type-check = "mypy src/twat_llm tests"
+lint = ["ruff check src/twat_llm tests", "ruff format src/twat_llm tests"]
+
+# Python version matrix for testing
+[[tool.hatch.envs.all.matrix]]
+python = ["3.10", "3.11", "3.12"]
+
+# Linting environment configuration
+[tool.hatch.envs.lint]
+detached = true  # Run in isolated environment
+dependencies = [
+    "mypy>=1.15.0",         # Static type checker
+    "ruff>=0.9.6",          # Fast Python linter
+]
+
+# Linting environment scripts
+[tool.hatch.envs.lint.scripts]
+typing = "mypy --install-types --non-interactive {args:src/twat_llm tests}"
+style = ["ruff check {args:.}", "ruff format {args:.}"]
+fmt = ["ruff format {args:.}", "ruff check --fix {args:.}"]
+fix = ["ruff check --fix --unsafe-fixes {args:.}", "ruff format {args:.}"]
+all = ["style", "typing"]
+
+# Ruff (linter) configuration
+[tool.ruff]
+target-version = "py310"
+line-length = 88
+
+# Ruff lint rules configuration
+[tool.ruff.lint]
+extend-select = [
+    "A",     # flake8-builtins
+    "ARG",   # flake8-unused-arguments
+    "B",     # flake8-bugbear
+    "C",     # flake8-comprehensions
+    "DTZ",   # flake8-datetimez
+    "E",     # pycodestyle errors
+    "EM",    # flake8-errmsg
+    "F",     # pyflakes
+    "FBT",   # flake8-boolean-trap
+    "I",     # isort
+    "ICN",   # flake8-import-conventions
+    "ISC",   # flake8-implicit-str-concat
+    "N",     # pep8-naming
+    "PLC",   # pylint convention
+    "PLE",   # pylint error
+    "PLR",   # pylint refactor
+    "PLW",   # pylint warning
+    "Q",     # flake8-quotes
+    "RUF",   # Ruff-specific rules
+    "S",     # flake8-bandit
+    "T",     # flake8-debugger
+    "TID",   # flake8-tidy-imports
+    "UP",    # pyupgrade
+    "W",     # pycodestyle warnings
+    "YTT",   # flake8-2020
+]
+ignore = [
+    "ARG001", # Unused function argument
+    "E501",   # Line too long
+    "I001",   # Import block formatting
+]
+
+# File-specific Ruff configurations
+[tool.ruff.per-file-ignores]
+"tests/*" = ["S101"]  # Allow assert in tests
+
+# MyPy (type checker) configuration
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+
+# Coverage.py configuration for test coverage
+[tool.coverage.run]
+source_pkgs = ["twat_llm", "tests"]
+branch = true
+parallel = true
+omit = [
+    "src/twat_llm/__about__.py",
+]
+
+# Coverage path mappings
+[tool.coverage.paths]
+twat_llm = ["src/twat_llm", "*/twat-llm/src/twat_llm"]
+tests = ["tests", "*/twat-llm/tests"]
+
+# Coverage report configuration
+[tool.coverage.report]
+exclude_lines = [
+    "no cov",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
+
+# Optional dependencies
+[project.optional-dependencies]
+test = [
+    "pytest>=8.3.4",
+    "pytest-cov>=6.0.0",
+    "pytest-xdist>=3.6.1",                # For parallel test execution
+    "pytest-benchmark[histogram]>=5.1.0",  # For performance testing
+]
+
+dev = [
+    "pre-commit>=4.1.0",     # Git pre-commit hooks
+    "ruff>=0.9.6",           # Fast Python linter
+    "mypy>=1.15.0",          # Static type checker
+]
+
+all = [
+    "twat>=1.8.1",           # Main twat package
+]
+
+# Test environment configuration
+[tool.hatch.envs.test]
+dependencies = [".[test]"]
+
+# Test environment scripts
+[tool.hatch.envs.test.scripts]
+test = "python -m pytest -n auto {args:tests}"
+test-cov = "python -m pytest -n auto --cov-report=term-missing --cov-config=pyproject.toml --cov=src/twat_llm --cov=tests {args:tests}"
+bench = "python -m pytest -v -p no:briefcase tests/test_benchmark.py --benchmark-only"
+bench-save = "python -m pytest -v -p no:briefcase tests/test_benchmark.py --benchmark-only --benchmark-json=benchmark/results.json"
+
+# Pytest configuration
+[tool.pytest.ini_options]
+markers = ["benchmark: marks tests as benchmarks (select with '-m benchmark')"]
+addopts = "-v -p no:briefcase"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::UserWarning"]
+asyncio_mode = "auto"
+
+# Pytest-benchmark configuration
+[tool.pytest-benchmark]
+min_rounds = 100
+min_time = 0.1
+histogram = true
+storage = "file"
+save-data = true
+compare = [
+    "min",    # Minimum time
+    "max",    # Maximum time
+    "mean",   # Mean time
+    "stddev", # Standard deviation
+    "median", # Median time
+    "iqr",    # Inter-quartile range
+    "ops",    # Operations per second
+    "rounds", # Number of rounds
+]
+
+================
+File: README.md
+================
+# 
+
+
+
+## Features
+
+- Modern Python packaging with PEP 621 compliance
+- Type hints and runtime type checking
+- Comprehensive test suite and documentation
+- CI/CD ready configuration
+
+## Installation
+
+```bash
+pip install twat-llm
+```
+
+## Usage
+
+```python
+import twat_llm
+```
+
+## Development
+
+This project uses [Hatch](https://hatch.pypa.io/) for development workflow management.
+
+### Setup Development Environment
+
+```bash
+# Install hatch if you haven't already
+pip install hatch
+
+# Create and activate development environment
+hatch shell
+
+# Run tests
+hatch run test
+
+# Run tests with coverage
+hatch run test-cov
+
+# Run linting
+hatch run lint
+
+# Format code
+hatch run format
+```
+
+## License
+
+MIT License  
+.
+
+================
+File: VERSION.txt
+================
+v2.5.3
+
+
+
+================================================================
+End of Codebase
+================================================================
