@@ -2,7 +2,7 @@
 description: File tree of the project
 globs: 
 ---
-[ 864]  .
+[ 896]  .
 ├── [  64]  .benchmarks
 ├── [  96]  .cursor
 │   └── [ 224]  rules
@@ -25,6 +25,7 @@ globs:
 ├── [1.0K]  LICENSE
 ├── [1.5K]  LOG.md
 ├── [ 706]  README.md
+├── [173K]  REPO_CONTENT.txt
 ├── [   7]  VERSION.txt
 ├── [ 13K]  cleanup.py
 ├── [ 160]  dist
@@ -49,4 +50,4 @@ globs:
 └── [ 128]  tests
     └── [ 148]  test_twat_llm.py
 
-13 directories, 33 files
+13 directories, 34 files

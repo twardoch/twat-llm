@@ -1,34 +1,41 @@
-# this_file: twat_llm/pyproject.toml
-
-# this_file: twat_llm/pyproject.toml
-
-# Build System Configuration
-# -------------------------
-# Specifies the build system and its requirements for packaging the project
-# Specifies the build backend and its requirements for building the package
+# this_file: pyproject.toml
+#==============================================================================
+# TWAT_LLM PACKAGE CONFIGURATION
+# This pyproject.toml defines the package metadata, dependencies, build system,
+# and development environment for the twat_llm package.
+#==============================================================================
+#------------------------------------------------------------------------------
+# BUILD SYSTEM CONFIGURATION
+# Defines the tools required to build the package and the build backend.
+#------------------------------------------------------------------------------
 [build-system]
 requires = [
-    "hatchling>=1.27.0",     # Core build backend for Hatch
-    "hatch-vcs>=0.4.0",      # Version Control System plugin for Hatch
-]
-build-backend = "hatchling.build"  # Use Hatchling as the build backend
+    "hatchling>=1.27.0", # Core build backend for Hatch
+    "hatch-vcs>=0.4.0", # Version Control System plugin for Hatch
 
-# Wheel build configuration
-# Specifies which packages to include in the wheel distribution
+]
+build-backend = "hatchling.build" # Use Hatchling as the build backend
+
+#------------------------------------------------------------------------------
+# HATCH BUILD CONFIGURATION
+# Configures the build process, specifying which packages to include and
+# how to handle versioning.
+#------------------------------------------------------------------------------
 [tool.hatch.build.targets.wheel]
 packages = ["src/twat_llm"]
 
-# Project Metadata Configuration
-# ------------------------------
-# Comprehensive project description, requirements, and compatibility information
+#------------------------------------------------------------------------------
+# PROJECT METADATA
+# Core package information used by PyPI and package managers.
+#------------------------------------------------------------------------------
 [project]
 name = "twat-llm"
-dynamic = ["version"]  # Version is determined dynamically from VCS
-description = ""
+dynamic = ["version"] # Version is determined dynamically from VCS
+description = "LLM integration for twat"
 readme = "README.md"
-requires-python = ">=3.10"  # Minimum Python version required
+requires-python = ">=3.10" # Minimum Python version required
 license = "MIT"
-keywords = []
+keywords = ["llm", "ai", "nlp", "text-processing"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python",
@@ -37,69 +44,92 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: Implementation :: PyPy",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Developers",
 ]
-
 # Runtime Dependencies
-# -------------------
-# External packages required for the project to function
 dependencies = [
-    "twat>=1.8.1",           # Main twat package
+    "twat>=1.8.1", # Main twat package
+
 ]
 
 # Project Authors
-# ---------------
 [[project.authors]]
 name = "Adam Twardoch"
 email = "adam+github@twardoch.com"
 
 # Project URLs
-# ------------
-# Links to project resources for documentation, issues, and source code
 [project.urls]
 Documentation = "https://github.com/twardoch/twat-llm#readme"
 Issues = "https://github.com/twardoch/twat-llm/issues"
 Source = "https://github.com/twardoch/twat-llm"
 
-# Version configuration using VCS (Git)
+#------------------------------------------------------------------------------
+# OPTIONAL DEPENDENCIES
+# Additional dependencies for optional features, development, and testing.
+#------------------------------------------------------------------------------
+[project.optional-dependencies]
+# Testing tools and frameworks
+test = [
+    "pytest>=8.3.4",
+    "pytest-cov>=6.0.0",
+    "pytest-xdist>=3.6.1", # For parallel test execution
+    "pytest-benchmark[histogram]>=5.1.0", # For performance testing
+
+]
+# Development tools
+dev = [
+    "pre-commit>=4.1.0", # Git pre-commit hooks
+    "ruff>=0.9.6", # Fast Python linter
+    "mypy>=1.15.0", # Static type checker
+
+]
+# All optional dependencies combined
+all = [
+    "twat>=1.8.1", # Main twat package
+
+]
+
+#------------------------------------------------------------------------------
+# HATCH CONFIGURATION
+# Configuration for the Hatch build system and environments.
+#------------------------------------------------------------------------------
 [tool.hatch.version]
 source = "vcs"
 
 [tool.hatch.version.raw-options]
 version_scheme = "post-release"
 
-# VCS hook configuration for version file generation
 [tool.hatch.build.hooks.vcs]
 version-file = "src/twat_llm/__version__.py"
 
-# Default development environment configuration
 [tool.hatch.envs.default]
 dependencies = [
-    "pytest",                # Testing framework
-    "pytest-cov",           # Coverage reporting
-    "mypy>=1.15.0",         # Static type checker
-    "ruff>=0.9.6",          # Fast Python linter
+    "pytest", # Testing framework
+    "pytest-cov", # Coverage reporting
+    "mypy>=1.15.0", # Static type checker
+    "ruff>=0.9.6", # Fast Python linter
+
 ]
 
-# Scripts available in the default environment
 [tool.hatch.envs.default.scripts]
 test = "pytest {args:tests}"
 test-cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=src/twat_llm --cov=tests {args:tests}"
 type-check = "mypy src/twat_llm tests"
 lint = ["ruff check src/twat_llm tests", "ruff format src/twat_llm tests"]
 
-# Python version matrix for testing
 [[tool.hatch.envs.all.matrix]]
 python = ["3.10", "3.11", "3.12"]
 
-# Linting environment configuration
 [tool.hatch.envs.lint]
-detached = true  # Run in isolated environment
+detached = true # Run in isolated environment
 dependencies = [
-    "mypy>=1.15.0",         # Static type checker
-    "ruff>=0.9.6",          # Fast Python linter
+    "mypy>=1.15.0", # Static type checker
+    "ruff>=0.9.6", # Fast Python linter
+
 ]
 
-# Linting environment scripts
 [tool.hatch.envs.lint.scripts]
 typing = "mypy --install-types --non-interactive {args:src/twat_llm tests}"
 style = ["ruff check {args:.}", "ruff format {args:.}"]
@@ -107,51 +137,69 @@ fmt = ["ruff format {args:.}", "ruff check --fix {args:.}"]
 fix = ["ruff check --fix --unsafe-fixes {args:.}", "ruff format {args:.}"]
 all = ["style", "typing"]
 
-# Ruff (linter) configuration
+#------------------------------------------------------------------------------
+# CODE QUALITY TOOLS
+# Configuration for linting, formatting, and code quality enforcement.
+#------------------------------------------------------------------------------
 [tool.ruff]
 target-version = "py310"
 line-length = 88
 
-# Ruff lint rules configuration
 [tool.ruff.lint]
 extend-select = [
-    "A",     # flake8-builtins
-    "ARG",   # flake8-unused-arguments
-    "B",     # flake8-bugbear
-    "C",     # flake8-comprehensions
-    "DTZ",   # flake8-datetimez
-    "E",     # pycodestyle errors
-    "EM",    # flake8-errmsg
-    "F",     # pyflakes
-    "FBT",   # flake8-boolean-trap
-    "I",     # isort
-    "ICN",   # flake8-import-conventions
-    "ISC",   # flake8-implicit-str-concat
-    "N",     # pep8-naming
-    "PLC",   # pylint convention
-    "PLE",   # pylint error
-    "PLR",   # pylint refactor
-    "PLW",   # pylint warning
-    "Q",     # flake8-quotes
-    "RUF",   # Ruff-specific rules
-    "S",     # flake8-bandit
-    "T",     # flake8-debugger
-    "TID",   # flake8-tidy-imports
-    "UP",    # pyupgrade
-    "W",     # pycodestyle warnings
-    "YTT",   # flake8-2020
+    "A", # flake8-builtins
+    "ARG", # flake8-unused-arguments
+    "B", # flake8-bugbear
+    "C", # flake8-comprehensions
+    "DTZ", # flake8-datetimez
+    "E", # pycodestyle errors
+    "EM", # flake8-errmsg
+    "F", # pyflakes
+    "FBT", # flake8-boolean-trap
+    "I", # isort
+    "ICN", # flake8-import-conventions
+    "ISC", # flake8-implicit-str-concat
+    "N", # pep8-naming
+    "PLC", # pylint convention
+    "PLE", # pylint error
+    "PLR", # pylint refactor
+    "PLW", # pylint warning
+    "Q", # flake8-quotes
+    "RUF", # Ruff-specific rules
+    "S", # flake8-bandit
+    "T", # flake8-debugger
+    "TID", # flake8-tidy-imports
+    "UP", # pyupgrade
+    "W", # pycodestyle warnings
+    "YTT", # flake8-2020
+
 ]
 ignore = [
     "ARG001", # Unused function argument
-    "E501",   # Line too long
-    "I001",   # Import block formatting
+    "E501", # Line too long
+    "I001", # Import block formatting
+
 ]
 
-# File-specific Ruff configurations
-[tool.ruff.per-file-ignores]
-"tests/*" = ["S101"]  # Allow assert in tests
+[tool.ruff.lint.isort]
+known-first-party = ["twat_llm"] # Treat as first-party imports for sorting
 
-# MyPy (type checker) configuration
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all" # Ban all relative imports for consistency
+
+[tool.ruff.lint.per-file-ignores]
+# Tests can use magic values, assertions, and relative imports
+"tests/**/*" = [
+    "PLR2004", # Allow magic values in tests for readability
+    "S101", # Allow assertions in tests
+    "TID252"
+    # Allow relative imports in tests for convenience
+]
+
+#------------------------------------------------------------------------------
+# MYPY CONFIGURATION
+# Configuration for type checking with mypy.
+#------------------------------------------------------------------------------
 [tool.mypy]
 python_version = "3.10"
 warn_return_any = true
@@ -166,59 +214,36 @@ warn_unused_ignores = true
 warn_no_return = true
 warn_unreachable = true
 
-# Coverage.py configuration for test coverage
+#------------------------------------------------------------------------------
+# COVERAGE CONFIGURATION
+# Settings for test coverage measurement and reporting.
+#------------------------------------------------------------------------------
 [tool.coverage.run]
 source_pkgs = ["twat_llm", "tests"]
 branch = true
 parallel = true
-omit = [
-    "src/twat_llm/__about__.py",
-]
+omit = ["src/twat_llm/__about__.py"]
 
-# Coverage path mappings
 [tool.coverage.paths]
 twat_llm = ["src/twat_llm", "*/twat-llm/src/twat_llm"]
 tests = ["tests", "*/twat-llm/tests"]
 
-# Coverage report configuration
 [tool.coverage.report]
-exclude_lines = [
-    "no cov",
-    "if __name__ == .__main__.:",
-    "if TYPE_CHECKING:",
-]
+exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
 
-# Optional dependencies
-[project.optional-dependencies]
-test = [
-    "pytest>=8.3.4",
-    "pytest-cov>=6.0.0",
-    "pytest-xdist>=3.6.1",                # For parallel test execution
-    "pytest-benchmark[histogram]>=5.1.0",  # For performance testing
-]
-
-dev = [
-    "pre-commit>=4.1.0",     # Git pre-commit hooks
-    "ruff>=0.9.6",           # Fast Python linter
-    "mypy>=1.15.0",          # Static type checker
-]
-
-all = [
-    "twat>=1.8.1",           # Main twat package
-]
-
-# Test environment configuration
+#------------------------------------------------------------------------------
+# TEST ENVIRONMENTS AND CONFIGURATION
+# Settings for test execution and benchmarking.
+#------------------------------------------------------------------------------
 [tool.hatch.envs.test]
 dependencies = [".[test]"]
 
-# Test environment scripts
 [tool.hatch.envs.test.scripts]
 test = "python -m pytest -n auto {args:tests}"
 test-cov = "python -m pytest -n auto --cov-report=term-missing --cov-config=pyproject.toml --cov=src/twat_llm --cov=tests {args:tests}"
 bench = "python -m pytest -v -p no:briefcase tests/test_benchmark.py --benchmark-only"
 bench-save = "python -m pytest -v -p no:briefcase tests/test_benchmark.py --benchmark-only --benchmark-json=benchmark/results.json"
 
-# Pytest configuration
 [tool.pytest.ini_options]
 markers = ["benchmark: marks tests as benchmarks (select with '-m benchmark')"]
 addopts = "-v -p no:briefcase"
@@ -227,7 +252,6 @@ python_files = ["test_*.py"]
 filterwarnings = ["ignore::DeprecationWarning", "ignore::UserWarning"]
 asyncio_mode = "auto"
 
-# Pytest-benchmark configuration
 [tool.pytest-benchmark]
 min_rounds = 100
 min_time = 0.1
@@ -235,12 +259,13 @@ histogram = true
 storage = "file"
 save-data = true
 compare = [
-    "min",    # Minimum time
-    "max",    # Maximum time
-    "mean",   # Mean time
+    "min", # Minimum time
+    "max", # Maximum time
+    "mean", # Mean time
     "stddev", # Standard deviation
     "median", # Median time
-    "iqr",    # Inter-quartile range
-    "ops",    # Operations per second
+    "iqr", # Inter-quartile range
+    "ops", # Operations per second
     "rounds", # Number of rounds
-] 
+
+]
