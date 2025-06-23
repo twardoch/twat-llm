@@ -1,13 +1,25 @@
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.3.4
+    rev: v0.5.0 # Updated Ruff version
     hooks:
       - id: ruff
-        args: [--fix]
+        args: [--fix, --exit-non-zero-on-fix]
       - id: ruff-format
         args: [--respect-gitignore]
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.11.0 # Use a recent version of mypy
+    hooks:
+      - id: mypy
+        args: [--install-types, --non-interactive]
+        # additional_dependencies are managed by hatch/uv in the main env
+        # but for pre-commit, specify necessary types here if not picked up automatically
+        # For example:
+        # additional_dependencies: ['types-Pillow', 'types-tenacity']
+        # However, it's often better to rely on mypy finding these from the project's venv
+        # if pre-commit is run within an activated venv or if mypy is configured project-wide.
+        # For now, keeping it simple. MyPy will use project's pyproject.toml for config.
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v4.6.0 # Updated pre-commit-hooks version
     hooks:
       - id: check-yaml
       - id: check-toml
@@ -15,4 +27,6 @@ repos:
       - id: debug-statements
       - id: check-case-conflict
       - id: mixed-line-ending
-        args: [--fix=lf] 
+        args: [--fix=lf]
+      - id: end-of-file-fixer
+      - id: trailing-whitespace

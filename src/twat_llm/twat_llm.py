@@ -8,10 +8,10 @@ from __future__ import annotations
 
 import logging
 import os
-from typing import Any, Literal, Union
+from typing import Any, Literal, Union, Annotated # Added Annotated
 
 import httpx
-from pydantic import BaseModel, Field, HttpUrl
+from pydantic import BaseModel, Field, HttpUrl, model_validator # Added model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from .mallmo import ask  # Import from local mallmo module
@@ -35,7 +35,7 @@ class ApiKeySettings(BaseSettings):
 
 class PersonEnrichmentParams(BaseModel):
     """Parameters for enriching a person's profile."""
-
+    action_type: Literal["enrich_person"] = "enrich_person"
     linkedin_profile_url: HttpUrl | None = None
     email: str | None = None
     name: str | None = None
@@ -46,9 +46,11 @@ class PersonEnrichmentParams(BaseModel):
 
 class WebSearchParams(BaseModel):
     """Parameters for performing a web search."""
-
+    action_type: Literal["search_web"] = "search_web"
     query: str = Field(..., description="The search query.")
 
+
+AnyParams = Annotated[Union[PersonEnrichmentParams, WebSearchParams], Field(discriminator="action_type")]
 
 class ActionConfig(BaseModel):
     """Defines an action to be performed and its parameters."""
@@ -56,10 +58,22 @@ class ActionConfig(BaseModel):
     action_type: Literal["enrich_person", "search_web"] = Field(
         ..., description="The type of action to perform."
     )
-    parameters: Union[PersonEnrichmentParams, WebSearchParams] = Field(
-        ..., description="Parameters specific to the action."
-    )
+    parameters: AnyParams
     api_keys: ApiKeySettings = Field(default_factory=ApiKeySettings)
+
+    @model_validator(mode='before')
+    @classmethod
+    def _add_action_type_to_params(cls, values: Any) -> Any:
+        if isinstance(values, dict):
+            action_type = values.get('action_type')
+            parameters = values.get('parameters')
+            if action_type and isinstance(parameters, dict) and 'action_type' not in parameters:
+                # Create a new dict for parameters to avoid modifying the original
+                # if it's shared or immutable, though Pydantic usually handles this.
+                updated_parameters = parameters.copy()
+                updated_parameters['action_type'] = action_type
+                values['parameters'] = updated_parameters
+        return values
 
 
 def process_data(config: ActionConfig, *, debug: bool = False) -> dict[str, Any]:
@@ -257,7 +271,7 @@ def main() -> None:
         enrich_config = ActionConfig(
             action_type="enrich_person",
             parameters=PersonEnrichmentParams(
-                linkedin_profile_url="http://linkedin.com/in/johndoe",  # type: ignore[arg-type]
+                linkedin_profile_url="http://linkedin.com/in/johndoe",
                 name="John Doe",
                 email="john.doe@example.com"
             )
@@ -312,11 +326,15 @@ def main() -> None:
     # This has been removed in the new Pydantic-based `ActionConfig` approach,
     # as parameters are now part of the config. If `data` is still needed,
     # it should be incorporated into the Pydantic models. For now, it's omitted.
-
-    except Exception as e: # General catch for main, though specific examples have their own
-        logger.exception(f"A general error occurred in main: {e!s}")
-        raise
+    # The following except block was causing issues, ensuring it's correctly structured or removed if not needed.
+    # For now, I will assume the previous try-except blocks cover all intended error handling for main.
+    # If specific error handling is needed for the main function's direct operations (not the examples),
+    # it can be added back carefully.
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e: # General catch for main, though specific examples have their own
+        logger.exception(f"A general error occurred in main: {e!s}")
+        raise

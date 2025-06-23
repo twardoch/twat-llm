@@ -55,6 +55,10 @@ dependencies = [
     "pydantic-settings>=2.0.0", # For settings management (e.g., .env files)
     "rich>=13.0.0", # For rich text and beautiful formatting in the terminal
     "httpx>=0.25.0", # HTTP client for making API requests
+    "llm>=0.8", # LLM library by Simon Willison
+    "Pillow>=9.0.0", # For image processing (PIL)
+    "tenacity>=8.0.0", # For retrying operations
+    "opencv-python-headless>=4.0.0" # For video/image processing with cv2
 ]
 
 # Project Authors
@@ -79,19 +83,24 @@ test = [
     "pytest-cov>=6.0.0",
     "pytest-xdist>=3.6.1", # For parallel test execution
     "pytest-benchmark[histogram]>=5.1.0", # For performance testing
-
 ]
 # Development tools
 dev = [
     "pre-commit>=4.1.0", # Git pre-commit hooks
     "ruff>=0.9.6", # Fast Python linter
     "mypy>=1.15.0", # Static type checker
-
+    "types-Pillow", # Type stubs for Pillow
+    "types-tenacity", # Type stubs for tenacity
+    # Consider adding cv2-stubs if specific typing issues persist with opencv
+    # Consider adding types-fire if CLI typing issues persist
 ]
 # All optional dependencies combined
 all = [
     "twat>=1.8.1", # Main twat package
-
+    "llm>=0.8",
+    "Pillow>=9.0.0",
+    "tenacity>=8.0.0",
+    "opencv-python-headless>=4.0.0",
 ]
 
 #------------------------------------------------------------------------------
@@ -239,7 +248,9 @@ exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
 # Settings for test execution and benchmarking.
 #------------------------------------------------------------------------------
 [tool.hatch.envs.test]
-dependencies = [".[test]"]
+dependencies = [
+  "twat-llm[test]",
+]
 
 [tool.hatch.envs.test.scripts]
 test = "python -m pytest -n auto {args:tests}"
