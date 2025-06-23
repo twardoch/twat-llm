@@ -105,8 +105,8 @@ def _prepare_media(path: Path) -> bytes:
         else:
             raise MediaProcessingError(f"Unsupported media file type: {file_ext} for {path}")
         return _resize_image(image)
-    except FileNotFoundError:
-        raise MediaProcessingError(f"Media file not found: {path}")
+    except FileNotFoundError as e:
+        raise MediaProcessingError(f"Media file not found: {path}") from e
     except MediaProcessingError: # Re-raise specific media errors
         raise
     except Exception as e:
