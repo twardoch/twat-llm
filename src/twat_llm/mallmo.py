@@ -195,7 +195,7 @@ def ask_chain(data: str, steps: Iterable[str | Callable[..., Any] | tuple[str | 
         TypeError: If step format is invalid.
         LLMError: If any LLM-related error occurs during processing.
     """
-    current_data = str(data)
+    current_data = data
     for step_item in steps: # Renamed to avoid conflict with outer 'step' if this were nested
         current_data = _process_step(step_item, current_data)
     return current_data
