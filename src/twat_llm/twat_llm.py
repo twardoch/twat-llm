@@ -134,7 +134,8 @@ def process_data(config: ActionConfig, *, debug: bool = False) -> dict[str, Any]
             # Summarize with mallmo.ask
             # Construct a prompt for summarization
             # Ensure profile_data is converted to a string, perhaps JSON string
-            profile_json_str = str(profile_data) # Or json.dumps(profile_data, indent=2)
+            import json
+            profile_json_str = json.dumps(profile_data, indent=2)
             summary_prompt = (
                 "Based on the following JSON data of a person's profile, "
                 "provide a concise summary (2-3 sentences) highlighting their current role, key skills, and experience. "
