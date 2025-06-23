@@ -2,6 +2,8 @@
 
 import pytest
 from unittest.mock import patch, MagicMock
+import pydantic # Added for ValidationError
+import httpx # Added for HTTPStatusError and RequestError
 
 # Assuming your Pydantic models and process_data are in src.twat_llm.twat_llm
 # Adjust the import path if your structure is different after hatch build/install
@@ -69,7 +71,7 @@ def test_action_config_search_web_missing_query():
         "action_type": "search_web",
         "parameters": {} # Missing 'query'
     }
-    with pytest.raises(ValueError): # Pydantic raises ValueError for missing fields
+    with pytest.raises(pydantic.ValidationError): # Pydantic raises ValidationError for missing fields
         ActionConfig(**config_data)
 
 # --- ApiKeySettings Tests ---
@@ -115,7 +117,7 @@ def test_process_data_enrich_person_success(mock_mallmo_ask, MockHttpClient, mon
 
     config = ActionConfig(
         action_type="enrich_person",
-        parameters=PersonEnrichmentParams(linkedin_profile_url="http://linkedin.com/in/johndoe") # type: ignore
+        parameters=PersonEnrichmentParams(linkedin_profile_url="http://linkedin.com/in/johndoe")
     )
 
     result = process_data(config)
@@ -125,8 +127,8 @@ def test_process_data_enrich_person_success(mock_mallmo_ask, MockHttpClient, mon
     assert result["raw_profile_data"]["full_name"] == "John Doe"
     mock_client_instance.get.assert_called_once()
     # Ensure the prompt sent to mallmo.ask is reasonable
-    args, _ = mock_mallmo_ask.call_args
-    assert "John Doe" in args[0] # Check if some profile data is in the prompt
+    call_kwargs = mock_mallmo_ask.call_args.kwargs
+    assert "John Doe" in call_kwargs['prompt']  # Check if some profile data is in the prompt
     mock_mallmo_ask.assert_called_once()
 
 def test_process_data_enrich_person_missing_api_key(monkeypatch):
@@ -240,8 +242,9 @@ def test_process_data_search_web_success(mock_mallmo_ask, MockHttpClient, monkey
     assert result["summary"] == "LLM summary of search results"
     assert result["raw_search_results"]["web"]["results"][0]["title"] == "Test Result"
     mock_client_instance.get.assert_called_once()
-    args, _ = mock_mallmo_ask.call_args
-    assert "Test Result" in args[0] # Check if some search data is in the prompt
+    # Ensure the prompt sent to mallmo.ask is reasonable
+    call_kwargs = mock_mallmo_ask.call_args.kwargs
+    assert "Test Result" in call_kwargs['prompt']  # Check if some search data is in the prompt
     mock_mallmo_ask.assert_called_once()
 
 def test_process_data_search_web_missing_api_key(monkeypatch):

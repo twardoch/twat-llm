@@ -313,3 +313,7 @@ Thumbs.db
 # Project specific
 __version__.py
 _private
+
+# Generated files
+CLEANUP.txt
+REPO_CONTENT.txt
