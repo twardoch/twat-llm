@@ -1,6 +1,4 @@
-# 
-
-
+# twat-llm
 
 ## Features
 
@@ -17,9 +15,34 @@ pip install twat-llm
 
 ## Usage
 
+The `twat-llm` library provides functionality to process data using LLMs, potentially interacting with external APIs for enrichment and search.
+
 ```python
 import twat_llm
+
+# Example (conceptual, actual API will be refined)
+config_enrich_person = {
+    "action": "enrich_person",
+    "params": {
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        # API keys would be handled securely, e.g., via environment variables or a config file
+    }
+}
+enriched_data = twat_llm.process_data(config_enrich_person)
+print(enriched_data)
+
+config_search_web = {
+    "action": "search_web",
+    "params": {
+        "query": "latest advancements in AI",
+    }
+}
+search_summary = twat_llm.process_data(config_search_web)
+print(search_summary)
 ```
+
+More detailed usage examples will be provided as the API is finalized.
 
 ## Development
 

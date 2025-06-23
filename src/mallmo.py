@@ -23,7 +23,11 @@ if TYPE_CHECKING:
     from collections.abc import Iterable
 
 
-class pathos_with:
+DEFAULT_RETRY_ATTEMPTS = 2
+MAX_STEP_TUPLE_LENGTH = 2
+
+
+class PathosWith:
     def __init__(self, pool_class=ProcessPool, nodes=None):
         self.pool_class = pool_class
         self.nodes = nodes if nodes is not None else mp.cpu_count()
@@ -96,7 +100,7 @@ def _prepare_media(path: str | Path) -> bytes:
 
 @retry(
     retry=retry_if_exception_type(Exception),
-    stop=stop_after_attempt(2),
+    stop=stop_after_attempt(DEFAULT_RETRY_ATTEMPTS),
     wait=wait_exponential(multiplier=1, min=4, max=10),
 )
 def _try_model(
@@ -115,13 +119,15 @@ def _process_step(step, current_data: str) -> str:
         step = (step,)
 
     # Validate step format
-    if not isinstance(step, tuple) or len(step) > 2:
+    if not isinstance(step, tuple) or len(step) > MAX_STEP_TUPLE_LENGTH:
         msg = "Step must be a string, function, or 1-2 element tuple"
         raise TypeError(msg)
 
     # Unpack step elements
     processor = step[0]
-    kwargs = step[1] if len(step) > 1 else {}
+    kwargs = (
+        step[1] if len(step) > 1 else {}
+    )  # Check length against 1, not MAX_STEP_TUPLE_LENGTH
 
     if not isinstance(kwargs, dict):
         msg = "Optional second element must be a dictionary"
@@ -209,7 +215,7 @@ def ask(
                 attachments.append(llm.Attachment(content=image_bytes))
             except Exception as e:
                 msg = f"Error processing media file {path}: {e!s}"
-                raise LLMError(msg)
+                raise LLMError(msg) from e
 
     # Try each model in sequence
     last_error = None
@@ -256,12 +262,12 @@ def ask_batch(
     args = [(prompt, model_ids) for prompt in prompts]
 
     try:
-        with pathos_with(nodes=num_processes) as pool:
+        with PathosWith(nodes=num_processes) as pool:
             results = pool.map(_process_single_prompt, args)
             return list(results)
     except Exception as e:
         msg = f"Batch processing failed: {e!s}"
-        raise LLMError(msg)
+        raise LLMError(msg) from e
 
 
 def cli(

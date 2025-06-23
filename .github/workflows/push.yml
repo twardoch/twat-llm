@@ -38,6 +38,11 @@ jobs:
           version: "latest"
           args: "format --check --respect-gitignore"
 
+      - name: Run Mypy type checking
+        run: |
+          uv pip install --system mypy ".[dev]" # Ensure mypy and any type stubs from dev deps are present
+          uv run mypy src/twat_llm tests
+
   test:
     name: Run Tests
     needs: quality

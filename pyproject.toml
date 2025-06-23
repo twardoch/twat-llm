@@ -51,7 +51,10 @@ classifiers = [
 # Runtime Dependencies
 dependencies = [
     "twat>=1.8.1", # Main twat package
-
+    "pydantic>=2.0.0", # For data validation and settings management
+    "pydantic-settings>=2.0.0", # For settings management (e.g., .env files)
+    "rich>=13.0.0", # For rich text and beautiful formatting in the terminal
+    "httpx>=0.25.0", # HTTP client for making API requests
 ]
 
 # Project Authors
