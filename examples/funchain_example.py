@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
 
+from mallmo import ask_chain
+
+
 def tolower(s):
     return s.lower()
 
-
-from mallmo import ask_chain
 
 output = ask_chain(
     data="My name is Adam Twardoch",
