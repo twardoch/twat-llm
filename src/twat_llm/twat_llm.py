@@ -205,7 +205,8 @@ def process_data(config: ActionConfig, *, debug: bool = False) -> dict[str, Any]
             # else:
             #     formatted_results = "No detailed web results found."
 
-            results_json_str = str(search_results) # Or json.dumps(search_results, indent=2)
+            import json
+            results_json_str = json.dumps(search_results, indent=2)
 
             summary_prompt = (
                 "Based on the following web search results, provide a concise answer or summary "
