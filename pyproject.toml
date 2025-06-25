@@ -58,7 +58,7 @@ dependencies = [
     "llm>=0.8", # LLM library by Simon Willison
     "Pillow>=9.0.0", # For image processing (PIL)
     "tenacity>=8.0.0", # For retrying operations
-    "opencv-python-headless>=4.0.0" # For video/image processing with cv2
+    # "opencv-python-headless>=4.0.0" # Removed for MVP streamlining; was for video processing
 ]
 
 # Project Authors
@@ -90,7 +90,7 @@ dev = [
     "ruff>=0.9.6", # Fast Python linter
     "mypy>=1.15.0", # Static type checker
     "types-Pillow", # Type stubs for Pillow
-    "types-tenacity", # Type stubs for tenacity
+    # "types-tenacity", # Type stubs for tenacity - Removed temporarily to resolve uv issue
     # Consider adding cv2-stubs if specific typing issues persist with opencv
     # Consider adding types-fire if CLI typing issues persist
 ]
@@ -100,7 +100,7 @@ all = [
     "llm>=0.8",
     "Pillow>=9.0.0",
     "tenacity>=8.0.0",
-    "opencv-python-headless>=4.0.0",
+    # "opencv-python-headless>=4.0.0", # Removed for MVP streamlining
 ]
 
 #------------------------------------------------------------------------------
