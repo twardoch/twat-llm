@@ -1,1 +1,1 @@
-Auto-commit: Save local changes
+Local changes before merge
