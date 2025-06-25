@@ -1,6 +1,6 @@
-2025-03-05 12:14:24 - 
+2025-06-25 13:39:08 -
 === PROJECT STATEMENT ===
-2025-03-05 12:14:24 - ---
+2025-06-25 13:39:08 - ---
 description: About this project
 globs:
 ---
@@ -20,114 +20,105 @@ globs:
 - Clear provider protocol for adding new storage backends
 - Strong typing and runtime checks throughout
 
-2025-03-05 12:14:24 - 
+2025-06-25 13:39:08 -
 === Current Status ===
-2025-03-05 12:14:24 - Error: TODO.md is missing
-2025-03-05 12:14:24 - [ 896]  .
-├── [  64]  .benchmarks
-├── [  96]  .cursor
-│   └── [ 224]  rules
+2025-06-25 13:39:08 - [4.0K]  .
+├── [4.0K]  .cursor
+│   └── [4.0K]  rules
 │       ├── [ 821]  0project.mdc
 │       ├── [ 516]  cleanup.mdc
 │       ├── [1.7K]  filetree.mdc
 │       └── [2.0K]  quality.mdc
-├── [  96]  .github
-│   └── [ 128]  workflows
-│       ├── [2.7K]  push.yml
+├── [4.0K]  .github
+│   └── [4.0K]  workflows
+│       ├── [2.9K]  push.yml
 │       └── [1.4K]  release.yml
-├── [3.5K]  .gitignore
-├── [ 470]  .pre-commit-config.yaml
-├── [  96]  .specstory
-│   └── [ 160]  history
+├── [3.6K]  .gitignore
+├── [1.3K]  .pre-commit-config.yaml
+├── [4.0K]  .specstory
+│   └── [4.0K]  history
 │       ├── [2.0K]  .what-is-this.md
 │       ├── [4.0K]  reviewing-the-reviewers-a-critical-analysis.md
 │       └── [4.4K]  writeup-review-and-rating-analysis.md
-├── [ 987]  CLEANUP.txt
+├── [3.2K]  CHANGELOG.md
 ├── [1.0K]  LICENSE
 ├── [1.5K]  LOG.md
-├── [ 706]  README.md
-├── [173K]  REPO_CONTENT.txt
-├── [   7]  VERSION.txt
+├── [ 12K]  README.md
+├── [4.0K]  TODO.md
 ├── [ 13K]  cleanup.py
-├── [ 160]  dist
-├── [ 384]  docs
-│   ├── [6.6K]  people-api-tldr.md
-│   ├── [ 67K]  people-api.md
-│   ├── [ 189]  people.py
-│   ├── [2.6K]  review-copilot.md
-│   ├── [3.1K]  review-cursor.md
-│   ├── [3.1K]  review-o3.md
-│   ├── [2.3K]  review-trae.md
-│   ├── [ 350]  serp.py
-│   └── [ 50K]  web-search-api.md
-├── [ 426]  package.toml
-├── [7.2K]  pyproject.toml
-├── [ 224]  src
-│   ├── [ 279]  funchain.py
-│   ├── [3.2K]  llm_plugins.py
-│   ├── [8.7K]  mallmo.py
-│   └── [ 128]  twat_llm
-│       └── [1.6K]  twat_llm.py
-└── [ 128]  tests
-    └── [ 148]  test_twat_llm.py
+├── [4.0K]  docs
+│   └── [4.0K]  research
+│       ├── [1.6K]  people-api.md
+│       └── [2.1K]  web-search-api.md
+├── [4.0K]  examples
+│   ├── [3.2K]  check_llm_plugins.py
+│   ├── [4.9K]  example_people_script.py
+│   ├── [4.2K]  example_serp_script.py
+│   ├── [2.7K]  funchain_example.py
+│   └── [5.8K]  run_action_config_example.py
+├── [265K]  llms.txt
+├── [9.7K]  pyproject.toml
+├── [4.0K]  src
+│   └── [4.0K]  twat_llm
+│       ├── [1.2K]  __init__.py
+│       ├── [ 15K]  mallmo.py
+│       └── [8.7K]  twat_llm.py
+└── [4.0K]  tests
+    ├── [ 16K]  test_mallmo.py
+    └── [ 13K]  test_twat_llm.py
 
-13 directories, 34 files
+13 directories, 31 files
 
-2025-03-05 12:14:24 - 
+2025-06-25 13:39:08 -
 Project structure:
-2025-03-05 12:14:24 - [ 896]  .
-├── [  64]  .benchmarks
-├── [  96]  .cursor
-│   └── [ 224]  rules
+2025-06-25 13:39:08 - [4.0K]  .
+├── [4.0K]  .cursor
+│   └── [4.0K]  rules
 │       ├── [ 821]  0project.mdc
 │       ├── [ 516]  cleanup.mdc
 │       ├── [1.7K]  filetree.mdc
 │       └── [2.0K]  quality.mdc
-├── [  96]  .github
-│   └── [ 128]  workflows
-│       ├── [2.7K]  push.yml
+├── [4.0K]  .github
+│   └── [4.0K]  workflows
+│       ├── [2.9K]  push.yml
 │       └── [1.4K]  release.yml
-├── [3.5K]  .gitignore
-├── [ 470]  .pre-commit-config.yaml
-├── [  96]  .specstory
-│   └── [ 160]  history
+├── [3.6K]  .gitignore
+├── [1.3K]  .pre-commit-config.yaml
+├── [4.0K]  .specstory
+│   └── [4.0K]  history
 │       ├── [2.0K]  .what-is-this.md
 │       ├── [4.0K]  reviewing-the-reviewers-a-critical-analysis.md
 │       └── [4.4K]  writeup-review-and-rating-analysis.md
-├── [ 987]  CLEANUP.txt
+├── [3.2K]  CHANGELOG.md
 ├── [1.0K]  LICENSE
 ├── [1.5K]  LOG.md
-├── [ 706]  README.md
-├── [173K]  REPO_CONTENT.txt
-├── [   7]  VERSION.txt
+├── [ 12K]  README.md
+├── [4.0K]  TODO.md
 ├── [ 13K]  cleanup.py
-├── [ 160]  dist
-├── [ 384]  docs
-│   ├── [6.6K]  people-api-tldr.md
-│   ├── [ 67K]  people-api.md
-│   ├── [ 189]  people.py
-│   ├── [2.6K]  review-copilot.md
-│   ├── [3.1K]  review-cursor.md
-│   ├── [3.1K]  review-o3.md
-│   ├── [2.3K]  review-trae.md
-│   ├── [ 350]  serp.py
-│   └── [ 50K]  web-search-api.md
-├── [ 426]  package.toml
-├── [7.2K]  pyproject.toml
-├── [ 224]  src
-│   ├── [ 279]  funchain.py
-│   ├── [3.2K]  llm_plugins.py
-│   ├── [8.7K]  mallmo.py
-│   └── [ 128]  twat_llm
-│       └── [1.6K]  twat_llm.py
-└── [ 128]  tests
-    └── [ 148]  test_twat_llm.py
+├── [4.0K]  docs
+│   └── [4.0K]  research
+│       ├── [1.6K]  people-api.md
+│       └── [2.1K]  web-search-api.md
+├── [4.0K]  examples
+│   ├── [3.2K]  check_llm_plugins.py
+│   ├── [4.9K]  example_people_script.py
+│   ├── [4.2K]  example_serp_script.py
+│   ├── [2.7K]  funchain_example.py
+│   └── [5.8K]  run_action_config_example.py
+├── [265K]  llms.txt
+├── [9.7K]  pyproject.toml
+├── [4.0K]  src
+│   └── [4.0K]  twat_llm
+│       ├── [1.2K]  __init__.py
+│       ├── [ 15K]  mallmo.py
+│       └── [8.7K]  twat_llm.py
+└── [4.0K]  tests
+    ├── [ 16K]  test_mallmo.py
+    └── [ 13K]  test_twat_llm.py
 
-13 directories, 34 files
+13 directories, 31 files
 
-2025-03-05 12:14:24 - On branch main
-Your branch is up to date with 'origin/main'.
-
+2025-06-25 13:39:08 - HEAD detached from 1ed15df
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
@@ -136,9 +127,7 @@ Changes not staged for commit:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 
-2025-03-05 12:14:24 - On branch main
-Your branch is up to date with 'origin/main'.
-
+2025-06-25 13:39:08 - HEAD detached from 1ed15df
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
@@ -147,140 +136,558 @@ Changes not staged for commit:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 
-2025-03-05 12:14:24 - 
+2025-06-25 13:39:08 -
 === Environment Status ===
-2025-03-05 12:14:24 - Setting up virtual environment
-2025-03-05 12:14:27 - Virtual environment created and activated
-2025-03-05 12:14:27 - Installing package with all extras
-2025-03-05 12:14:27 - Setting up virtual environment
-2025-03-05 12:14:27 - Virtual environment created and activated
-2025-03-05 12:14:29 - Package installed successfully
-2025-03-05 12:14:29 - Running code quality checks
-2025-03-05 12:14:29 - >>> Running code fixes...
-2025-03-05 12:14:30 - src/funchain.py:8:1: E402 Module level import not at top of file
-   |
- 8 | from mallmo import ask_chain
-   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
- 9 |
-10 | output = ask_chain(
-   |
-
-src/mallmo.py:26:7: N801 Class name `pathos_with` should use CapWords convention
-   |
-26 | class pathos_with:
-   |       ^^^^^^^^^^^ N801
-27 |     def __init__(self, pool_class=ProcessPool, nodes=None):
-28 |         self.pool_class = pool_class
-   |
-
-src/mallmo.py:118:51: PLR2004 Magic value used in comparison, consider replacing `2` with a constant variable
+2025-06-25 13:39:08 - Setting up virtual environment
+2025-06-25 13:39:09 - Virtual environment created and activated
+2025-06-25 13:39:09 - Installing package with all extras
+2025-06-25 13:39:09 - Setting up virtual environment
+2025-06-25 13:39:09 - Virtual environment created and activated
+2025-06-25 13:39:14 - Package installed successfully
+2025-06-25 13:39:14 - Running code quality checks
+2025-06-25 13:39:14 - >>> Running code fixes...
+2025-06-25 13:39:14 - src/twat_llm/mallmo.py:236:5: C901 `ask` is too complex (11 > 10)
     |
-117 |     # Validate step format
-118 |     if not isinstance(step, tuple) or len(step) > 2:
-    |                                                   ^ PLR2004
-119 |         msg = "Step must be a string, function, or 1-2 element tuple"
-120 |         raise TypeError(msg)
+236 | def ask(
+    |     ^^^ C901
+237 |     prompt: str,
+238 |     data: str | None = None,
     |
 
-src/mallmo.py:212:17: B904 Within an `except` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling
+src/twat_llm/mallmo.py:368:5: C901 `cli` is too complex (12 > 10)
     |
-210 |             except Exception as e:
-211 |                 msg = f"Error processing media file {path}: {e!s}"
-212 |                 raise LLMError(msg)
-    |                 ^^^^^^^^^^^^^^^^^^^ B904
-213 |
-214 |     # Try each model in sequence
+368 | def cli(
+    |     ^^^ C901
+369 |     prompt: str | None = None,
+370 |     model: str | None = None,
     |
 
-src/mallmo.py:264:9: B904 Within an `except` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling
+src/twat_llm/mallmo.py:368:5: PLR0913 Too many arguments in function definition (6 > 5)
     |
-262 |     except Exception as e:
-263 |         msg = f"Batch processing failed: {e!s}"
-264 |         raise LLMError(msg)
-    |         ^^^^^^^^^^^^^^^^^^^ B904
+368 | def cli(
+    |     ^^^ PLR0913
+369 |     prompt: str | None = None,
+370 |     model: str | None = None,
     |
 
-Found 5 errors.
+src/twat_llm/mallmo.py:368:5: PLR0912 Too many branches (13 > 12)
+    |
+368 | def cli(
+    |     ^^^ PLR0912
+369 |     prompt: str | None = None,
+370 |     model: str | None = None,
+    |
 
-2025-03-05 12:14:30 - 5 files left unchanged
+src/twat_llm/mallmo.py:418:25: B007 Loop control variable `response_text` not used within loop body
+    |
+416 |                     sys.exit(1)
+417 |             else:
+418 |                 for _i, response_text in enumerate(responses):
+    |                         ^^^^^^^^^^^^^ B007
+419 |                     pass
+    |
+    = help: Rename unused `response_text` to `_response_text`
 
-2025-03-05 12:14:30 - >>>Running type checks...
-2025-03-05 12:14:42 - src/mallmo.py:9: error: Cannot find implementation or library stub for module named "cv2"  [import-not-found]
-src/mallmo.py:10: error: Cannot find implementation or library stub for module named "llm"  [import-not-found]
-src/mallmo.py:11: error: Skipping analyzing "fire": module is installed, but missing library stubs or py.typed marker  [import-untyped]
-src/mallmo.py:12: error: Cannot find implementation or library stub for module named "pathos.helpers"  [import-not-found]
-src/mallmo.py:13: error: Cannot find implementation or library stub for module named "pathos.pools"  [import-not-found]
-src/mallmo.py:14: error: Cannot find implementation or library stub for module named "PIL"  [import-not-found]
-src/mallmo.py:15: error: Cannot find implementation or library stub for module named "tenacity"  [import-not-found]
-src/mallmo.py:27: error: Function is missing a type annotation  [no-untyped-def]
-src/mallmo.py:31: error: Function is missing a type annotation  [no-untyped-def]
-src/mallmo.py:35: error: Function is missing a type annotation  [no-untyped-def]
-src/mallmo.py:97: error: Untyped decorator makes function "_try_model" untyped  [misc]
-src/mallmo.py:111: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]
-src/mallmo.py:218: error: Returning Any from function declared to return "str"  [no-any-return]
-src/mallmo.py:267: error: Function is missing a return type annotation  [no-untyped-def]
-src/funchain.py:4: error: Function is missing a type annotation  [no-untyped-def]
-tests/test_twat_llm.py:4: error: Function is missing a return type annotation  [no-untyped-def]
-tests/test_twat_llm.py:4: note: Use "-> None" if function does not return a value
-src/llm_plugins.py:10: error: Skipping analyzing "fire": module is installed, but missing library stubs or py.typed marker  [import-untyped]
-src/llm_plugins.py:10: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports
-Found 17 errors in 4 files (checked 6 source files)
+Found 13 errors (8 fixed, 5 remaining).
 
-2025-03-05 12:14:42 - >>> Running tests...
-2025-03-05 12:14:44 - ============================= test session starts ==============================
-platform darwin -- Python 3.12.8, pytest-8.3.5, pluggy-1.5.0 -- /Users/adam/Developer/vcs/github.twardoch/pub/twat-packages/_good/twat/plugins/repos/twat_llm/.venv/bin/python
+2025-06-25 13:39:14 - 3 files reformatted, 2 files left unchanged
+
+2025-06-25 13:39:14 - >>>Running type checks...
+2025-06-25 13:39:33 - src/twat_llm/mallmo.py:14: error: Skipping analyzing "fire": module is installed, but missing library stubs or py.typed marker  [import-untyped]
+src/twat_llm/mallmo.py:14: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports
+src/twat_llm/mallmo.py:148: error: "Model" has no attribute "supports_multimodal"  [attr-defined]
+src/twat_llm/mallmo.py:154: error: Statement is unreachable  [unreachable]
+src/twat_llm/mallmo.py:181: error: Statement is unreachable  [unreachable]
+src/twat_llm/mallmo.py:183: error: Redundant cast to "dict[str, Any]"  [redundant-cast]
+src/twat_llm/mallmo.py:185: error: Statement is unreachable  [unreachable]
+src/twat_llm/mallmo.py:193: error: Unused "type: ignore" comment  [unused-ignore]
+src/twat_llm/mallmo.py:195: error: Statement is unreachable  [unreachable]
+src/twat_llm/mallmo.py:282: error: Unexpected keyword argument "content_type" for "Attachment"  [call-arg]
+src/twat_llm/twat_llm.py:34: error: No overload variant of "Field" matches argument types "None", "str"  [call-overload]
+src/twat_llm/twat_llm.py:34: note: Possible overload variants:
+src/twat_llm/twat_llm.py:34: note:     def Field(default, default: EllipsisType, *, alias: str | None = ..., alias_priority: int | None = ..., validation_alias: str | AliasPath | AliasChoices | None = ..., serialization_alias: str | None = ..., title: str | None = ..., field_title_generator: Callable[[str, FieldInfo], str] | None = ..., description: str | None = ..., examples: list[Any] | None = ..., exclude: bool | None = ..., discriminator: str | Discriminator | None = ..., deprecated: deprecated | str | bool | None = ..., json_schema_extra: JsonDict | Callable[[JsonDict], None] | None = ..., frozen: bool | None = ..., validate_default: bool | None = ..., repr: bool = ..., init: bool | None = ..., init_var: bool | None = ..., kw_only: bool | None = ..., pattern: str | Pattern[str] | None = ..., strict: bool | None = ..., coerce_numbers_to_str: bool | None = ..., gt: SupportsGt | None = ..., ge: SupportsGe | None = ..., lt: SupportsLt | None = ..., le: SupportsLe | None = ..., multiple_of: float | None = ..., allow_inf_nan: bool | None = ..., max_digits: int | None = ..., decimal_places: int | None = ..., min_length: int | None = ..., max_length: int | None = ..., union_mode: Literal['smart', 'left_to_right'] = ..., fail_fast: bool | None = ...) -> Any
+src/twat_llm/twat_llm.py:34: note:     def [_T] Field(default, default: _T, *, alias: str | None = ..., alias_priority: int | None = ..., validation_alias: str | AliasPath | AliasChoices | None = ..., serialization_alias: str | None = ..., title: str | None = ..., field_title_generator: Callable[[str, FieldInfo], str] | None = ..., description: str | None = ..., examples: list[Any] | None = ..., exclude: bool | None = ..., discriminator: str | Discriminator | None = ..., deprecated: deprecated | str | bool | None = ..., json_schema_extra: JsonDict | Callable[[JsonDict], None] | None = ..., frozen: bool | None = ..., validate_default: bool | None = ..., repr: bool = ..., init: bool | None = ..., init_var: bool | None = ..., kw_only: bool | None = ..., pattern: str | Pattern[str] | None = ..., strict: bool | None = ..., coerce_numbers_to_str: bool | None = ..., gt: SupportsGt | None = ..., ge: SupportsGe | None = ..., lt: SupportsLt | None = ..., le: SupportsLe | None = ..., multiple_of: float | None = ..., allow_inf_nan: bool | None = ..., max_digits: int | None = ..., decimal_places: int | None = ..., min_length: int | None = ..., max_length: int | None = ..., union_mode: Literal['smart', 'left_to_right'] = ..., fail_fast: bool | None = ...) -> _T
+src/twat_llm/twat_llm.py:34: note:     def [_T] Field(default_factory, *, default_factory: Callable[[], _T] | Callable[[dict[str, Any]], _T], alias: str | None = ..., alias_priority: int | None = ..., validation_alias: str | AliasPath | AliasChoices | None = ..., serialization_alias: str | None = ..., title: str | None = ..., field_title_generator: Callable[[str, FieldInfo], str] | None = ..., description: str | None = ..., examples: list[Any] | None = ..., exclude: bool | None = ..., discriminator: str | Discriminator | None = ..., deprecated: deprecated | str | bool | None = ..., json_schema_extra: JsonDict | Callable[[JsonDict], None] | None = ..., frozen: bool | None = ..., validate_default: bool | None = ..., repr: bool = ..., init: bool | None = ..., init_var: bool | None = ..., kw_only: bool | None = ..., pattern: str | Pattern[str] | None = ..., strict: bool | None = ..., coerce_numbers_to_str: bool | None = ..., gt: SupportsGt | None = ..., ge: SupportsGe | None = ..., lt: SupportsLt | None = ..., le: SupportsLe | None = ..., multiple_of: float | None = ..., allow_inf_nan: bool | None = ..., max_digits: int | None = ..., decimal_places: int | None = ..., min_length: int | None = ..., max_length: int | None = ..., union_mode: Literal['smart', 'left_to_right'] = ..., fail_fast: bool | None = ...) -> _T
+src/twat_llm/twat_llm.py:34: note:     def Field(alias, *, alias: str | None = ..., alias_priority: int | None = ..., validation_alias: str | AliasPath | AliasChoices | None = ..., serialization_alias: str | None = ..., title: str | None = ..., field_title_generator: Callable[[str, FieldInfo], str] | None = ..., description: str | None = ..., examples: list[Any] | None = ..., exclude: bool | None = ..., discriminator: str | Discriminator | None = ..., deprecated: deprecated | str | bool | None = ..., json_schema_extra: JsonDict | Callable[[JsonDict], None] | None = ..., frozen: bool | None = ..., validate_default: bool | None = ..., repr: bool = ..., init: bool | None = ..., init_var: bool | None = ..., kw_only: bool | None = ..., pattern: str | Pattern[str] | None = ..., strict: bool | None = ..., coerce_numbers_to_str: bool | None = ..., gt: SupportsGt | None = ..., ge: SupportsGe | None = ..., lt: SupportsLt | None = ..., le: SupportsLe | None = ..., multiple_of: float | None = ..., allow_inf_nan: bool | None = ..., max_digits: int | None = ..., decimal_places: int | None = ..., min_length: int | None = ..., max_length: int | None = ..., union_mode: Literal['smart', 'left_to_right'] = ..., fail_fast: bool | None = ...) -> Any
+src/twat_llm/twat_llm.py:35: error: No overload variant of "Field" matches argument types "None", "str"  [call-overload]
+src/twat_llm/twat_llm.py:35: note: Possible overload variants:
+src/twat_llm/twat_llm.py:35: note:     def Field(default, default: EllipsisType, *, alias: str | None = ..., alias_priority: int | None = ..., validation_alias: str | AliasPath | AliasChoices | None = ..., serialization_alias: str | None = ..., title: str | None = ..., field_title_generator: Callable[[str, FieldInfo], str] | None = ..., description: str | None = ..., examples: list[Any] | None = ..., exclude: bool | None = ..., discriminator: str | Discriminator | None = ..., deprecated: deprecated | str | bool | None = ..., json_schema_extra: JsonDict | Callable[[JsonDict], None] | None = ..., frozen: bool | None = ..., validate_default: bool | None = ..., repr: bool = ..., init: bool | None = ..., init_var: bool | None = ..., kw_only: bool | None = ..., pattern: str | Pattern[str] | None = ..., strict: bool | None = ..., coerce_numbers_to_str: bool | None = ..., gt: SupportsGt | None = ..., ge: SupportsGe | None = ..., lt: SupportsLt | None = ..., le: SupportsLe | None = ..., multiple_of: float | None = ..., allow_inf_nan: bool | None = ..., max_digits: int | None = ..., decimal_places: int | None = ..., min_length: int | None = ..., max_length: int | None = ..., union_mode: Literal['smart', 'left_to_right'] = ..., fail_fast: bool | None = ...) -> Any
+src/twat_llm/twat_llm.py:35: note:     def [_T] Field(default, default: _T, *, alias: str | None = ..., alias_priority: int | None = ..., validation_alias: str | AliasPath | AliasChoices | None = ..., serialization_alias: str | None = ..., title: str | None = ..., field_title_generator: Callable[[str, FieldInfo], str] | None = ..., description: str | None = ..., examples: list[Any] | None = ..., exclude: bool | None = ..., discriminator: str | Discriminator | None = ..., deprecated: deprecated | str | bool | None = ..., json_schema_extra: JsonDict | Callable[[JsonDict], None] | None = ..., frozen: bool | None = ..., validate_default: bool | None = ..., repr: bool = ..., init: bool | None = ..., init_var: bool | None = ..., kw_only: bool | None = ..., pattern: str | Pattern[str] | None = ..., strict: bool | None = ..., coerce_numbers_to_str: bool | None = ..., gt: SupportsGt | None = ..., ge: SupportsGe | None = ..., lt: SupportsLt | None = ..., le: SupportsLe | None = ..., multiple_of: float | None = ..., allow_inf_nan: bool | None = ..., max_digits: int | None = ..., decimal_places: int | None = ..., min_length: int | None = ..., max_length: int | None = ..., union_mode: Literal['smart', 'left_to_right'] = ..., fail_fast: bool | None = ...) -> _T
+src/twat_llm/twat_llm.py:35: note:     def [_T] Field(default_factory, *, default_factory: Callable[[], _T] | Callable[[dict[str, Any]], _T], alias: str | None = ..., alias_priority: int | None = ..., validation_alias: str | AliasPath | AliasChoices | None = ..., serialization_alias: str | None = ..., title: str | None = ..., field_title_generator: Callable[[str, FieldInfo], str] | None = ..., description: str | None = ..., examples: list[Any] | None = ..., exclude: bool | None = ..., discriminator: str | Discriminator | None = ..., deprecated: deprecated | str | bool | None = ..., json_schema_extra: JsonDict | Callable[[JsonDict], None] | None = ..., frozen: bool | None = ..., validate_default: bool | None = ..., repr: bool = ..., init: bool | None = ..., init_var: bool | None = ..., kw_only: bool | None = ..., pattern: str | Pattern[str] | None = ..., strict: bool | None = ..., coerce_numbers_to_str: bool | None = ..., gt: SupportsGt | None = ..., ge: SupportsGe | None = ..., lt: SupportsLt | None = ..., le: SupportsLe | None = ..., multiple_of: float | None = ..., allow_inf_nan: bool | None = ..., max_digits: int | None = ..., decimal_places: int | None = ..., min_length: int | None = ..., max_length: int | None = ..., union_mode: Literal['smart', 'left_to_right'] = ..., fail_fast: bool | None = ...) -> _T
+src/twat_llm/twat_llm.py:35: note:     def Field(alias, *, alias: str | None = ..., alias_priority: int | None = ..., validation_alias: str | AliasPath | AliasChoices | None = ..., serialization_alias: str | None = ..., title: str | None = ..., field_title_generator: Callable[[str, FieldInfo], str] | None = ..., description: str | None = ..., examples: list[Any] | None = ..., exclude: bool | None = ..., discriminator: str | Discriminator | None = ..., deprecated: deprecated | str | bool | None = ..., json_schema_extra: JsonDict | Callable[[JsonDict], None] | None = ..., frozen: bool | None = ..., validate_default: bool | None = ..., repr: bool = ..., init: bool | None = ..., init_var: bool | None = ..., kw_only: bool | None = ..., pattern: str | Pattern[str] | None = ..., strict: bool | None = ..., coerce_numbers_to_str: bool | None = ..., gt: SupportsGt | None = ..., ge: SupportsGe | None = ..., lt: SupportsLt | None = ..., le: SupportsLe | None = ..., multiple_of: float | None = ..., allow_inf_nan: bool | None = ..., max_digits: int | None = ..., decimal_places: int | None = ..., min_length: int | None = ..., max_length: int | None = ..., union_mode: Literal['smart', 'left_to_right'] = ..., fail_fast: bool | None = ...) -> Any
+src/twat_llm/twat_llm.py:71: error: Argument "default_factory" to "Field" has incompatible type "type[ApiKeySettings]"; expected "Callable[[], Never] | Callable[[dict[str, Any]], Never]"  [arg-type]
+src/twat_llm/twat_llm.py:244: error: Statement is unreachable  [unreachable]
+tests/test_twat_llm.py:20: error: Function is missing a return type annotation  [no-untyped-def]
+tests/test_twat_llm.py:20: note: Use "-> None" if function does not return a value
+tests/test_twat_llm.py:29: error: Function is missing a return type annotation  [no-untyped-def]
+tests/test_twat_llm.py:29: note: Use "-> None" if function does not return a value
+tests/test_twat_llm.py:35: error: Argument 1 to "ActionConfig" has incompatible type "**dict[str, Collection[str]]"; expected "Literal['enrich_person', 'search_web']"  [arg-type]
+tests/test_twat_llm.py:35: error: Argument 1 to "ActionConfig" has incompatible type "**dict[str, Collection[str]]"; expected "PersonEnrichmentParams | WebSearchParams"  [arg-type]
+tests/test_twat_llm.py:35: error: Argument 1 to "ActionConfig" has incompatible type "**dict[str, Collection[str]]"; expected "ApiKeySettings"  [arg-type]
+tests/test_twat_llm.py:41: error: Function is missing a return type annotation  [no-untyped-def]
+tests/test_twat_llm.py:41: note: Use "-> None" if function does not return a value
+tests/test_twat_llm.py:44: error: Argument 1 to "ActionConfig" has incompatible type "**dict[str, Collection[str]]"; expected "Literal['enrich_person', 'search_web']"  [arg-type]
+tests/test_twat_llm.py:44: error: Argument 1 to "ActionConfig" has incompatible type "**dict[str, Collection[str]]"; expected "PersonEnrichmentParams | WebSearchParams"  [arg-type]
+tests/test_twat_llm.py:44: error: Argument 1 to "ActionConfig" has incompatible type "**dict[str, Collection[str]]"; expected "ApiKeySettings"  [arg-type]
+tests/test_twat_llm.py:50: error: Function is missing a return type annotation  [no-untyped-def]
+tests/test_twat_llm.py:50: note: Use "-> None" if function does not return a value
+tests/test_twat_llm.py:57: error: Argument 1 to "ActionConfig" has incompatible type "**dict[str, Collection[str]]"; expected "Literal['enrich_person', 'search_web']"  [arg-type]
+tests/test_twat_llm.py:57: error: Argument 1 to "ActionConfig" has incompatible type "**dict[str, Collection[str]]"; expected "PersonEnrichmentParams | WebSearchParams"  [arg-type]
+tests/test_twat_llm.py:57: error: Argument 1 to "ActionConfig" has incompatible type "**dict[str, Collection[str]]"; expected "ApiKeySettings"  [arg-type]
+tests/test_twat_llm.py:60: error: Function is missing a return type annotation  [no-untyped-def]
+tests/test_twat_llm.py:60: note: Use "-> None" if function does not return a value
+tests/test_twat_llm.py:65: error: Argument 1 to "ActionConfig" has incompatible type "**dict[str, Collection[str]]"; expected "Literal['enrich_person', 'search_web']"  [arg-type]
+tests/test_twat_llm.py:65: error: Argument 1 to "ActionConfig" has incompatible type "**dict[str, Collection[str]]"; expected "PersonEnrichmentParams | WebSearchParams"  [arg-type]
+tests/test_twat_llm.py:65: error: Argument 1 to "ActionConfig" has incompatible type "**dict[str, Collection[str]]"; expected "ApiKeySettings"  [arg-type]
+tests/test_twat_llm.py:69: error: Function is missing a return type annotation  [no-untyped-def]
+tests/test_twat_llm.py:69: note: Use "-> None" if function does not return a value
+tests/test_twat_llm.py:78: error: Argument 1 to "ActionConfig" has incompatible type "**dict[str, Collection[str]]"; expected "Literal['enrich_person', 'search_web']"  [arg-type]
+tests/test_twat_llm.py:78: error: Argument 1 to "ActionConfig" has incompatible type "**dict[str, Collection[str]]"; expected "PersonEnrichmentParams | WebSearchParams"  [arg-type]
+tests/test_twat_llm.py:78: error: Argument 1 to "ActionConfig" has incompatible type "**dict[str, Collection[str]]"; expected "ApiKeySettings"  [arg-type]
+tests/test_twat_llm.py:84: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_twat_llm.py:89: error: Missing named argument "proxycurl_api_key" for "ApiKeySettings"  [call-arg]
+tests/test_twat_llm.py:89: error: Missing named argument "search_api_key" for "ApiKeySettings"  [call-arg]
+tests/test_twat_llm.py:94: error: Function is missing a return type annotation  [no-untyped-def]
+tests/test_twat_llm.py:94: note: Use "-> None" if function does not return a value
+tests/test_twat_llm.py:97: error: Missing named argument "proxycurl_api_key" for "ApiKeySettings"  [call-arg]
+tests/test_twat_llm.py:97: error: Missing named argument "search_api_key" for "ApiKeySettings"  [call-arg]
+tests/test_twat_llm.py:110: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_twat_llm.py:134: error: Argument "linkedin_profile_url" to "PersonEnrichmentParams" has incompatible type "str"; expected "HttpUrl | None"  [arg-type]
+tests/test_twat_llm.py:152: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_twat_llm.py:158: error: Argument "linkedin_profile_url" to "PersonEnrichmentParams" has incompatible type "str"; expected "HttpUrl | None"  [arg-type]
+tests/test_twat_llm.py:159: error: Unused "type: ignore" comment  [unused-ignore]
+tests/test_twat_llm.py:165: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_twat_llm.py:177: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_twat_llm.py:194: error: Argument "linkedin_profile_url" to "PersonEnrichmentParams" has incompatible type "str"; expected "HttpUrl | None"  [arg-type]
+tests/test_twat_llm.py:195: error: Unused "type: ignore" comment  [unused-ignore]
+tests/test_twat_llm.py:203: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_twat_llm.py:215: error: Argument "linkedin_profile_url" to "PersonEnrichmentParams" has incompatible type "str"; expected "HttpUrl | None"  [arg-type]
+tests/test_twat_llm.py:216: error: Unused "type: ignore" comment  [unused-ignore]
+tests/test_twat_llm.py:225: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_twat_llm.py:246: error: Argument "linkedin_profile_url" to "PersonEnrichmentParams" has incompatible type "str"; expected "HttpUrl | None"  [arg-type]
+tests/test_twat_llm.py:247: error: Unused "type: ignore" comment  [unused-ignore]
+tests/test_twat_llm.py:261: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_twat_llm.py:294: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_twat_llm.py:305: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_twat_llm.py:328: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_twat_llm.py:347: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:36: error: Function is missing a return type annotation  [no-untyped-def]
+tests/test_mallmo.py:36: note: Use "-> None" if function does not return a value
+tests/test_mallmo.py:62: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:75: error: Function is missing a return type annotation  [no-untyped-def]
+tests/test_mallmo.py:75: note: Use "-> None" if function does not return a value
+tests/test_mallmo.py:83: error: Function is missing a return type annotation  [no-untyped-def]
+tests/test_mallmo.py:83: note: Use "-> None" if function does not return a value
+tests/test_mallmo.py:91: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:101: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:119: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:127: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:141: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:157: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:166: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:178: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:191: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:212: error: Function is missing a return type annotation  [no-untyped-def]
+tests/test_mallmo.py:212: note: Use "-> None" if function does not return a value
+tests/test_mallmo.py:220: error: Function is missing a return type annotation  [no-untyped-def]
+tests/test_mallmo.py:220: note: Use "-> None" if function does not return a value
+tests/test_mallmo.py:228: error: Function is missing a return type annotation  [no-untyped-def]
+tests/test_mallmo.py:228: note: Use "-> None" if function does not return a value
+tests/test_mallmo.py:237: error: Function is missing a return type annotation  [no-untyped-def]
+tests/test_mallmo.py:237: note: Use "-> None" if function does not return a value
+tests/test_mallmo.py:245: error: Function is missing a return type annotation  [no-untyped-def]
+tests/test_mallmo.py:245: note: Use "-> None" if function does not return a value
+tests/test_mallmo.py:253: error: Function is missing a return type annotation  [no-untyped-def]
+tests/test_mallmo.py:257: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:275: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:302: error: Function is missing a return type annotation  [no-untyped-def]
+tests/test_mallmo.py:302: note: Use "-> None" if function does not return a value
+tests/test_mallmo.py:309: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:316: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:342: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:354: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:373: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:392: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:405: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:416: error: Function is missing a type annotation  [no-untyped-def]
+tests/test_mallmo.py:429: error: Function is missing a type annotation  [no-untyped-def]
+Found 91 errors in 4 files (checked 6 source files)
+
+2025-06-25 13:39:33 - >>> Running tests...
+2025-06-25 13:40:02 - ============================= test session starts ==============================
+platform linux -- Python 3.12.11, pytest-8.4.1, pluggy-1.6.0 -- /app/.venv/bin/python
 cachedir: .pytest_cache
 benchmark: 5.1.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
-rootdir: /Users/adam/Developer/vcs/github.twardoch/pub/twat-packages/_good/twat/plugins/repos/twat_llm
+rootdir: /app
 configfile: pyproject.toml
-plugins: cov-6.0.0, benchmark-5.1.0, xdist-3.6.1
-collecting ... collected 1 item
+plugins: anyio-4.9.0, benchmark-5.1.0, xdist-3.7.0, cov-6.2.1
+collecting ... collected 48 items
 
-tests/test_twat_llm.py::test_version FAILED                              [100%]
+tests/test_mallmo.py::test_resize_image PASSED                           [  2%]
+tests/test_mallmo.py::test_prepare_media_image PASSED                    [  4%]
+tests/test_mallmo.py::test_prepare_media_video_unsupported FAILED        [  6%]
+tests/test_mallmo.py::test_prepare_media_unsupported_type PASSED         [  8%]
+tests/test_mallmo.py::test_prepare_media_file_not_found PASSED           [ 10%]
+tests/test_mallmo.py::test_try_model_success PASSED                      [ 12%]
+tests/test_mallmo.py::test_try_model_failure_unknown_model PASSED        [ 14%]
+tests/test_mallmo.py::test_try_model_failure_prompt_error PASSED         [ 16%]
+tests/test_mallmo.py::test_try_model_multimodal_check PASSED             [ 18%]
+tests/test_mallmo.py::test_ask_success PASSED                            [ 20%]
+tests/test_mallmo.py::test_ask_fallback PASSED                           [ 22%]
+tests/test_mallmo.py::test_ask_all_models_fail PASSED                    [ 25%]
+tests/test_mallmo.py::test_ask_with_media PASSED                         [ 27%]
+tests/test_mallmo.py::test_process_step_string PASSED                    [ 29%]
+tests/test_mallmo.py::test_process_step_function PASSED                  [ 31%]
+tests/test_mallmo.py::test_process_step_tuple PASSED                     [ 33%]
+tests/test_mallmo.py::test_process_step_invalid_type PASSED              [ 35%]
+tests/test_mallmo.py::test_process_step_invalid_tuple_format PASSED      [ 37%]
+tests/test_mallmo.py::test_ask_chain_simple PASSED                       [ 39%]
+tests/test_mallmo.py::test_ask_batch_success PASSED                      [ 41%]
+tests/test_mallmo.py::test_ask_batch_empty_prompts PASSED                [ 43%]
+tests/test_mallmo.py::test_ask_batch_processing_error_in_worker PASSED   [ 45%]
+tests/test_mallmo.py::test_cli_simple_prompt FAILED                      [ 47%]
+tests/test_mallmo.py::test_cli_batch_prompt_file FAILED                  [ 50%]
+tests/test_mallmo.py::test_cli_batch_prompt_output_file FAILED           [ 52%]
+tests/test_mallmo.py::test_cli_no_prompt_or_batch_file FAILED            [ 54%]
+tests/test_mallmo.py::test_cli_llm_error FAILED                          [ 56%]
+tests/test_mallmo.py::test_cli_batch_file_read_error FAILED              [ 58%]
+tests/test_mallmo.py::test_cli_batch_empty_file FAILED                   [ 60%]
+tests/test_twat_llm.py::test_version PASSED                              [ 62%]
+tests/test_twat_llm.py::test_action_config_enrich_person_valid PASSED    [ 64%]
+tests/test_twat_llm.py::test_action_config_search_web_valid PASSED       [ 66%]
+tests/test_twat_llm.py::test_action_config_invalid_action_type PASSED    [ 68%]
+tests/test_twat_llm.py::test_action_config_enrich_person_missing_params PASSED [ 70%]
+tests/test_twat_llm.py::test_action_config_search_web_missing_query PASSED [ 72%]
+tests/test_twat_llm.py::test_api_key_settings_load_from_env PASSED       [ 75%]
+tests/test_twat_llm.py::test_api_key_settings_no_env PASSED              [ 77%]
+tests/test_twat_llm.py::test_process_data_enrich_person_success PASSED   [ 79%]
+tests/test_twat_llm.py::test_process_data_enrich_person_missing_api_key PASSED [ 81%]
+tests/test_twat_llm.py::test_process_data_enrich_person_missing_linkedin_url PASSED [ 83%]
+tests/test_twat_llm.py::test_process_data_enrich_person_api_http_error PASSED [ 85%]
+tests/test_twat_llm.py::test_process_data_enrich_person_api_request_error PASSED [ 87%]
+tests/test_twat_llm.py::test_process_data_enrich_person_mallmo_error PASSED [ 89%]
+tests/test_twat_llm.py::test_process_data_search_web_success PASSED      [ 91%]
+tests/test_twat_llm.py::test_process_data_search_web_missing_api_key PASSED [ 93%]
+tests/test_twat_llm.py::test_process_data_search_web_api_http_error PASSED [ 95%]
+tests/test_twat_llm.py::test_process_data_search_web_api_request_error PASSED [ 97%]
+tests/test_twat_llm.py::test_process_data_search_web_mallmo_error PASSED [100%]
 
 =================================== FAILURES ===================================
-_________________________________ test_version _________________________________
+_____________________ test_prepare_media_video_unsupported _____________________
 
-    def test_version():
-        """Verify package exposes version."""
-        import twat_llm
+    def test_prepare_media_video_unsupported():
+        """Test that _prepare_media raises an error for video files (no longer supported)."""
+        with pytest.raises(
+            MediaProcessingError, match="Video file type (.mp4) processing is not supported"
+        ):
+>           _prepare_media(Path("test.mp4"))
+
+tests/test_mallmo.py:80:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = PosixPath('test.mp4')
+
+    def _prepare_media(path: Path) -> bytes:
+        """Process image file and return resized image bytes. Video support removed for MVP."""
+        file_ext = path.suffix.lower()
+        supported_image_formats = {
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".gif",
+            ".bmp",
+            ".webp",
+            ".tiff",
+        }
+
+        try:
+            if file_ext in supported_image_formats:
+                image = Image.open(path)
+            elif file_ext in {".mp4", ".avi", ".mov", ".mkv"}:
+                # If video processing is to be re-added, it would go here.
+                # For now, explicitly state it's not supported.
+                msg = (
+                    f"Video file type ({file_ext}) processing is not supported in this version. "
+                    "Please provide an image file."
+                )
+>               raise MediaProcessingError(msg)
+E               twat_llm.mallmo.MediaProcessingError: Video file type (.mp4) processing is not supported in this version. Please provide an image file.
+
+src/twat_llm/mallmo.py:119: MediaProcessingError
+
+During handling of the above exception, another exception occurred:
+
+    def test_prepare_media_video_unsupported():
+        """Test that _prepare_media raises an error for video files (no longer supported)."""
+>       with pytest.raises(
+            MediaProcessingError, match="Video file type (.mp4) processing is not supported"
+        ):
+E       AssertionError: Regex pattern did not match.
+E        Regex: 'Video file type (.mp4) processing is not supported'
+E        Input: 'Video file type (.mp4) processing is not supported in this version. Please provide an image file.'
+
+tests/test_mallmo.py:77: AssertionError
+____________________________ test_cli_simple_prompt ____________________________
+
+mock_ask_func = <MagicMock name='ask' id='140009832346592'>
+capsys = <_pytest.capture.CaptureFixture object at 0x7f5694527470>
+
+    @patch("twat_llm.mallmo.ask")
+    def test_cli_simple_prompt(mock_ask_func, capsys):
+        """Test CLI with a simple prompt."""
+        mock_ask_func.return_value = "CLI response"
+        cli(prompt="Hello CLI", model="test-cli-model")
+        captured = capsys.readouterr()
+>       assert "CLI response" in captured.out
+E       AssertionError: assert 'CLI response' in ''
+E        +  where '' = CaptureResult(out='', err='').out
+
+tests/test_mallmo.py:347: AssertionError
+__________________________ test_cli_batch_prompt_file __________________________
+
+mock_ask_batch = <MagicMock name='ask_batch' id='140009832910240'>
+capsys = <_pytest.capture.CaptureFixture object at 0x7f56945b3e30>
+tmp_path = PosixPath('/tmp/pytest-of-swebot/pytest-0/test_cli_batch_prompt_file0')
+
+    @patch("twat_llm.mallmo.ask_batch")
+    def test_cli_batch_prompt_file(mock_ask_batch, capsys, tmp_path):
+        """Test CLI with batch prompts from a file."""
+        prompt_file = tmp_path / "prompts.txt"
+        prompt_file.write_text("Prompt 1\nPrompt 2")
     
->       assert twat_llm.__version__
-E       AttributeError: module 'twat_llm' has no attribute '__version__'
+        mock_ask_batch.return_value = ["Response 1", "Response 2"]
 
-tests/test_twat_llm.py:8: AttributeError
+        cli(batch_prompts_file=str(prompt_file), model="test-batch-model")
+
+        captured = capsys.readouterr()
+>       assert "Processing 2 prompts in batch mode..." in captured.out
+E       AssertionError: assert 'Processing 2 prompts in batch mode...' in ''
+E        +  where '' = CaptureResult(out='', err='').out
+
+tests/test_mallmo.py:364: AssertionError
+______________________ test_cli_batch_prompt_output_file _______________________
+
+mock_ask_batch = <MagicMock name='ask_batch' id='140009832915808'>
+tmp_path = PosixPath('/tmp/pytest-of-swebot/pytest-0/test_cli_batch_prompt_output_f0')
+capsys = <_pytest.capture.CaptureFixture object at 0x7f56945b2090>
+
+    @patch("twat_llm.mallmo.ask_batch")
+    def test_cli_batch_prompt_output_file(mock_ask_batch, tmp_path, capsys):
+        """Test CLI with batch prompts and output to a file."""
+        prompt_file = tmp_path / "prompts.txt"
+        prompt_file.write_text("Prompt 1\nPrompt 2")
+        output_file_path = tmp_path / "output.txt"
+
+        mock_ask_batch.return_value = ["Response 1", "Response 2"]
+
+        # Capture print statements to stdout for verification
+        with patch("sys.stdout", new_callable=io.StringIO) as mock_stdout:
+            cli(batch_prompts_file=str(prompt_file), output_file=str(output_file_path))
+
+        mock_ask_batch.assert_called_once_with(
+            ["Prompt 1", "Prompt 2"], model_ids=None, num_processes=None
+        )
+        assert output_file_path.read_text() == "Response 1\nResponse 2\n"
+>       assert f"Batch output written to {output_file_path!s}" in mock_stdout.getvalue()
+E       AssertionError: assert 'Batch output written to /tmp/pytest-of-swebot/pytest-0/test_cli_batch_prompt_output_f0/output.txt' in ''
+E        +  where '' = <built-in method getvalue of _io.StringIO object at 0x7f56946aa8c0>()
+E        +    where <built-in method getvalue of _io.StringIO object at 0x7f56946aa8c0> = <_io.StringIO object at 0x7f56946aa8c0>.getvalue
+
+tests/test_mallmo.py:389: AssertionError
+_______________________ test_cli_no_prompt_or_batch_file _______________________
+
+capsys = <_pytest.capture.CaptureFixture object at 0x7f56945b3a70>
+
+    def test_cli_no_prompt_or_batch_file(capsys):
+        """Test CLI when neither prompt nor batch_prompts_file is provided."""
+        with pytest.raises(SystemExit) as e:
+            cli()
+        assert e.value.code == 1
+        captured = capsys.readouterr()
+>       assert (
+            "Error: You must provide a 'prompt' or use '--batch_prompts_file'."
+            in captured.err
+        )
+E       assert "Error: You must provide a 'prompt' or use '--batch_prompts_file'." in ''
+E        +  where '' = CaptureResult(out='', err='').err
+
+tests/test_mallmo.py:398: AssertionError
+______________________________ test_cli_llm_error ______________________________
+
+mock_ask = <MagicMock name='ask' id='140009832924320'>
+capsys = <_pytest.capture.CaptureFixture object at 0x7f56945b7830>
+
+    @patch("twat_llm.mallmo.ask", side_effect=LLMError("Test LLM Error"))
+    def test_cli_llm_error(mock_ask, capsys):
+        """Test CLI handling of LLMError."""
+        with pytest.raises(SystemExit) as e:
+            cli(prompt="test")
+        assert e.value.code == 1
+        captured = capsys.readouterr()
+>       assert "LLM Error: Test LLM Error" in captured.err
+E       AssertionError: assert 'LLM Error: Test LLM Error' in ''
+E        +  where '' = CaptureResult(out='', err='').err
+
+tests/test_mallmo.py:411: AssertionError
+________________________ test_cli_batch_file_read_error ________________________
+
+mock_ask_batch = <MagicMock name='ask_batch' id='140009832937328'>
+mock_file_open = <MagicMock name='open' id='140009833127024'>
+capsys = <_pytest.capture.CaptureFixture object at 0x7f56945b7530>
+
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("twat_llm.mallmo.ask_batch")  # This mock is not used but good for consistency
+    def test_cli_batch_file_read_error(mock_ask_batch, mock_file_open, capsys):
+        """Test CLI with batch prompts file that causes a read error."""
+        mock_file_open.side_effect = OSError("Cannot read file")
+
+        with pytest.raises(SystemExit) as e:
+            cli(batch_prompts_file="nonexistent_or_unreadable.txt")
+        assert e.value.code == 1
+        captured = capsys.readouterr()
+>       assert "Error reading batch prompts file" in captured.err
+E       AssertionError: assert 'Error reading batch prompts file' in ''
+E        +  where '' = CaptureResult(out='', err='').err
+
+tests/test_mallmo.py:424: AssertionError
+__________________________ test_cli_batch_empty_file ___________________________
+
+mock_ask_batch = <MagicMock name='ask_batch' id='140009833165024'>
+capsys = <_pytest.capture.CaptureFixture object at 0x7f56945ebce0>
+tmp_path = PosixPath('/tmp/pytest-of-swebot/pytest-0/test_cli_batch_empty_file0')
+
+    @patch("twat_llm.mallmo.ask_batch")
+    def test_cli_batch_empty_file(mock_ask_batch, capsys, tmp_path):
+        """Test CLI with an empty batch prompts file."""
+        prompt_file = tmp_path / "empty_prompts.txt"
+        prompt_file.write_text("")  # Empty file
+
+        # The cli function exits with 0 if the batch file is empty but valid.
+        # We need to capture sys.exit to test this.
+        with pytest.raises(SystemExit) as e:
+            cli(batch_prompts_file=str(prompt_file))
+        assert e.value.code == 0
+
+        captured = capsys.readouterr()
+>       assert "No prompts found in batch file." in captured.err
+E       AssertionError: assert 'No prompts found in batch file.' in ''
+E        +  where '' = CaptureResult(out='', err='').err
+
+tests/test_mallmo.py:441: AssertionError
 =========================== short test summary info ============================
-FAILED tests/test_twat_llm.py::test_version - AttributeError: module 'twat_ll...
-============================== 1 failed in 0.11s ===============================
+FAILED tests/test_mallmo.py::test_prepare_media_video_unsupported - Assertion...
+FAILED tests/test_mallmo.py::test_cli_simple_prompt - AssertionError: assert ...
+FAILED tests/test_mallmo.py::test_cli_batch_prompt_file - AssertionError: ass...
+FAILED tests/test_mallmo.py::test_cli_batch_prompt_output_file - AssertionErr...
+FAILED tests/test_mallmo.py::test_cli_no_prompt_or_batch_file - assert "Error...
+FAILED tests/test_mallmo.py::test_cli_llm_error - AssertionError: assert 'LLM...
+FAILED tests/test_mallmo.py::test_cli_batch_file_read_error - AssertionError:...
+FAILED tests/test_mallmo.py::test_cli_batch_empty_file - AssertionError: asse...
+======================== 8 failed, 40 passed in 26.12s =========================
 
-2025-03-05 12:14:44 - All checks completed
-2025-03-05 12:14:46 - 
-📦 Repomix v0.2.29
+2025-06-25 13:40:02 - All checks completed
+2025-06-25 13:40:02 -
+=== TODO.md ===
+2025-06-25 13:40:02 - # TODO List for twat-llm v1.0 MVP Streamlining
 
-No custom config found at repomix.config.json or global config at /Users/adam/.config/repomix/repomix.config.json.
+This list summarizes the actionable tasks derived from `PLAN.md`.
+
+## Phase 1: Documentation & Non-Core File Cleanup
+
+-   [ ] **`docs/research/` Cleanup:**
+    -   [ ] Condense `people-api.md`: Retain a summary of chosen APIs (Proxycurl) and key considerations. Archive or remove detailed comparisons.
+    -   [ ] Condense `web-search-api.md`: Retain a summary of chosen APIs (Brave Search) and key considerations. Archive or remove detailed comparisons.
+    -   [ ] Review `people-api-tldr.md`: Integrate relevant parts into README or condensed `people-api.md`; remove if redundant.
+    -   [ ] Remove internal review files: `review-copilot.md`, `review-cursor.md`, `review-o3.md`, `review-trae.md`.
+-   [ ] **`.specstory/` & `.cursor/rules/`:** Confirm they are handled by `.gitignore` or are development-only aids; no direct code changes to library.
+-   [ ] **Generated Files (`CLEANUP.txt`, `REPO_CONTENT.txt`):** Verify they are in `.gitignore` and `cleanup.py` manages them appropriately.
+
+## Phase 2: Example Scripts & Utility Scripts Review
+
+-   [ ] **`examples/` Review:**
+    -   [ ] `check_llm_plugins.py`: Confirm it's useful and functional.
+    -   [ ] `example_people_script.py`: Simplify, ensure clear demonstration of `process_data` with `PersonEnrichmentParams`, and guide on API key handling.
+    -   [ ] `example_serp_script.py`: Simplify, ensure clear demonstration of `process_data` with `WebSearchParams`, and guide on API key handling.
+    -   [ ] `funchain_example.py`: Review for clarity and relevance to `ask_chain` as an MVP feature.
+-   [ ] **`cleanup.py` Review:**
+    -   [ ] Verify all its functions (`status`, `venv`, `install`, `update`, `push`, `repomix`) are working and streamlined.
+    -   [ ] Consider if `repomix` call needs to be conditional or a separate command. (For now, assume current behavior is acceptable).
+
+## Phase 3: Core Code Refinement (`src/`)
+
+-   [ ] **`src/twat_llm/twat_llm.py` Review:**
+    -   [ ] `process_data` function: Confirm robustness for MVP. Defer major refactoring of common logic unless critical.
+    -   [ ] Ensure summarization prompts are adequate for MVP.
+    -   [ ] Verify error handling (`httpx.HTTPStatusError`, `httpx.RequestError`).
+    -   [ ] `ApiKeySettings`: Confirm correct loading for all services.
+    -   [ ] `ActionConfig` and related Pydantic models: Confirm `model_validator` and discriminator logic work as expected.
+    -   [ ] `main()` function: Move demonstration logic to a new example script in `examples/`.
+-   [ ] **`src/twat_llm/mallmo.py` Review:**
+    -   [ ] Core Functions (`ask`, `_try_model`, `_prepare_media`): Ensure robustness and error handling.
+    -   [ ] Media preparation (`_prepare_media`, `_resize_image`, `_extract_middle_frame`): Verify efficiency and correctness.
+    -   [ ] Advanced Features (`ask_chain`, `ask_batch`): Confirm they are needed for MVP and function correctly. (Current assumption: retain).
+    -   [ ] CLI in `mallmo.py`: Confirm it's functional.
+-   [ ] **`src/twat_llm/__init__.py` Review:**
+    -   [ ] Update `__all__` to export the public API for the library (e.g., `ActionConfig`, `process_data`, `ask`).
+
+## Phase 4: Dependencies & Configuration Review
+
+-   [ ] **`pyproject.toml` Review:**
+    -   [ ] `opencv-python-headless`: Confirm if video processing is critical for MVP. If not, consider making it optional or deferring. (Current assumption: retain).
+    -   [ ] Review other dependency versions.
+-   [ ] **`.gitignore` Review:**
+    -   [ ] Confirm all necessary generated files and directories are ignored.
+
+## Phase 5: Final Review, Testing & Changelog
+
+-   [ ] Run all quality checks: `ruff`, `mypy`.
+-   [ ] Run all tests: `pytest`. Ensure full coverage for MVP features.
+-   [ ] Manually review all changes.
+-   [ ] Update `PLAN.md` and `TODO.md` to reflect completed work.
+-   [ ] Finalize `CHANGELOG.md`.
+
+## Phase 6: Submission
+
+-   [ ] Commit all changes with a descriptive message.
+-   [ ] Use an appropriate branch name for submission.
+
+2025-06-25 13:40:07 -
+📦 Repomix v0.3.9
+
+No custom config found at repomix.config.json5, repomix.config.jsonc, repomix.config.json or global config at /home/jules/.config/repomix/repomix.config.json5, /home/jules/.config/repomix/repomix.config.jsonc, /home/jules/.config/repomix/repomix.config.json.
 You can add a config file for additional settings. Please check https://github.com/yamadashy/repomix for more information.
 ⠙ Collecting files...
 [2K[1A[2K[G⠹ Collecting files...
-[2K[1A[2K[G⠸ Collect file... (10/29) docs/review-copilot.md
-[2K[1A[2K[G⠼ Running security check...
-[2K[1A[2K[G⠴ Processing files...
-[2K[1A[2K[G⠦ Processing files...
-[2K[1A[2K[G⠧ Processing files...
-[2K[1A[2K[G⠇ Writing output file...
+[2K[1A[2K[G⠸ Collecting files...
+[2K[1A[2K[G⠼ Collect file... (23/28) LICENSE
+[2K[1A[2K[G⠴ Collect file... (23/28) LICENSE
+[2K[1A[2K[G⠦ Running security check...
+[2K[1A[2K[G⠧ Running security check... (23/28) LICENSE
+[2K[1A[2K[G⠇ Processing files...
+[2K[1A[2K[G⠏ Processing files...
+[2K[1A[2K[G⠋ Processing file... (8/28) docs/research/web-search-api.md
+[2K[1A[2K[G⠙ Processing file... (13/28) examples/run_action_config_example.py
+[2K[1A[2K[G⠹ Processing file... (24/28) llms.txt
+[2K[1A[2K[G⠸ Calculating metrics...
+[2K[1A[2K[G⠼ Calculating metrics...
+[2K[1A[2K[G⠴ Calculating metrics...
+[2K[1A[2K[G⠦ Calculating metrics...
+[2K[1A[2K[G⠧ Calculating metrics...
+[2K[1A[2K[G⠇ Calculating metrics...
 [2K[1A[2K[G⠏ Calculating metrics...
 [2K[1A[2K[G⠋ Calculating metrics...
 [2K[1A[2K[G⠙ Calculating metrics...
-[2K[1A[2K[G⠹ Calculating metrics...
-[2K[1A[2K[G⠸ Calculating metrics... (7/29) docs/people-api-tldr.md
+[2K[1A[2K[G⠹ Calculating metrics... (19/28) .gitignore
+[2K[1A[2K[G⠸ Calculating metrics... (23/28) LICENSE
 [2K[1A[2K[G✔ Packing completed successfully!
 
 📈 Top 5 Files by Character Count and Token Count:
 ──────────────────────────────────────────────────
-1.  docs/people-api.md (68,575 chars, 14,293 tokens)
-2.  docs/web-search-api.md (51,150 chars, 12,010 tokens)
-3.  pyproject.toml (7,326 chars, 2,089 tokens)
-4.  docs/people-api-tldr.md (6,730 chars, 1,499 tokens)
-5.  cleanup.py (5,904 chars, 1,316 tokens)
+1.  llms.txt (270,727 chars, 62,058 tokens, 71.7%)
+2.  README.md (11,863 chars, 2,854 tokens, 3.3%)
+3.  pyproject.toml (9,962 chars, 2,487 tokens, 2.9%)
+4.  src/twat_llm/mallmo.py (9,073 chars, 2,280 tokens, 2.6%)
+5.  tests/test_mallmo.py (8,415 chars, 2,293 tokens, 2.6%)
 
 🔎 Security Check:
 ──────────────────
@@ -288,9 +695,9 @@ You can add a config file for additional settings. Please check https://github.c
 
 📊 Pack Summary:
 ────────────────
-  Total Files: 29 files
-  Total Chars: 176,893 chars
- Total Tokens: 40,491 tokens
+  Total Files: 28 files
+  Total Chars: 369,140 chars
+ Total Tokens: 87,552 tokens
        Output: REPO_CONTENT.txt
      Security: ✔ No suspicious files detected
 
@@ -299,4 +706,4 @@ Your repository has been successfully packed.
 
 💡 Repomix is now available in your browser! Try it at https://repomix.com
 
-2025-03-05 12:14:46 - Repository content mixed into REPO_CONTENT.txt
+2025-06-25 13:40:07 - Repository content mixed into REPO_CONTENT.txt

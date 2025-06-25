@@ -342,7 +342,7 @@ def repomix(
     """
     try:
         # Build command
-        cmd = ["repomix"]
+        cmd = ["npx", "repomix"] # Added npx
         if compress:
             cmd.append("--compress")
         if remove_empty_lines:

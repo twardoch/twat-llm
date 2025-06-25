@@ -2,52 +2,49 @@
 description: File tree of the project
 globs: 
 ---
-[ 896]  .
-├── [  64]  .benchmarks
-├── [  96]  .cursor
-│   └── [ 224]  rules
+[4.0K]  .
+├── [4.0K]  .cursor
+│   └── [4.0K]  rules
 │       ├── [ 821]  0project.mdc
 │       ├── [ 516]  cleanup.mdc
 │       ├── [1.7K]  filetree.mdc
 │       └── [2.0K]  quality.mdc
-├── [  96]  .github
-│   └── [ 128]  workflows
-│       ├── [2.7K]  push.yml
+├── [4.0K]  .github
+│   └── [4.0K]  workflows
+│       ├── [2.9K]  push.yml
 │       └── [1.4K]  release.yml
-├── [3.5K]  .gitignore
-├── [ 470]  .pre-commit-config.yaml
-├── [  96]  .specstory
-│   └── [ 160]  history
+├── [3.6K]  .gitignore
+├── [1.3K]  .pre-commit-config.yaml
+├── [4.0K]  .specstory
+│   └── [4.0K]  history
 │       ├── [2.0K]  .what-is-this.md
 │       ├── [4.0K]  reviewing-the-reviewers-a-critical-analysis.md
 │       └── [4.4K]  writeup-review-and-rating-analysis.md
-├── [ 987]  CLEANUP.txt
+├── [3.2K]  CHANGELOG.md
 ├── [1.0K]  LICENSE
 ├── [1.5K]  LOG.md
-├── [ 706]  README.md
-├── [173K]  REPO_CONTENT.txt
-├── [   7]  VERSION.txt
+├── [ 12K]  README.md
+├── [4.0K]  TODO.md
 ├── [ 13K]  cleanup.py
-├── [ 160]  dist
-├── [ 384]  docs
-│   ├── [6.6K]  people-api-tldr.md
-│   ├── [ 67K]  people-api.md
-│   ├── [ 189]  people.py
-│   ├── [2.6K]  review-copilot.md
-│   ├── [3.1K]  review-cursor.md
-│   ├── [3.1K]  review-o3.md
-│   ├── [2.3K]  review-trae.md
-│   ├── [ 350]  serp.py
-│   └── [ 50K]  web-search-api.md
-├── [ 426]  package.toml
-├── [7.2K]  pyproject.toml
-├── [ 224]  src
-│   ├── [ 279]  funchain.py
-│   ├── [3.2K]  llm_plugins.py
-│   ├── [8.7K]  mallmo.py
-│   └── [ 128]  twat_llm
-│       └── [1.6K]  twat_llm.py
-└── [ 128]  tests
-    └── [ 148]  test_twat_llm.py
+├── [4.0K]  docs
+│   └── [4.0K]  research
+│       ├── [1.6K]  people-api.md
+│       └── [2.1K]  web-search-api.md
+├── [4.0K]  examples
+│   ├── [3.2K]  check_llm_plugins.py
+│   ├── [4.9K]  example_people_script.py
+│   ├── [4.2K]  example_serp_script.py
+│   ├── [2.7K]  funchain_example.py
+│   └── [5.8K]  run_action_config_example.py
+├── [265K]  llms.txt
+├── [9.7K]  pyproject.toml
+├── [4.0K]  src
+│   └── [4.0K]  twat_llm
+│       ├── [1.2K]  __init__.py
+│       ├── [ 15K]  mallmo.py
+│       └── [8.7K]  twat_llm.py
+└── [4.0K]  tests
+    ├── [ 16K]  test_mallmo.py
+    └── [ 13K]  test_twat_llm.py
 
-13 directories, 34 files
+13 directories, 31 files
