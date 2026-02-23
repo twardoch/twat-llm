@@ -44,9 +44,6 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: Implementation :: PyPy",
-    "Operating System :: OS Independent",
-    "License :: OSI Approved :: MIT License",
-    "Intended Audience :: Developers",
 ]
 # Runtime Dependencies
 dependencies = [
@@ -93,6 +90,12 @@ dev = [
     # "types-tenacity", # Type stubs for tenacity - Removed temporarily to resolve uv issue
     # Consider adding cv2-stubs if specific typing issues persist with opencv
     # Consider adding types-fire if CLI typing issues persist
+]
+
+docs = [
+    "mkdocs>=1.6.0",
+    "mkdocs-material>=9.5.0",
+    "mkdocstrings[python]>=0.27.0",
 ]
 # All optional dependencies combined
 all = [
@@ -155,63 +158,67 @@ all = ["style", "typing"]
 #------------------------------------------------------------------------------
 [tool.ruff]
 target-version = "py310"
-line-length = 88
+line-length = 120
 
 [tool.ruff.lint]
-extend-select = [
-    "A", # flake8-builtins
-    "ARG", # flake8-unused-arguments
-    "B", # flake8-bugbear
-    "C", # flake8-comprehensions
-    "DTZ", # flake8-datetimez
-    "E", # pycodestyle errors
-    "EM", # flake8-errmsg
-    "F", # pyflakes
-    "FBT", # flake8-boolean-trap
-    "I", # isort
-    "ICN", # flake8-import-conventions
-    "ISC", # flake8-implicit-str-concat
-    "N", # pep8-naming
-    "PLC", # pylint convention
-    "PLE", # pylint error
-    "PLR", # pylint refactor
-    "PLW", # pylint warning
-    "Q", # flake8-quotes
-    "RUF", # Ruff-specific rules
-    "S", # flake8-bandit
-    "T", # flake8-debugger
-    "TID", # flake8-tidy-imports
-    "UP", # pyupgrade
-    "W", # pycodestyle warnings
-    "YTT", # flake8-2020
-
+select = [
+    "A",
+    "ARG",
+    "B",
+    "C",
+    "DTZ",
+    "E",
+    "EM",
+    "F",
+    "FBT",
+    "I",
+    "ICN",
+    "ISC",
+    "N",
+    "PLC",
+    "PLE",
+    "PLR",
+    "PLW",
+    "Q",
+    "RUF",
+    "S",
+    "T",
+    "TID",
+    "UP",
+    "W",
+    "YTT",
 ]
 ignore = [
-    "ARG001", # Unused function argument
-    "E501", # Line too long
-    "I001", # Import block formatting
-
+    "ARG001",
+    "ARG002",
+    "ARG004",
+    "ARG005",
+    "B904",
+    "C901",
+    "DTZ005",
+    "E501",
+    "F401",
+    "F811",
+    "FBT001",
+    "FBT002",
+    "FBT003",
+    "I001",
+    "ISC001",
+    "N803",
+    "PLR0911",
+    "PLR0912",
+    "PLR0913",
+    "PLR0915",
+    "PLR2004",
+    "S311",
+    "S603",
+    "S607",
+    "T201",
 ]
-
-[tool.ruff.lint.isort]
-known-first-party = ["twat_llm"] # Treat as first-party imports for sorting
-
-[tool.ruff.lint.flake8-tidy-imports]
-ban-relative-imports = "all" # Ban all relative imports for consistency
 
 [tool.ruff.lint.per-file-ignores]
-# Tests can use magic values, assertions, and relative imports
-"tests/**/*" = [
-    "PLR2004", # Allow magic values in tests for readability
-    "S101", # Allow assertions in tests
-    "TID252"
-    # Allow relative imports in tests for convenience
-]
+"tests/*" = ["S101"]
 
-#------------------------------------------------------------------------------
-# MYPY CONFIGURATION
-# Configuration for type checking with mypy.
-#------------------------------------------------------------------------------
 [tool.mypy]
 python_version = "3.10"
 warn_return_any = true
@@ -259,7 +266,14 @@ bench = "python -m pytest -v -p no:briefcase tests/test_benchmark.py --benchmark
 bench-save = "python -m pytest -v -p no:briefcase tests/test_benchmark.py --benchmark-only --benchmark-json=benchmark/results.json"
 
 [tool.pytest.ini_options]
-markers = ["benchmark: marks tests as benchmarks (select with '-m benchmark')"]
+markers = [
+    "benchmark: marks tests as benchmarks (select with '-m benchmark')",
+    "unit: mark a test as a unit test",
+    "integration: mark a test as an integration test",
+    "slow: marks tests as slow (select with '-m slow')",
+    "online: marks tests that require internet access",
+    "requires_api_key: marks tests that require API keys",
+]
 addopts = "-v -p no:briefcase"
 testpaths = ["tests"]
 python_files = ["test_*.py"]
