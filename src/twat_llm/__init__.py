@@ -2,16 +2,12 @@
 #
 # SPDX-License-Identifier: MIT
 
+from .__version__ import __version__
+
 """twat-llm: LLM integration for twat."""
 
 from __future__ import annotations
 
-from importlib.metadata import PackageNotFoundError, version
-
-try:
-    __version__ = version("twat-llm")
-except PackageNotFoundError:
-    __version__ = "0.0.0-dev"
 
 # Expose main functionalities for the library user
 from twat_llm.mallmo import (

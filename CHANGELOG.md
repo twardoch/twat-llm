@@ -46,4 +46,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Consider adding more LLM providers and models
 
 [unreleased]: https://github.com/twardoch/twat-llm/compare/v0.0.1...HEAD
-[v0.0.1]: https://github.com/twardoch/twat-llm/releases/tag/v0.0.1 
+[v0.0.1]: https://github.com/twardoch/twat-llm/releases/tag/v0.0.1

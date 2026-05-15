@@ -28,6 +28,7 @@ Default fallback models (tried in order when no ``model_ids`` is given):
 ``gpt-4o-mini``, ``openrouter/google/gemini-flash-1.5``,
 ``openrouter/openai/gpt-4o-mini``, ``claude-3-haiku-20240307``.
 """
+
 from __future__ import annotations
 
 import io

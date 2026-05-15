@@ -38,7 +38,7 @@ class TestCLIIntegration:
     def test_cli_help(self):
         """Test that CLI help command works."""
         result = subprocess.run(
-            ["python", "-m", "twat_llm.mallmo", "--help"], capture_output=True, text=True, cwd="/root/repo"
+            ["python", "-m", "twat_llm.mallmo", "--help"], capture_output=True, text=True, cwd="/root/repo", check=False
         )
         assert result.returncode == 0
         assert "Usage:" in result.stdout or "help" in result.stdout
@@ -53,6 +53,7 @@ class TestCLIIntegration:
             capture_output=True,
             text=True,
             cwd="/root/repo",
+            check=False,
         )
 
         # The CLI should work even if LLM fails
@@ -71,6 +72,7 @@ class TestCLIIntegration:
                 capture_output=True,
                 text=True,
                 cwd="/root/repo",
+                check=False,
             )
 
             # CLI should handle batch files gracefully
