@@ -107,17 +107,20 @@ docs = [
 ]
 # All optional dependencies combined
 all = [
-    "twat>=1.8.1", # Main twat package
+    "twat>=1.8.1",
     "llm>=0.8",
     "Pillow>=9.0.0",
     "tenacity>=8.0.0",
-    # "opencv-python-headless>=4.0.0", # Removed for MVP streamlining
+    "opencv-python-headless>=4.0.0",
+    "twat-fs[all]>=2.7.7",
 ]
-
 #------------------------------------------------------------------------------
 # HATCH CONFIGURATION
 # Configuration for the Hatch build system and environments.
 #------------------------------------------------------------------------------
+fs = [
+    "twat-fs[all]>=2.7.7",
+]
 [tool.hatch.version]
 source = "vcs"
 
