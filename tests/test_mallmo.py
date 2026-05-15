@@ -111,9 +111,7 @@ def test_try_model_success(mock_get_model):
     result = _try_model("Test prompt", "test-model")
     assert result == "Successful response"
     mock_get_model.assert_called_once_with("test-model")
-    mock_llm_model_instance.prompt.assert_called_once_with(
-        "Test prompt", attachments=None
-    )
+    mock_llm_model_instance.prompt.assert_called_once_with("Test prompt", attachments=None)
 
 
 @patch("twat_llm.mallmo.llm.get_model")
@@ -132,9 +130,7 @@ def test_try_model_failure_prompt_error(mock_get_model):
     mock_llm_model_instance.supports_multimodal = True
     mock_get_model.return_value = mock_llm_model_instance
 
-    with pytest.raises(
-        ModelInvocationError, match="Error invoking model test-model: Prompt error"
-    ):
+    with pytest.raises(ModelInvocationError, match="Error invoking model test-model: Prompt error"):
         _try_model("Test prompt", "test-model")
 
 
@@ -200,9 +196,7 @@ def test_ask_with_media(mock_attachment_class, mock_try_model, mock_prepare_medi
     result = ask("Describe this image", media_paths=[media_path])
     assert result == "Response with media"
     mock_prepare_media.assert_called_once_with(media_path)
-    mock_attachment_class.assert_called_once_with(
-        content=b"imagedata", content_type="image/jpeg"
-    )
+    mock_attachment_class.assert_called_once_with(content=b"imagedata", content_type="image/jpeg")
     mock_try_model.assert_called_once_with(
         "Describe this image",
         mallmo.DEFAULT_FALLBACK_MODELS[0],
@@ -237,17 +231,13 @@ def test_process_step_tuple():
 
 def test_process_step_invalid_type():
     """Test _process_step with an invalid type."""
-    with pytest.raises(
-        TypeError, match="Step must be a string, function, or a 1-2 element tuple"
-    ):
+    with pytest.raises(TypeError, match="Step must be a string, function, or a 1-2 element tuple"):
         _process_step(123, "initial_data")  # type: ignore
 
 
 def test_process_step_invalid_tuple_format():
     """Test _process_step with an invalid tuple format."""
-    with pytest.raises(
-        TypeError, match="Optional second element in step tuple must be a dictionary"
-    ):
+    with pytest.raises(TypeError, match="Optional second element in step tuple must be a dictionary"):
         _process_step(("prompt", "not_a_dict"), "initial_data")  # type: ignore
 
 
@@ -255,9 +245,7 @@ def test_ask_chain_simple():
     """Test ask_chain with simple string prompts."""
     with patch("twat_llm.mallmo.ask") as mock_ask_func:
 
-        def side_effect_func(
-            prompt, data, **kwargs
-        ):  # Add **kwargs to match 'ask' signature
+        def side_effect_func(prompt, data, **kwargs):  # Add **kwargs to match 'ask' signature
             return f"{prompt} processed with {data}"
 
         mock_ask_func.side_effect = side_effect_func
@@ -267,9 +255,7 @@ def test_ask_chain_simple():
         assert result == "Step2 processed with Step1 processed with Initial"
         assert mock_ask_func.call_count == 2
         mock_ask_func.assert_any_call(prompt="Step1", data="Initial")
-        mock_ask_func.assert_any_call(
-            prompt="Step2", data="Step1 processed with Initial"
-        )
+        mock_ask_func.assert_any_call(prompt="Step2", data="Step1 processed with Initial")
 
 
 @patch("twat_llm.mallmo.ProcessPoolExecutor")
@@ -279,12 +265,8 @@ def test_ask_batch_success(mock_process_pool_executor):
     expected_responses = ["response1", "response2"]
 
     mock_executor_instance = MagicMock()
-    mock_executor_instance.map.return_value = iter(
-        expected_responses
-    )  # map returns an iterator
-    mock_process_pool_executor.return_value.__enter__.return_value = (
-        mock_executor_instance
-    )
+    mock_executor_instance.map.return_value = iter(expected_responses)  # map returns an iterator
+    mock_process_pool_executor.return_value.__enter__.return_value = mock_executor_instance
 
     responses = ask_batch(prompts, model_ids=["test-model"])
 
@@ -323,16 +305,10 @@ def test_ask_batch_processing_error_in_worker(mock_process_pool_executor):
             results.append(f"processed_{item[0]}")
         return iter(results)
 
-    mock_executor_instance.map.side_effect = BatchProcessingError(
-        "Worker failed"
-    )  # More direct way to test this
-    mock_process_pool_executor.return_value.__enter__.return_value = (
-        mock_executor_instance
-    )
+    mock_executor_instance.map.side_effect = BatchProcessingError("Worker failed")  # More direct way to test this
+    mock_process_pool_executor.return_value.__enter__.return_value = mock_executor_instance
 
-    with pytest.raises(
-        BatchProcessingError, match="Batch processing failed: Worker failed"
-    ):
+    with pytest.raises(BatchProcessingError, match="Batch processing failed: Worker failed"):
         ask_batch(prompts, model_ids=["test-model"])
 
 
@@ -340,21 +316,19 @@ def test_ask_batch_processing_error_in_worker(mock_process_pool_executor):
 
 
 @patch("twat_llm.mallmo.ask")
-@patch("sys.exit") # Patch sys.exit
+@patch("sys.exit")  # Patch sys.exit
 def test_cli_simple_prompt(mock_exit, mock_ask_func, capsys):
     """Test CLI with a simple prompt."""
     mock_ask_func.return_value = "CLI response"
     cli(prompt="Hello CLI", model="test-cli-model")
     captured = capsys.readouterr()
     assert "CLI response" in captured.out
-    mock_ask_func.assert_called_once_with(
-        "Hello CLI", data=None, model_ids=["test-cli-model"], media_paths=None
-    )
-    mock_exit.assert_not_called() # Should not exit if successful
+    mock_ask_func.assert_called_once_with("Hello CLI", data=None, model_ids=["test-cli-model"], media_paths=None)
+    mock_exit.assert_not_called()  # Should not exit if successful
 
 
 @patch("twat_llm.mallmo.ask_batch")
-@patch("sys.exit") # Patch sys.exit
+@patch("sys.exit")  # Patch sys.exit
 def test_cli_batch_prompt_file(mock_exit, mock_ask_batch, capsys, tmp_path):
     """Test CLI with batch prompts from a file."""
     prompt_file = tmp_path / "prompts.txt"
@@ -368,13 +342,11 @@ def test_cli_batch_prompt_file(mock_exit, mock_ask_batch, capsys, tmp_path):
     assert "Processing 2 prompts in batch mode..." in captured.out
     assert "Response for prompt 1:\nResponse 1" in captured.out
     assert "Response for prompt 2:\nResponse 2" in captured.out
-    mock_ask_batch.assert_called_once_with(
-        ["Prompt 1", "Prompt 2"], model_ids=["test-batch-model"], num_processes=None
-    )
+    mock_ask_batch.assert_called_once_with(["Prompt 1", "Prompt 2"], model_ids=["test-batch-model"], num_processes=None)
 
 
 @patch("twat_llm.mallmo.ask_batch")
-@patch("sys.exit") # Patch sys.exit
+@patch("sys.exit")  # Patch sys.exit
 def test_cli_batch_prompt_output_file(mock_exit, mock_ask_batch, tmp_path, capsys):
     """Test CLI with batch prompts and output to a file."""
     prompt_file = tmp_path / "prompts.txt"
@@ -387,9 +359,7 @@ def test_cli_batch_prompt_output_file(mock_exit, mock_ask_batch, tmp_path, capsy
     with patch("sys.stdout", new_callable=io.StringIO) as mock_stdout:
         cli(batch_prompts_file=str(prompt_file), output_file=str(output_file_path))
 
-    mock_ask_batch.assert_called_once_with(
-        ["Prompt 1", "Prompt 2"], model_ids=None, num_processes=None
-    )
+    mock_ask_batch.assert_called_once_with(["Prompt 1", "Prompt 2"], model_ids=None, num_processes=None)
     assert output_file_path.read_text() == "Response 1\nResponse 2\n"
     assert f"Batch output written to {output_file_path!s}" in mock_stdout.getvalue()
     # We expect sys.exit(0) to be called if output_file is successfully written.
@@ -400,20 +370,17 @@ def test_cli_batch_prompt_output_file(mock_exit, mock_ask_batch, tmp_path, capsy
     # mock_exit.assert_called_once_with(0) # This might be too strict depending on Fire.
 
 
-@patch("sys.exit") # Patch sys.exit
+@patch("sys.exit")  # Patch sys.exit
 def test_cli_no_prompt_or_batch_file(mock_exit, capsys):
     """Test CLI when neither prompt nor batch_prompts_file is provided."""
-    cli() # Call with no arguments
+    cli()  # Call with no arguments
     captured = capsys.readouterr()
-    assert (
-        "Error: You must provide a 'prompt' or use '--batch_prompts_file'."
-        in captured.err
-    )
+    assert "Error: You must provide a 'prompt' or use '--batch_prompts_file'." in captured.err
     mock_exit.assert_called_once_with(1)
 
 
 @patch("twat_llm.mallmo.ask", side_effect=LLMError("Test LLM Error"))
-@patch("sys.exit") # Patch sys.exit
+@patch("sys.exit")  # Patch sys.exit
 def test_cli_llm_error(mock_exit, mock_ask, capsys):
     """Test CLI handling of LLMError."""
     cli(prompt="test")
@@ -424,7 +391,7 @@ def test_cli_llm_error(mock_exit, mock_ask, capsys):
 
 @patch("builtins.open", new_callable=mock_open)
 @patch("twat_llm.mallmo.ask_batch")
-@patch("sys.exit") # Patch sys.exit
+@patch("sys.exit")  # Patch sys.exit
 def test_cli_batch_file_read_error(mock_exit, mock_ask_batch, mock_file_open, capsys):
     """Test CLI with batch prompts file that causes a read error."""
     mock_file_open.side_effect = OSError("Cannot read file")
@@ -436,7 +403,7 @@ def test_cli_batch_file_read_error(mock_exit, mock_ask_batch, mock_file_open, ca
 
 
 @patch("twat_llm.mallmo.ask_batch")
-@patch("sys.exit") # Patch sys.exit
+@patch("sys.exit")  # Patch sys.exit
 def test_cli_batch_empty_file(mock_exit, mock_ask_batch, capsys, tmp_path):
     """Test CLI with an empty batch prompts file."""
     prompt_file = tmp_path / "empty_prompts.txt"

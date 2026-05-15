@@ -1,4 +1,33 @@
 #!/usr/bin/env python3
+"""mallmo: Minimal LLM helper built on Simon Willison's ``llm`` library.
+
+``llm`` (https://llm.datasette.io) is a CLI and Python library that talks to
+dozens of language models — OpenAI, Anthropic, Google, local models via
+Ollama, and many more — through a common interface.  Install model plugins
+with ``llm install llm-claude`` etc.
+
+This module wraps ``llm`` with three useful additions:
+
+:func:`ask`
+    Send a prompt to one model, with automatic fallback to the next model in
+    ``model_ids`` if a call fails.  Optionally attach image files (JPEG, PNG,
+    GIF, WebP, BMP, TIFF) for multimodal prompts — images are resized to
+    512 × 512 before sending to keep token usage reasonable.
+
+:func:`ask_chain`
+    Pipe data through a sequence of steps where each step is either a string
+    prompt (fed to :func:`ask`) or a plain Python function.  The output of
+    each step becomes the input to the next.
+
+:func:`ask_batch`
+    Process a list of prompts in parallel using :class:`ProcessPoolExecutor`.
+    Useful for bulk summarisation or classification tasks.  Media attachments
+    are not supported in batch mode.
+
+Default fallback models (tried in order when no ``model_ids`` is given):
+``gpt-4o-mini``, ``openrouter/google/gemini-flash-1.5``,
+``openrouter/openai/gpt-4o-mini``, ``claude-3-haiku-20240307``.
+"""
 from __future__ import annotations
 
 import io
@@ -11,7 +40,7 @@ from collections.abc import Callable
 
 # import cv2 # Removed: opencv-python-headless dependency removed for MVP
 import llm
-from fire import Fire # type: ignore[import-untyped]
+from fire import Fire  # type: ignore[import-untyped]
 from PIL import Image
 from PIL.Image import Resampling
 from tenacity import (
@@ -133,15 +162,11 @@ def _prepare_media(path: Path) -> bytes:
 
 @retry(
     retry=retry_if_exception_type(ModelInvocationError),
-    stop=stop_after_attempt(
-        DEFAULT_RETRY_ATTEMPTS + 1
-    ),  # +1 because first attempt is not a "retry"
+    stop=stop_after_attempt(DEFAULT_RETRY_ATTEMPTS + 1),  # +1 because first attempt is not a "retry"
     wait=wait_exponential(multiplier=1, min=4, max=10),
     reraise=True,
 )
-def _try_model(
-    prompt: str, model_id: str, attachments: list[llm.Attachment] | None = None
-) -> str:
+def _try_model(prompt: str, model_id: str, attachments: list[llm.Attachment] | None = None) -> str:
     """Try a single model with retry logic."""
     try:
         model = llm.get_model(model_id)
@@ -192,9 +217,7 @@ def _process_step(
         # For now, assuming 'ask' will be available in the scope this function is used.
         result = ask(prompt=processor, data=current_data, **kwargs)  # type: ignore[misc]
     else:
-        msg = (
-            f"Step processor must be either a function or string, got {type(processor)}"
-        )
+        msg = f"Step processor must be either a function or string, got {type(processor)}"
         raise TypeError(  # Should be unreachable due to earlier checks
             msg
         )
@@ -204,9 +227,7 @@ def _process_step(
 
 def ask_chain(
     data: str,
-    steps: Iterable[
-        str | Callable[..., Any] | tuple[str | Callable[..., Any], dict[str, Any]]
-    ],
+    steps: Iterable[str | Callable[..., Any] | tuple[str | Callable[..., Any], dict[str, Any]]],
 ) -> str:
     """
     Process a chain of steps where each step is either a function call or a prompt.
@@ -226,9 +247,7 @@ def ask_chain(
         LLMError: If any LLM-related error occurs during processing.
     """
     current_data = data
-    for (
-        step_item
-    ) in steps:  # Renamed to avoid conflict with outer 'step' if this were nested
+    for step_item in steps:  # Renamed to avoid conflict with outer 'step' if this were nested
         current_data = _process_step(step_item, current_data)
     return current_data
 
@@ -257,15 +276,9 @@ def ask(
         ModelInvocationError: If a model fails to process the request.
     """
     if data:
-        prompt = (
-            prompt.replace("$input", data)
-            if "$input" in prompt
-            else f"{prompt}:\n\n<input>{data}</input>"
-        )
+        prompt = prompt.replace("$input", data) if "$input" in prompt else f"{prompt}:\n\n<input>{data}</input>"
 
-    models_to_try_list = (
-        list(model_ids) if model_ids is not None else DEFAULT_FALLBACK_MODELS
-    )
+    models_to_try_list = list(model_ids) if model_ids is not None else DEFAULT_FALLBACK_MODELS
     if not models_to_try_list:  # Ensure there's at least one model to try
         msg = "No model_ids provided and no default models configured."
         raise ValueError(msg)
@@ -278,9 +291,7 @@ def ask(
             try:
                 image_bytes = _prepare_media(path)
                 # Assuming JPEG for all prepared media for simplicity, adjust if other formats are possible
-                attachments_list.append(
-                    llm.Attachment(content=image_bytes, content_type="image/jpeg")
-                )
+                attachments_list.append(llm.Attachment(content=image_bytes, content_type="image/jpeg"))
             except MediaProcessingError:
                 raise
             except Exception as e:
@@ -295,9 +306,7 @@ def ask(
             last_error = e
             # print(f"Model {model_id} failed: {e!s}", file=sys.stderr) # Optional: log attempt failure
             continue
-        except (
-            Exception
-        ) as e:  # Should ideally not happen if _try_model handles its errors well
+        except Exception as e:  # Should ideally not happen if _try_model handles its errors well
             last_error = e
             # print(f"Unexpected error with model {model_id}: {e!s}", file=sys.stderr) # Optional: log attempt failure
             continue
@@ -344,9 +353,7 @@ def ask_batch(
     if not prompts:
         return []
 
-    actual_num_processes = (
-        num_processes if num_processes is not None else os.cpu_count()
-    )
+    actual_num_processes = num_processes if num_processes is not None else os.cpu_count()
     if actual_num_processes is None:  # os.cpu_count() can return None
         actual_num_processes = 1  # Default to 1 if cpu_count is not available
 
@@ -385,9 +392,7 @@ def cli(
         processes: Number of processes for batch processing.
     """
     model_ids_list: Sequence[str] | None = [model] if model else None
-    media_paths_list: Sequence[Path] | None = (
-        [Path(p) for p in media] if media else None
-    )
+    media_paths_list: Sequence[Path] | None = [Path(p) for p in media] if media else None
 
     try:
         if batch_prompts_file:

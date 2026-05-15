@@ -11,6 +11,7 @@ Requirements:
   will use them for string-based prompt steps.
   See https://llm.datasette.io/en/stable/models/index.html for model setup.
 """
+
 from __future__ import annotations
 
 import logging
@@ -22,10 +23,7 @@ logger = logging.getLogger(__name__)
 try:
     from twat_llm.mallmo import ask_chain, LLMError
 except ImportError:
-    logger.error(
-        "Failed to import ask_chain from twat_llm.mallmo. "
-        "Ensure 'twat-llm' is installed and accessible."
-    )
+    logger.error("Failed to import ask_chain from twat_llm.mallmo. Ensure 'twat-llm' is installed and accessible.")
     raise
 
 
@@ -33,6 +31,7 @@ def to_lower_case(text_input: str) -> str:
     """Converts a string to lower case. Simple callable example."""
     logger.info(f"Converting to lower case: '{text_input}'")
     return text_input.lower()
+
 
 def main():
     """Runs the ask_chain example."""
@@ -46,29 +45,27 @@ def main():
     processing_steps = [
         "Convert the full name to all caps in: $input",  # $input will be initial_data
         "Translate into Polish:",  # Input will be the result of the previous step
-        to_lower_case,             # Input will be the Polish translation
+        to_lower_case,  # Input will be the Polish translation
     ]
 
     try:
         logger.info("Starting ask_chain process...")
-        final_output = ask_chain(
-            data=initial_data,
-            steps=processing_steps
-        )
+        final_output = ask_chain(data=initial_data, steps=processing_steps)
         logger.info("\n--- FunChain Example Result ---")
-        print(f"Initial Data: {initial_data}") # noqa: T201
-        print(f"Steps: {processing_steps}") # noqa: T201
-        print(f"Final Output: {final_output}") # noqa: T201
+        print(f"Initial Data: {initial_data}")
+        print(f"Steps: {processing_steps}")
+        print(f"Final Output: {final_output}")
 
     except LLMError as e:
         logger.error(f"An LLM-related error occurred in the chain: {e}")
-        print(f"LLM Error: {e}") # noqa: T201
-        print("Please ensure your `llm` models are correctly configured.") # noqa: T201
+        print(f"LLM Error: {e}")
+        print("Please ensure your `llm` models are correctly configured.")
     except Exception as e:
         logger.exception(f"An unexpected error occurred: {e}")
-        print(f"An unexpected error occurred: {e}") # noqa: T201
+        print(f"An unexpected error occurred: {e}")
+
 
 if __name__ == "__main__":
     main()
-    print("\nFunChain example finished.") # noqa: T201
-    print("Ensure your `llm` library is configured with models for the prompt steps.") # noqa: T201
+    print("\nFunChain example finished.")
+    print("Ensure your `llm` library is configured with models for the prompt steps.")

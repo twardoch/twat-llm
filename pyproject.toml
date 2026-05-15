@@ -69,6 +69,14 @@ Documentation = "https://github.com/twardoch/twat-llm#readme"
 Issues = "https://github.com/twardoch/twat-llm/issues"
 Source = "https://github.com/twardoch/twat-llm"
 
+# Entry point that registers this package as a twat plugin
+[project.entry-points."twat.plugins"]
+llm = "twat_llm"
+
+# CLI script
+[project.scripts]
+twat-llm = "twat_llm:main"
+
 #------------------------------------------------------------------------------
 # OPTIONAL DEPENDENCIES
 # Additional dependencies for optional features, development, and testing.

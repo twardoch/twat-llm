@@ -1,6 +1,6 @@
 # `twat-llm`: Advanced LLM Integration for Python Applications
 
-**`twat-llm`** is a powerful Python library designed to streamline the integration of Large Language Models (LLMs) with external data sources and services. It empowers Python developers to easily build sophisticated applications that leverage the analytical capabilities of LLMs for tasks such as data enrichment, web content analysis, and complex, chained operations. As part of the [twat](https://pypi.org/project/twat/) collection of tools, `twat-llm` adheres to high standards of modern Python development, offering a robust and flexible solution.
+**`twat-llm`** owns text-heavy Large Language Model work in the twat ecosystem: prompts, chat-style calls, chains, batches, and text-centric multimodal analysis. Generated media belongs in `twat-genai`; deterministic text algorithms belong in `twat-text`.
 
 ## Who is `twat-llm` for?
 
@@ -22,6 +22,7 @@ This library is aimed at Python developers who need to:
 *   **Flexible Prompting & Chaining:** Support for direct prompting, incorporating external data into prompts, and chaining multiple LLM calls or Python functions for complex workflows (`mallmo.ask_chain`).
 *   **Efficient Batch Processing:** Capability to process multiple prompts in parallel for improved performance (`mallmo.ask_batch`).
 *   **Media Handling:** Utilities for processing and attaching images to LLM prompts.
+*   **Stable Text Adapter:** `summarize_text`, `rewrite_text`, `extract_structured_data`, and `classify_text` provide a narrow boundary used by `twat_text`.
 *   **Robust Development Practices:** Built with modern Python (3.10+), using Hatch for project management, Ruff for linting, MyPy for type checking, and a comprehensive test suite with Pytest.
 
 ## Installation
@@ -235,6 +236,19 @@ except mallmo.LLMError as e:
 except mallmo.MediaProcessingError as e:
     print(f"A media processing error occurred: {e}")
 ```
+
+#### Stable adapter API for `twat_text`
+
+```python
+from twat_llm import summarize_text, rewrite_text, extract_structured_data, classify_text
+
+summary = summarize_text(long_text)
+rewrite = rewrite_text(draft, instruction="Make this direct and concise")
+jsonish = extract_structured_data(note, schema_hint="Return JSON with name and email")
+label = classify_text(message, labels=["support", "sales", "spam"])
+```
+
+These helpers intentionally return provider text directly. Callers that need parsed JSON should parse and validate at their own boundary.
 
 **Chaining Prompts and Functions with `mallmo.ask_chain()`**
 

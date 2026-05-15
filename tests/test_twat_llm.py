@@ -72,9 +72,7 @@ def test_action_config_search_web_missing_query():
         "action_type": "search_web",
         "parameters": {},  # Missing 'query'
     }
-    with pytest.raises(
-        pydantic.ValidationError
-    ):  # Pydantic raises ValidationError for missing fields
+    with pytest.raises(pydantic.ValidationError):  # Pydantic raises ValidationError for missing fields
         ActionConfig(**config_data)
 
 
@@ -107,9 +105,7 @@ def test_api_key_settings_no_env():
 
 @patch("twat_llm.twat_llm.httpx.Client")
 @patch("twat_llm.twat_llm.ask")
-def test_process_data_enrich_person_success(
-    mock_mallmo_ask, mock_http_client, monkeypatch
-):
+def test_process_data_enrich_person_success(mock_mallmo_ask, mock_http_client, monkeypatch):
     """Test successful person enrichment."""
     monkeypatch.setenv("PROXYCURL_API_KEY", "fake_proxy_key")
 
@@ -130,9 +126,7 @@ def test_process_data_enrich_person_success(
 
     config = ActionConfig(
         action_type="enrich_person",
-        parameters=PersonEnrichmentParams(
-            linkedin_profile_url="http://linkedin.com/in/johndoe"
-        ),
+        parameters=PersonEnrichmentParams(linkedin_profile_url="http://linkedin.com/in/johndoe"),
     )
 
     result = process_data(config)
@@ -143,9 +137,7 @@ def test_process_data_enrich_person_success(
     mock_client_instance.get.assert_called_once()
     # Ensure the prompt sent to mallmo.ask is reasonable
     call_kwargs = mock_mallmo_ask.call_args.kwargs
-    assert (
-        "John Doe" in call_kwargs["prompt"]
-    )  # Check if some profile data is in the prompt
+    assert "John Doe" in call_kwargs["prompt"]  # Check if some profile data is in the prompt
     mock_mallmo_ask.assert_called_once()
 
 
@@ -154,9 +146,7 @@ def test_process_data_enrich_person_missing_api_key(monkeypatch):
     monkeypatch.delenv("PROXYCURL_API_KEY", raising=False)  # Ensure it's not set
     config = ActionConfig(
         action_type="enrich_person",
-        parameters=PersonEnrichmentParams(
-            linkedin_profile_url="http://linkedin.com/in/johndoe"
-        ),  # type: ignore
+        parameters=PersonEnrichmentParams(linkedin_profile_url="http://linkedin.com/in/johndoe"),  # type: ignore
     )
     with pytest.raises(ValueError, match="PROXYCURL_API_KEY is required"):
         process_data(config)
@@ -190,9 +180,7 @@ def test_process_data_enrich_person_api_http_error(mock_http_client, monkeypatch
 
     config = ActionConfig(
         action_type="enrich_person",
-        parameters=PersonEnrichmentParams(
-            linkedin_profile_url="http://linkedin.com/in/johndoe"
-        ),  # type: ignore
+        parameters=PersonEnrichmentParams(linkedin_profile_url="http://linkedin.com/in/johndoe"),  # type: ignore
     )
 
     with pytest.raises(ValueError, match="Failed to retrieve data from Proxycurl"):
@@ -205,15 +193,11 @@ def test_process_data_enrich_person_api_request_error(mock_http_client, monkeypa
     monkeypatch.setenv("PROXYCURL_API_KEY", "fake_proxy_key")
 
     mock_client_instance = mock_http_client.return_value.__enter__.return_value
-    mock_client_instance.get.side_effect = httpx.RequestError(
-        "Network error", request=MagicMock()
-    )
+    mock_client_instance.get.side_effect = httpx.RequestError("Network error", request=MagicMock())
 
     config = ActionConfig(
         action_type="enrich_person",
-        parameters=PersonEnrichmentParams(
-            linkedin_profile_url="http://linkedin.com/in/johndoe"
-        ),  # type: ignore
+        parameters=PersonEnrichmentParams(linkedin_profile_url="http://linkedin.com/in/johndoe"),  # type: ignore
     )
 
     with pytest.raises(ValueError, match="Failed to connect to Proxycurl"):
@@ -222,9 +206,7 @@ def test_process_data_enrich_person_api_request_error(mock_http_client, monkeypa
 
 @patch("twat_llm.twat_llm.httpx.Client")
 @patch("twat_llm.twat_llm.ask")
-def test_process_data_enrich_person_mallmo_error(
-    mock_mallmo_ask, mock_http_client, monkeypatch
-):
+def test_process_data_enrich_person_mallmo_error(mock_mallmo_ask, mock_http_client, monkeypatch):
     """Test person enrichment when mallmo.ask raises an error."""
     monkeypatch.setenv("PROXYCURL_API_KEY", "fake_proxy_key")
 
@@ -242,14 +224,10 @@ def test_process_data_enrich_person_mallmo_error(
 
     config = ActionConfig(
         action_type="enrich_person",
-        parameters=PersonEnrichmentParams(
-            linkedin_profile_url="http://linkedin.com/in/johndoe"
-        ),  # type: ignore
+        parameters=PersonEnrichmentParams(linkedin_profile_url="http://linkedin.com/in/johndoe"),  # type: ignore
     )
 
-    with pytest.raises(
-        ValueError, match="An unexpected error occurred"
-    ):  # General error wrapping
+    with pytest.raises(ValueError, match="An unexpected error occurred"):  # General error wrapping
         process_data(config)
 
 
@@ -258,9 +236,7 @@ def test_process_data_enrich_person_mallmo_error(
 
 @patch("twat_llm.twat_llm.httpx.Client")
 @patch("twat_llm.twat_llm.ask")
-def test_process_data_search_web_success(
-    mock_mallmo_ask, mock_http_client, monkeypatch
-):
+def test_process_data_search_web_success(mock_mallmo_ask, mock_http_client, monkeypatch):
     """Test successful web search."""
     monkeypatch.setenv("SEARCH_API_KEY", "fake_search_key")
 
@@ -273,9 +249,7 @@ def test_process_data_search_web_success(
 
     mock_mallmo_ask.return_value = "LLM summary of search results"
 
-    config = ActionConfig(
-        action_type="search_web", parameters=WebSearchParams(query="test query")
-    )
+    config = ActionConfig(action_type="search_web", parameters=WebSearchParams(query="test query"))
 
     result = process_data(config)
 
@@ -285,18 +259,14 @@ def test_process_data_search_web_success(
     mock_client_instance.get.assert_called_once()
     # Ensure the prompt sent to mallmo.ask is reasonable
     call_kwargs = mock_mallmo_ask.call_args.kwargs
-    assert (
-        "Test Result" in call_kwargs["prompt"]
-    )  # Check if some search data is in the prompt
+    assert "Test Result" in call_kwargs["prompt"]  # Check if some search data is in the prompt
     mock_mallmo_ask.assert_called_once()
 
 
 def test_process_data_search_web_missing_api_key(monkeypatch):
     """Test web search when SEARCH_API_KEY is missing."""
     monkeypatch.delenv("SEARCH_API_KEY", raising=False)
-    config = ActionConfig(
-        action_type="search_web", parameters=WebSearchParams(query="test query")
-    )
+    config = ActionConfig(action_type="search_web", parameters=WebSearchParams(query="test query"))
     with pytest.raises(ValueError, match="SEARCH_API_KEY is required"):
         process_data(config)
 
@@ -316,9 +286,7 @@ def test_process_data_search_web_api_http_error(mock_http_client, monkeypatch):
     mock_client_instance = mock_http_client.return_value.__enter__.return_value
     mock_client_instance.get.return_value = mock_response
 
-    config = ActionConfig(
-        action_type="search_web", parameters=WebSearchParams(query="test query")
-    )
+    config = ActionConfig(action_type="search_web", parameters=WebSearchParams(query="test query"))
 
     with pytest.raises(ValueError, match="Failed to retrieve data from Search API"):
         process_data(config)
@@ -330,13 +298,9 @@ def test_process_data_search_web_api_request_error(mock_http_client, monkeypatch
     monkeypatch.setenv("SEARCH_API_KEY", "fake_search_key")
 
     mock_client_instance = mock_http_client.return_value.__enter__.return_value
-    mock_client_instance.get.side_effect = httpx.RequestError(
-        "Connection refused", request=MagicMock()
-    )
+    mock_client_instance.get.side_effect = httpx.RequestError("Connection refused", request=MagicMock())
 
-    config = ActionConfig(
-        action_type="search_web", parameters=WebSearchParams(query="test query")
-    )
+    config = ActionConfig(action_type="search_web", parameters=WebSearchParams(query="test query"))
 
     with pytest.raises(ValueError, match="Failed to connect to Search API"):
         process_data(config)
@@ -344,9 +308,7 @@ def test_process_data_search_web_api_request_error(mock_http_client, monkeypatch
 
 @patch("twat_llm.twat_llm.httpx.Client")
 @patch("twat_llm.twat_llm.ask")
-def test_process_data_search_web_mallmo_error(
-    mock_mallmo_ask, mock_http_client, monkeypatch
-):
+def test_process_data_search_web_mallmo_error(mock_mallmo_ask, mock_http_client, monkeypatch):
     """Test web search when mallmo.ask raises an error."""
     monkeypatch.setenv("SEARCH_API_KEY", "fake_search_key")
 
@@ -359,9 +321,7 @@ def test_process_data_search_web_mallmo_error(
 
     mock_mallmo_ask.side_effect = Exception("LLM processing failed")
 
-    config = ActionConfig(
-        action_type="search_web", parameters=WebSearchParams(query="test query")
-    )
+    config = ActionConfig(action_type="search_web", parameters=WebSearchParams(query="test query"))
 
     with pytest.raises(ValueError, match="An unexpected error occurred"):
         process_data(config)

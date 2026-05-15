@@ -138,7 +138,7 @@ class TestMemoryBenchmarks:
             Image.new(
                 "RGB",
                 (1000, 1000),
-                color=f"rgb({i*50 % 256}, {i*80 % 256}, {i*110 % 256})",
+                color=f"rgb({i * 50 % 256}, {i * 80 % 256}, {i * 110 % 256})",
             )
             for i in range(5)
         ]
@@ -218,9 +218,7 @@ class TestThroughputBenchmarks:
                     results.append(ask(f"Single prompt {i}"))
 
                 # Chain processing
-                chain_result = ask_chain(
-                    "Initial", ["Process: $input", lambda x: x.upper(), "Finalize: $input"]
-                )
+                chain_result = ask_chain("Initial", ["Process: $input", lambda x: x.upper(), "Finalize: $input"])
                 results.append(chain_result)
 
                 return results
@@ -314,7 +312,7 @@ class TestResourceUtilizationBenchmarks:
             Image.new(
                 "RGB",
                 (800, 600),
-                color=f"rgb({i*30 % 256}, {i*60 % 256}, {i*90 % 256})",
+                color=f"rgb({i * 30 % 256}, {i * 60 % 256}, {i * 90 % 256})",
             )
             for i in range(10)
         ]

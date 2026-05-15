@@ -1,7 +1,42 @@
 #!/usr/bin/env python3
-"""twat_llm:
+"""twat_llm: High-level LLM actions with structured input/output.
 
-Created by Adam Twardoch
+What is an LLM?
+---------------
+A *Large Language Model* (LLM) is an AI system trained on text that can read
+a question or instruction and produce a coherent written response.  Examples:
+GPT-4o, Claude, Gemini.  ``twat-llm`` uses Simon Willison's ``llm`` library
+(see :mod:`twat_llm.mallmo`) as the underlying engine so any model supported
+by that library — local or API-hosted — works here.
+
+What this module provides
+--------------------------
+:class:`ActionConfig` is a Pydantic-validated configuration object that
+describes *what to do*:
+
+enrich_person
+    Fetch a LinkedIn profile via the Proxycurl API, then ask an LLM to
+    produce a concise summary of the person's background.
+    Requires ``PROXYCURL_API_KEY`` in the environment.
+
+search_web
+    Run a query through the Brave Search API, then ask an LLM to
+    summarise the results.
+    Requires ``SEARCH_API_KEY`` in the environment.
+
+Use :func:`process_data` to execute an action::
+
+    from twat_llm.twat_llm import ActionConfig, process_data
+
+    result = process_data(ActionConfig(
+        action_type="search_web",
+        parameters={"action_type": "search_web", "query": "Python 3.13 changes"},
+    ))
+    print(result["summary"])
+
+The lower-level :func:`mallmo.ask` function (see :mod:`twat_llm.mallmo`) sends
+a raw prompt to a model with optional image attachments and automatic fallback
+across multiple model IDs.
 """
 
 from __future__ import annotations
@@ -17,9 +52,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 from twat_llm.mallmo import ask  # Import from local mallmo module
 
 # Configure logging
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
 
@@ -27,14 +60,10 @@ logger = logging.getLogger(__name__)
 class ApiKeySettings(BaseSettings):
     """Manages API keys from environment variables."""
 
-    model_config = SettingsConfigDict(
-        env_file=".env", env_file_encoding="utf-8", extra="ignore"
-    )
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
     proxycurl_api_key: str | None = Field(None, env="PROXYCURL_API_KEY")
-    search_api_key: str | None = Field(
-        None, env="SEARCH_API_KEY"
-    )  # For chosen search provider
+    search_api_key: str | None = Field(None, env="SEARCH_API_KEY")  # For chosen search provider
 
 
 class PersonEnrichmentParams(BaseModel):
@@ -56,17 +85,13 @@ class WebSearchParams(BaseModel):
     query: str = Field(..., description="The search query.")
 
 
-AnyParams = Annotated[
-    PersonEnrichmentParams | WebSearchParams, Field(discriminator="action_type")
-]
+AnyParams = Annotated[PersonEnrichmentParams | WebSearchParams, Field(discriminator="action_type")]
 
 
 class ActionConfig(BaseModel):
     """Defines an action to be performed and its parameters."""
 
-    action_type: Literal["enrich_person", "search_web"] = Field(
-        ..., description="The type of action to perform."
-    )
+    action_type: Literal["enrich_person", "search_web"] = Field(..., description="The type of action to perform.")
     parameters: AnyParams
     api_keys: ApiKeySettings = Field(default_factory=ApiKeySettings)
 
@@ -76,11 +101,7 @@ class ActionConfig(BaseModel):
         if isinstance(values, dict):
             action_type = values.get("action_type")
             parameters = values.get("parameters")
-            if (
-                action_type
-                and isinstance(parameters, dict)
-                and "action_type" not in parameters
-            ):
+            if action_type and isinstance(parameters, dict) and "action_type" not in parameters:
                 # Create a new dict for parameters to avoid modifying the original
                 # if it's shared or immutable, though Pydantic usually handles this.
                 updated_parameters = parameters.copy()
@@ -89,9 +110,7 @@ class ActionConfig(BaseModel):
         return values
 
 
-def _handle_enrich_person(
-    params: PersonEnrichmentParams, api_keys: ApiKeySettings
-) -> dict[str, Any]:
+def _handle_enrich_person(params: PersonEnrichmentParams, api_keys: ApiKeySettings) -> dict[str, Any]:
     """Handles the person enrichment action."""
     api_key = api_keys.proxycurl_api_key
     if not api_key:
@@ -108,14 +127,10 @@ def _handle_enrich_person(
     proxycurl_endpoint_url = "https://nubela.co/proxycurl/api/linkedin/person-profile"
     api_params = {"url": str(params.linkedin_profile_url)}
 
-    logger.info(
-        f"Contacting Proxycurl API for LinkedIn URL: {params.linkedin_profile_url}"
-    )
+    logger.info(f"Contacting Proxycurl API for LinkedIn URL: {params.linkedin_profile_url}")
     try:
         with httpx.Client() as client:
-            response = client.get(
-                proxycurl_endpoint_url, headers=headers, params=api_params, timeout=30.0
-            )
+            response = client.get(proxycurl_endpoint_url, headers=headers, params=api_params, timeout=30.0)
             response.raise_for_status()
         profile_data = response.json()
 
@@ -137,9 +152,7 @@ def _handle_enrich_person(
             "summary": summary,
         }
     except httpx.HTTPStatusError as e:
-        logger.error(
-            f"Proxycurl API request failed: {e!s} - Response: {e.response.text}"
-        )
+        logger.error(f"Proxycurl API request failed: {e!s} - Response: {e.response.text}")
         msg = f"Failed to retrieve data from Proxycurl: {e!s}"
         raise ValueError(msg) from e
     except httpx.RequestError as e:
@@ -147,16 +160,12 @@ def _handle_enrich_person(
         msg = f"Failed to connect to Proxycurl: {e!s}"
         raise ValueError(msg) from e
     except Exception as e:
-        logger.exception(
-            f"An unexpected error occurred during person enrichment: {e!s}"
-        )
+        logger.exception(f"An unexpected error occurred during person enrichment: {e!s}")
         msg = f"An unexpected error occurred: {e!s}"
         raise ValueError(msg) from e
 
 
-def _handle_search_web(
-    params: WebSearchParams, api_keys: ApiKeySettings
-) -> dict[str, Any]:
+def _handle_search_web(params: WebSearchParams, api_keys: ApiKeySettings) -> dict[str, Any]:
     """Handles the web search action."""
     api_key = api_keys.search_api_key
     if not api_key:
@@ -171,9 +180,7 @@ def _handle_search_web(
     logger.info(f"Contacting Brave Search API for query: {params.query}")
     try:
         with httpx.Client() as client:
-            response = client.get(
-                brave_search_api_url, headers=headers, params=api_params, timeout=20.0
-            )
+            response = client.get(brave_search_api_url, headers=headers, params=api_params, timeout=20.0)
             response.raise_for_status()
         search_results = response.json()
 
@@ -194,9 +201,7 @@ def _handle_search_web(
             "summary": summary,
         }
     except httpx.HTTPStatusError as e:
-        logger.error(
-            f"Brave Search API request failed: {e!s} - Response: {e.response.text}"
-        )
+        logger.error(f"Brave Search API request failed: {e!s} - Response: {e.response.text}")
         msg = f"Failed to retrieve data from Search API: {e!s}"
         raise ValueError(msg) from e
     except httpx.RequestError as e:
@@ -224,9 +229,7 @@ def process_data(config: ActionConfig, *, debug: bool = False) -> dict[str, Any]
     """
     if debug:
         logger.setLevel(logging.DEBUG)
-        logger.debug(
-            f"Debug mode enabled. Received config: {config.model_dump_json(indent=2)}"
-        )
+        logger.debug(f"Debug mode enabled. Received config: {config.model_dump_json(indent=2)}")
 
     if config.action_type == "enrich_person":
         if not isinstance(config.parameters, PersonEnrichmentParams):
