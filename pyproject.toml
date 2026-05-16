@@ -55,6 +55,8 @@ dependencies = [
     "llm>=0.8", # LLM library by Simon Willison
     "Pillow>=9.0.0", # For image processing (PIL)
     "tenacity>=8.0.0", # For retrying operations
+    "fire>=0.5.0", # Google Fire for CLI generation
+    "loguru>=0.6.0", # Structured logging
     # "opencv-python-headless>=4.0.0" # Removed for MVP streamlining; was for video processing
 ]
 
@@ -73,9 +75,15 @@ Source = "https://github.com/twardoch/twat-llm"
 [project.entry-points."twat.plugins"]
 llm = "twat_llm"
 
-# CLI script
+# CLI scripts — top-level dispatcher + per-leaf dashed entries
 [project.scripts]
-twat-llm = "twat_llm:main"
+twat-llm            = "twat_llm.__main__:main"
+twat-llm-ask        = "twat_llm.__main__:cmd_ask"
+twat-llm-complete   = "twat_llm.__main__:cmd_complete"
+twat-llm-ask-batch  = "twat_llm.__main__:cmd_ask_batch"
+twat-llm-ask-chain  = "twat_llm.__main__:cmd_ask_chain"
+twat-llm-list-models = "twat_llm.__main__:cmd_list_models"
+twat-llm-version    = "twat_llm.__main__:cmd_version"
 
 #------------------------------------------------------------------------------
 # OPTIONAL DEPENDENCIES
@@ -216,6 +224,7 @@ ignore = [
     "I001",
     "ISC001",
     "N803",
+    "PLC0415",  # lazy imports inside functions are intentional for fast --help
     "PLR0911",
     "PLR0912",
     "PLR0913",

@@ -1,13 +1,12 @@
+# this_file: src/twat_llm/__init__.py
 # SPDX-FileCopyrightText: 2024 Adam Twardoch <adam+github@twardoch.com>
 #
 # SPDX-License-Identifier: MIT
-
-from .__version__ import __version__
-
 """twat-llm: LLM integration for twat."""
 
 from __future__ import annotations
 
+from twat_llm.__version__ import __version__
 
 # Expose main functionalities for the library user
 from twat_llm.mallmo import (
@@ -37,8 +36,10 @@ from twat_llm.twat_llm import (
 
 
 def main() -> None:
-    """CLI entry point for twat-llm."""
-    print(f"twat-llm v{__version__}")
+    """CLI entry point for twat-llm — delegates to Fire dispatcher."""
+    from twat_llm.__main__ import main as _main
+
+    _main()
 
 
 __all__ = [

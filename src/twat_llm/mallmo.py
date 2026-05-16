@@ -12,7 +12,7 @@ This module wraps ``llm`` with three useful additions:
     Send a prompt to one model, with automatic fallback to the next model in
     ``model_ids`` if a call fails.  Optionally attach image files (JPEG, PNG,
     GIF, WebP, BMP, TIFF) for multimodal prompts — images are resized to
-    512 × 512 before sending to keep token usage reasonable.
+    512 x 512 before sending to keep token usage reasonable.
 
 :func:`ask_chain`
     Pipe data through a sequence of steps where each step is either a string
@@ -421,7 +421,7 @@ def cli(
                 except Exception:  # pylint: disable=broad-except
                     sys.exit(1)
             else:
-                for _i, response_text in enumerate(responses):
+                for _i, _response_text in enumerate(responses):
                     pass
 
         elif prompt:
