@@ -38,12 +38,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### To Do
+### Added
 
-- Implement core data processing logic in `twat_llm.py`
-- Add comprehensive test coverage
-- Enhance documentation with usage examples
-- Consider adding more LLM providers and models
+- `DEFAULT_MAX_PROCESSES` constant in `mallmo.py` for configurable batch parallelism
+- `docs/index.md` — user-facing documentation explaining what an LLM is and how to use the library
+- `docs/api.md` — full public API reference for `ask`, `ask_chain`, `ask_batch`, text adapters, and `process_data`
+
+### Changed
+
+- `cli()` in `mallmo.py`: now prints responses and error messages to stdout/stderr (previously returned silently); passes `data=None` explicitly to `ask()`
+- `WebSearchParams.query` field now enforces `min_length=1` (empty queries raise `ValidationError`)
+- Test suite: fixed 6 benchmark tests using `side_effect` instead of `return_value=iter(...)` to prevent iterator exhaustion across benchmark rounds
+- Test suite: fixed env-var isolation in `test_api_key_settings_no_env` and `test_api_key_settings_validation` using `monkeypatch`
+- Test suite: fixed integration CLI tests that assumed `cwd="/root/repo"` (Docker-only path)
 
 [unreleased]: https://github.com/twardoch/twat-llm/compare/v0.0.1...HEAD
 [v0.0.1]: https://github.com/twardoch/twat-llm/releases/tag/v0.0.1

@@ -82,7 +82,7 @@ class WebSearchParams(BaseModel):
     """Parameters for performing a web search."""
 
     action_type: Literal["search_web"] = "search_web"
-    query: str = Field(..., description="The search query.")
+    query: str = Field(..., min_length=1, description="The search query (must be non-empty).")
 
 
 AnyParams = Annotated[PersonEnrichmentParams | WebSearchParams, Field(discriminator="action_type")]

@@ -89,9 +89,10 @@ def test_api_key_settings_load_from_env(monkeypatch):
     assert settings.search_api_key == "test_search_key"
 
 
-def test_api_key_settings_no_env():
+def test_api_key_settings_no_env(monkeypatch):
     """Test ApiKeySettings when no environment variables are set."""
-    # Assuming no relevant env vars are set by default in the test environment
+    monkeypatch.delenv("PROXYCURL_API_KEY", raising=False)
+    monkeypatch.delenv("SEARCH_API_KEY", raising=False)
     settings = ApiKeySettings()
     assert settings.proxycurl_api_key is None
     assert settings.search_api_key is None

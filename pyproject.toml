@@ -274,6 +274,12 @@ exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
 # TEST ENVIRONMENTS AND CONFIGURATION
 # Settings for test execution and benchmarking.
 #------------------------------------------------------------------------------
+[tool.hatch.envs.hatch-test]
+extra-dependencies = [
+  "pytest-benchmark[histogram]>=5.1.0",
+  "pytest-mock>=3.12.0",
+]
+
 [tool.hatch.envs.test]
 dependencies = [
   "twat-llm[test]",

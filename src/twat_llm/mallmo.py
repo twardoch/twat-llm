@@ -58,6 +58,7 @@ if TYPE_CHECKING:
 
 DEFAULT_RETRY_ATTEMPTS: int = 2
 MAX_STEP_TUPLE_LENGTH: int = 2
+DEFAULT_MAX_PROCESSES: int = 4
 
 
 DEFAULT_FALLBACK_MODELS: list[str] = [
@@ -400,14 +401,17 @@ def cli(
             try:
                 with open(batch_prompts_file, encoding="utf-8") as f:
                     prompts_for_batch = [line.strip() for line in f if line.strip()]
-            except FileNotFoundError:
+            except Exception as e:  # pylint: disable=broad-except
+                print(f"Error reading batch prompts file: {e!s}", file=sys.stderr)
                 sys.exit(1)
-            except Exception:  # pylint: disable=broad-except
-                sys.exit(1)
+                return
 
             if not prompts_for_batch:
+                print("No prompts found in batch file.", file=sys.stderr)
                 sys.exit(0)
+                return
 
+            print(f"Processing {len(prompts_for_batch)} prompts in batch mode...")
             responses = ask_batch(
                 prompts_for_batch,
                 model_ids=model_ids_list,
@@ -418,24 +422,31 @@ def cli(
                     with open(output_file, "w", encoding="utf-8") as f:
                         for response_text in responses:
                             f.write(response_text + "\n")
-                except Exception:  # pylint: disable=broad-except
+                    print(f"Batch output written to {output_file}")
+                except Exception as e:  # pylint: disable=broad-except
+                    print(f"Error writing output file: {e!s}", file=sys.stderr)
                     sys.exit(1)
             else:
-                for _i, _response_text in enumerate(responses):
-                    pass
+                for i, response_text in enumerate(responses, 1):
+                    print(f"Response for prompt {i}:\n{response_text}")
 
         elif prompt:
             response_text = ask(
                 prompt,
+                data=None,
                 model_ids=model_ids_list,
                 media_paths=media_paths_list,
             )
+            print(response_text)
         else:
+            print("Error: You must provide a 'prompt' or use '--batch_prompts_file'.", file=sys.stderr)
             sys.exit(1)
 
-    except LLMError:
+    except LLMError as e:
+        print(f"LLM Error: {e!s}", file=sys.stderr)
         sys.exit(1)
-    except Exception:  # pylint: disable=broad-except
+    except Exception as e:  # pylint: disable=broad-except
+        print(f"Error: {e!s}", file=sys.stderr)
         sys.exit(1)
 
 

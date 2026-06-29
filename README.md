@@ -1,6 +1,16 @@
-# `twat-llm`: Advanced LLM Integration for Python Applications
+# `twat-llm`: LLM Integration for Python Applications
 
-**`twat-llm`** owns text-heavy Large Language Model work in the twat ecosystem: prompts, chat-style calls, chains, batches, and text-centric multimodal analysis. Generated media belongs in `twat-genai`; deterministic text algorithms belong in `twat-text`.
+**`twat-llm`** owns text-heavy Large Language Model work in the [twat](https://github.com/twardoch/twat) ecosystem: prompts, chat-style calls, chains, batches, and text-centric multimodal analysis. Generated media belongs in `twat-genai`; deterministic text algorithms belong in `twat-text`.
+
+## What is an LLM?
+
+A **Large Language Model** (LLM) is an AI system trained on massive amounts of text that can read a question or instruction and write a coherent, context-aware reply. Well-known LLMs include OpenAI's GPT-4o, Anthropic's Claude, and Google's Gemini. This library uses Simon Willison's [`llm`](https://llm.datasette.io) library as the underlying engine, which supports dozens of providers through installable plugins.
+
+When you send a prompt, `twat-llm`:
+1. Optionally combines your instruction with data you supply.
+2. Selects a model from a priority list, falling back automatically on failure.
+3. Sends the request over HTTPS to the provider's API.
+4. Returns the model's plain-text reply as a Python string.
 
 ## Who is `twat-llm` for?
 

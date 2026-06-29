@@ -31,7 +31,7 @@ class TestPerformanceBenchmarks:
         with patch("twat_llm.mallmo.ProcessPoolExecutor") as mock_executor:
             mock_executor_instance = MagicMock()
             responses = [f"Response {i}" for i in range(100)]
-            mock_executor_instance.map.return_value = iter(responses)
+            mock_executor_instance.map.side_effect = lambda f, args: iter(responses)
             mock_executor.return_value.__enter__.return_value = mock_executor_instance
 
             prompts = [f"Prompt {i}" for i in range(100)]
@@ -88,7 +88,7 @@ class TestScalabilityBenchmarks:
         with patch("twat_llm.mallmo.ProcessPoolExecutor") as mock_executor:
             mock_executor_instance = MagicMock()
             responses = [f"Response {i}" for i in range(batch_size)]
-            mock_executor_instance.map.return_value = iter(responses)
+            mock_executor_instance.map.side_effect = lambda f, args: iter(responses)
             mock_executor.return_value.__enter__.return_value = mock_executor_instance
 
             prompts = [f"Prompt {i}" for i in range(batch_size)]
@@ -193,7 +193,7 @@ class TestThroughputBenchmarks:
         with patch("twat_llm.mallmo.ProcessPoolExecutor") as mock_executor:
             mock_executor_instance = MagicMock()
             responses = [f"Parallel response {i}" for i in range(20)]
-            mock_executor_instance.map.return_value = iter(responses)
+            mock_executor_instance.map.side_effect = lambda f, args: iter(responses)
             mock_executor.return_value.__enter__.return_value = mock_executor_instance
 
             prompts = [f"Prompt {i}" for i in range(20)]
@@ -297,7 +297,7 @@ class TestResourceUtilizationBenchmarks:
         with patch("twat_llm.mallmo.ProcessPoolExecutor") as mock_executor:
             mock_executor_instance = MagicMock()
             responses = [f"CPU test response {i}" for i in range(50)]
-            mock_executor_instance.map.return_value = iter(responses)
+            mock_executor_instance.map.side_effect = lambda f, args: iter(responses)
             mock_executor.return_value.__enter__.return_value = mock_executor_instance
 
             prompts = [f"CPU test prompt {i}" for i in range(50)]
